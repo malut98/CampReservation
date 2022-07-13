@@ -18,6 +18,7 @@
 					<li class="nav-item"><a href="/caravanlist">카라반</a></li>
 					<li class="nav-item"><a href="/usedtradelist">중고거래</a></li>
 					<li class="nav-item"><a href="/communitylist">커뮤니티</a></li>
+					<li class="nav-item"><a href="/login">로그인</a></li>
 				</ul>
 		</header>
 	</div>
