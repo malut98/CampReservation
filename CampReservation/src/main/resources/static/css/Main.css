@@ -1,14 +1,16 @@
 * {
-	box-sizing: border-box;
 	text-decoration: none;
 	list-style: none;
-	background: black;
 	color: white;
 }
 
 .header {
 	height: 100px;
 	margin: 0 auto;
+	background: black;
+	position: relative;
+	z-index: 1;
+	opacity: 90;
 }
 
 .section {
@@ -21,7 +23,6 @@
 	width: 6%;
 	display: inline-block;
 	height: 100%;
-	font-size: 36px;
 	line-height: 2.8;
 	margin-left: 30px;
 	vertical-align: top;
@@ -45,6 +46,7 @@ form{
 }
 
 .nav-item-search .search-form {
+	background-color : black;
 	width: 250px;
 	height: 40px;
 	color: white;
