@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+.communityboard{
+	
+	padding: 0;
+	margin: auto;
+	width: 80%;
+}
+.board{
+	margin: auto;
+	background-color: black;
+	color: white;
+}
+#boardwrite{
+	cursor: pointer;
+	background-color: skyblue;
+	color: white;
+
+	width: 80px;
+	height: 40px;
+	
+	position: relative;
+	left: 58%;
+	top: 20px;
+}
+#serachbox{
+	background-color: white;
+	
+	position: relative;
+	left: 38%;
+	top: 40px;
+	
+	width: 160px;
+	height: 40px;
+}
