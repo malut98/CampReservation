@@ -33,9 +33,7 @@ public class CampDB {
         }
         rd.close();
         conn.disconnect();
-        System.out.println(sb.toString());
-        String r = sb.toString();
-        return r;
+        return sb.toString();
 	}
 
 }

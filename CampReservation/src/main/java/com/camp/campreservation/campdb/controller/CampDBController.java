@@ -20,6 +20,7 @@ public class CampDBController {
 		CampDB camp = new CampDB();
 		String res = camp.CampDBSave();
 		model.addAttribute("res",res);
+		System.out.println(res);
 		return "SavePage";
 	}
 }
