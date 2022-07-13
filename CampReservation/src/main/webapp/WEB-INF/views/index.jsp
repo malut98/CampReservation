@@ -13,11 +13,11 @@
 		<header class="section">
 				<ul class="nav-container">
 					<li class="nav-item"><a href="/">캠모아</a></li>
-					<li class="nav-item"><a href="/">캠핑장</a></li>
-					<li class="nav-item"><a href="/">글램핑</a></li>
-					<li class="nav-item"><a href="/">카라반</a></li>
-					<li class="nav-item"><a href="/">중고거래</a></li>
-					<li class="nav-item"><a href="community/list">커뮤니티</a></li>
+					<li class="nav-item"><a href="/camplist">캠핑장</a></li>
+					<li class="nav-item"><a href="/glamlist">글램핑</a></li>
+					<li class="nav-item"><a href="/caravanlist">카라반</a></li>
+					<li class="nav-item"><a href="/usedtradelist">중고거래</a></li>
+					<li class="nav-item"><a href="/communitylist">커뮤니티</a></li>
 				</ul>
 		</header>
 	</div>
