@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>s</h1>
-	test1_commit_ho
-	test_commit_yeol
-	test_commit_su
+	<a href="/camp/login">로그인</a>
 </body>
 </html>
