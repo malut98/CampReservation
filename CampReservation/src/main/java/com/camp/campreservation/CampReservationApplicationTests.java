@@ -5,10 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @SpringBootApplication
-public class CampReservationApplication {
+public class CampReservationApplicationTests {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CampReservationApplication.class, args);
+		SpringApplication.run(CampReservationApplicationTests.class, args);
 	}
 	@RequestMapping("/")
 	public String root() {
