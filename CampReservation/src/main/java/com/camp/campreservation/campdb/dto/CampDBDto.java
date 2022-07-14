@@ -25,6 +25,7 @@ public class CampDBDto {
 			String camp_char, String camp_se, String camp_loc, String camp_addr, String camp_phone, String camp_web,
 			String camp_img, int camp_price, float camp_lat, float camp_long) {
 		super();
+		
 		this.camp_id = camp_id;
 		this.camp_name = camp_name;
 		this.camp_one = camp_one;
@@ -40,6 +41,7 @@ public class CampDBDto {
 		this.camp_price = camp_price;
 		this.camp_lat = camp_lat;
 		this.camp_long = camp_long;
+		
 	}
 
 	public int getCamp_id() {

@@ -21,4 +21,5 @@ public interface CampDBMapper {
 			+ "#{camp_loc}, #{camp_addr}, #{camp_phone}, #{camp_web}, #{camp_img}, "
 			+ "#{camp_price}, #{camp_lat}, #{camp_long}) ")
 	int insert(CampDBDto dto);
+	
 }

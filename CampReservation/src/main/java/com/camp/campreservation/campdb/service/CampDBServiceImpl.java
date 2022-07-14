@@ -2,26 +2,31 @@ package com.camp.campreservation.campdb.service;
 
 import java.util.List;
 
-import com.camp.campreservation.campdb.dto.CampDBDto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.camp.campreservation.campdb.dto.CampDBDto;
+import com.camp.campreservation.campdb.mapper.CampDBMapper;
+
+@Service
 public class CampDBServiceImpl implements CampDBService {
 
+	@Autowired
+	private CampDBMapper campDBMapper;
+	
 	@Override
 	public List<CampDBDto> selectList() {
-		// TODO Auto-generated method stub
-		return null;
+		return campDBMapper.selectList();
 	}
 
 	@Override
 	public CampDBDto selectOne(String camp_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return campDBMapper.selectOne(camp_id);
 	}
 
 	@Override
 	public int insert(CampDBDto dto) {
-		// TODO Auto-generated method stub
-		return 0;
+		return campDBMapper.insert(dto);
 	}
 
 }
