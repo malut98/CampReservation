@@ -10,4 +10,9 @@ public class LoginController {
 		
 		return "login";
 	}
+	
+	@GetMapping("/sign")
+	public String sign() {
+		return "sign";
+	}
 }
