@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.camp.campreservation.Dto.CommunityDto;
 import com.camp.campreservation.Service.CommunityService;
@@ -25,7 +26,7 @@ public class CommunityController {
 	public String communityList(Model model, @ModelAttribute("params") CommunityDto params) {
 		List<CommunityDto> boardList = cs.getBoardList(params);
 	model.addAttribute("boardList", boardList);	
-	System.out.println(boardList.size());
+	
 	model.addAttribute("list",cs.communitylist());
 		return "communitylist";
 	}
@@ -34,5 +35,18 @@ public class CommunityController {
 	public String communityWrite() {
 		
 		return "communitywrite";
+	}
+	
+	@PostMapping("communitywriteres")
+	public String communityWriteRes(CommunityDto dto) {
+		int res = cs.communitywrite(dto);
+		
+		if(res>0) {
+			return "redirect:communitylist";
+		}else {
+			return "redirect:communitywrite";
+		}
+		
+		
 	}
 }

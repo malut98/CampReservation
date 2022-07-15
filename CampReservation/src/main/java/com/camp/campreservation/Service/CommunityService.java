@@ -40,7 +40,11 @@ public class CommunityService {
 		return boardList;
 	}
 	
-	
+	public int communitywrite(CommunityDto dto) {
+		
+		return cm.communitywrite(dto);
+		
+	}
 	
 	
 	
