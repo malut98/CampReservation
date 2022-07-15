@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,71 +10,26 @@
 <title>Insert title here</title>
 <link rel="StyleSheet" href="css/Main.css" type="text/css">
 <link rel="StyleSheet" href="css/star.css" type="text/css">
+<link rel="StyleSheet" href="css/banner.css" type="text/css">
+<link rel="StyleSheet" href="css/notice.css" type="text/css">
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script type="text/javascript">
-	function init(){
-
-		  //estrelas
-
-		  var style = ["style1", "style2", "style3", "style4"];
-		  var tam = ["tam1", "tam1", "tam1", "tam2", "tam3"];
-		  var opacity = ["opacity1", "opacity1", "opacity1", "opacity2", "opacity2", "opacity3"];
-
-		  function getRandomArbitrary(min, max) {
-		    return Math.floor(Math.random() * (max - min)) + min;
-		  }
-
-		  var estrela = "";
-		  var qtdeEstrelas = 250;
-		  var noite = document.querySelector(".constelacao");
-		  var widthWindow = window.innerWidth;
-		  var heightWindow = window.innerHeight;
-
-		  for (var i = 0; i < qtdeEstrelas; i++) {
-		    estrela += "<span class='estrela " + style[getRandomArbitrary(0, 4)] + " " + opacity[getRandomArbitrary(0, 6)] + " "
-		    + tam[getRandomArbitrary(0, 5)] + "' style='animation-delay: ." +getRandomArbitrary(0, 9)+ "s; left: "
-		    + getRandomArbitrary(0, widthWindow) + "px; top: " + getRandomArbitrary(0, heightWindow) + "px;'></span>";
-		  }
-
-		  noite.innerHTML = estrela;
-
-		  //meteoros
-
-		  var numeroAleatorio = 5000;
-
-		  setTimeout(function(){
-		    carregarMeteoro();
-		  }, numeroAleatorio);
-
-		  function carregarMeteoro(){
-		    setTimeout(carregarMeteoro, numeroAleatorio);
-		    numeroAleatorio = getRandomArbitrary(5000, 10000);
-		    var meteoro = "<div class='meteoro "+ style[getRandomArbitrary(0, 4)] +"'></div>";
-		    document.getElementsByClassName('chuvaMeteoro')[0].innerHTML = meteoro;
-		    setTimeout(function(){
-		      document.getElementsByClassName('chuvaMeteoro')[0].innerHTML = "";
-		    }, 1000);
-		  }
-
-		}
-
-		window.onload = init;
-	</script>
+<script type="text/javascript" src="js/star.js"></script>
 </head>
 <body>
 	<div class="header">
 		<div class="section">
 			<div class="logo">
-				<a href="/"><img alt="" src="img/logo/logo (2).png" style=" height: 100px;"></a>
+				<a href="/"><img alt="" src="img/logo/logo (2).png"
+					style="height: 100px;"></a>
 			</div>
 			<div class="nav">
 				<ul style="padding-inline-start: 0px;">
 					<li class="nav-item-search">
 						<form action="" style="margin-left: 0px;">
 							<img class="search-icon" style="width: 64px; height: 64px;"
-								src="img/search.svg"> 
-								<input class="search-form" type="text" placeholder="통합검색"> <span class="underline"></span>
+								src="img/search.svg"> <input class="search-form"
+								type="text" placeholder="통합검색"> <span class="underline"></span>
 						</form>
 					</li>
 					<li class="nav-item"><a href="/camplist">캠핑장</a></li>
@@ -89,7 +47,31 @@
 			</div>
 		</div>
 	</div>
-	<div class="noite"></div>
+
+	<div class="noite">
+		<div class="Banner_container">
+			<div class="Banner_inner" style="">
+				<div class="Banner_warp">
+					<div class="Top_wrap">
+						<div class="Banner_Top">
+							<div class="Banner Text">
+								<h2>Hello, I'm Camp Moa</h2>
+							</div>
+						</div>
+					</div>
+					<div class="Bottom_warp">
+						<div class="Banner_Bottom">
+							<button class="Banner-btn">산</button>
+							<button class="Banner-btn">바다</button>
+							<button class="Banner-btn">캠핑장</button>
+							<button class="Banner-btn">글램핑</button>
+							<button class="Banner-btn">카라반</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div class="constelacao"></div>
 
@@ -99,10 +81,48 @@
 
 	<div class="chuvaMeteoro"></div>
 
-	<div class="floresta">
-		<img
-			src="https://raw.githubusercontent.com/interaminense/starry-sky/master/src/img/bgTree.png"
-			alt="" />
+	<div class="notice_container">
+		<div class="notice_inner">
+			<div class="notice_wrap">
+				<div class="notice_top">
+					<h1>국내 여행</h1>
+					<div class="slider">
+						<div class="slider-btn-wrapper slider-btn-wrapper-left">
+							<!-- 왼쪽 화살표 -->
+							<h1>&lt;</h1>
+						</div>
+						<div class="item-wrapper">
+							<div class="item">
+								<img src="img/banner/banner_2.jpg" />
+							</div>
+							<div class="item">
+								<img src="img/banner/banner_2.jpg" />
+							</div>
+							<div class="item">
+								<img src="img/banner/banner_2.jpg" />
+							</div>
+							<div class="item">
+								<img src="img/banner/banner_2.jpg" />
+							</div>
+						</div>
+						<div class="slider-btn-wrapper slider-btn-wrapper-right">
+							<h1>&gt;</h1>
+						</div>
+						<div class="notice_bottom_wrap">
+							<div class="notice_bottom"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="footer">
+		<div class="floresta">
+			<!-- <img style=""
+				src="https://raw.githubusercontent.com/interaminense/starry-sky/master/src/img/bgTree.png"
+				alt="" />  -->
+		</div>
 	</div>
 </body>
 </html>
