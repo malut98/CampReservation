@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="StyleSheet" href="css/communitywrite.css" type="text/css">
-<link rel="StyleSheet" href="css/Main.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/communitywrite.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
 </head>
 <body>
      <div class="header">
@@ -38,11 +38,12 @@
 			</div>
 		</div>
 	</div>
-     <form action="communitywriteres" method="post">
+     <form action="communitywriteres" method="post" enctype="multipart/form-data">
      <input type="button" id="menu" value="목록" onclick="location.href='communitylist'">
      <div class="writeform">
      <input type="text" name="com_title" id="title"><br>
      <input type="text" name="member_id" id="memid" readonly="readonly" ><br>
+     <input type="file" name="fileimage" id="image" ><br>
      <textarea name="com_content" id="content" rows="30" cols="100"></textarea>
      <input type="submit" id="writebutton" value="작성">
      </div>

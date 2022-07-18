@@ -5,12 +5,13 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 public class Criteria {
 
-	private int currentPageNo;
-	private int recordsPerPage;
-	private int pageSize;
+	private int currentPageNo; //현재페이지
+	private int recordsPerPage; //페이지당 출력할 데이터 개수
+	private int pageSize; // 화면 하단에 출력할 페이지 사이즈
 	private String searchKeyword;
 	private String searchType;
 	
+	//생성자 생성시 값 초기화
 	public Criteria() {
 		this.currentPageNo = 1;
 		this.recordsPerPage = 5;

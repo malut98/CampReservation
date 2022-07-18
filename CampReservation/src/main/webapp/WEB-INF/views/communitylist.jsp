@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>community</title>
-<link rel="StyleSheet" href="css/community.css" type="text/css">
-<link rel="StyleSheet" href="css/Main.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/community.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
@@ -79,7 +79,7 @@
 		</div>
 		
 		<th:block layout:fragment="paging">
-				<nav th:replace="community/common :: pagination"></nav>
+				<nav th:replace="resources/templates/community/common :: pagination"></nav>
 			</th:block>
 
 	<th:block layout:fragment="script">
