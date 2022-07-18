@@ -20,6 +20,11 @@ public class CampDBDto {
 	public CampDBDto() {
 		super();
 	}
+	
+	public CampDBDto(int camp_id) {
+		super();
+		this.camp_id=camp_id;
+	}
 
 	public CampDBDto(int camp_id, String camp_name, String camp_one, String camp_info, String camp_open,
 			String camp_char, String camp_se, String camp_loc, String camp_addr, String camp_phone, String camp_web,
