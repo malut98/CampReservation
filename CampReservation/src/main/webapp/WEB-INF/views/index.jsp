@@ -32,12 +32,11 @@
 								type="text" placeholder="통합검색"> <span class="underline"></span>
 						</form>
 					</li>
-					<li class="nav-item"><a href="/camplist">캠핑장</a></li>
-					<li class="nav-item"><a href="/glamlist">글램핑</a></li>
-					<li class="nav-item"><a href="/caravanlist">카라반</a></li>
+					<li class="nav-item"><a href="/clist/cpl">캠핑장</a></li>
+					<li class="nav-item"><a href="/clist/gl">글램핑</a></li>
+					<li class="nav-item"><a href="/clist/cvl">카라반</a></li>
 					<li class="nav-item"><a href="/usedtradelist">중고거래</a></li>
 					<li class="nav-item"><a href="/communitylist">커뮤니티</a></li>
-					<li class="nav-item"><a href="/DB/CampDb">db</a></li>
 				</ul>
 			</div>
 			<div class="profile">
