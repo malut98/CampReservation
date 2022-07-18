@@ -80,17 +80,18 @@
 				<tr>
 					<td colspan="2">
 					<c:if test="${dto.camp_img eq 'x'}">
-						<img style="width: 540px; height: 350px;"
-						src="https://pbs.twimg.com/media/Et8y5ArVcAYlA28.jpg:large"></c:if>
+						<a href="/campdetail"><img style="width: 540px; height: 350px;"
+						src="https://pbs.twimg.com/media/Et8y5ArVcAYlA28.jpg:large"></a></c:if>
 								
 					<c:if test="${dto.camp_img ne 'x'}">
-						<img style="width: 540px; height: 350px;"
-						src="${dto.camp_img}"></c:if>
+						<a href="/campdetail"><img style="width: 540px; height: 350px;"
+						src="${dto.camp_img}"></a></c:if>
 					</td>
 				</tr>
 				<tr>
 					<td>${dto.camp_name}</td>
-					<td><button>하트</button><td>
+					<td style="text-align: center;"><img style="width: 20px; height: 20px;"
+						src="/Img/unlike.png"><td>
 				</tr>
 				<tr>
 					<td>${dto.camp_addr}</td>
