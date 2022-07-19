@@ -12,9 +12,42 @@
 <link rel="StyleSheet" href="/resources/css/star.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/banner.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/notice.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/Category.css"
+	type="text/css">
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="js/star.js"></script>
+<script type="text/javascript" src="/resources/js/star.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript"
+	src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<link rel="stylesheet"
+	href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<link rel="stylesheet" type="text/css"
+	href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<script src="/resources/js/category.js"></script>
+<script>
+	$(function() {
+		$('.item-wrapper').slick({
+			dots : false,
+			infinite : true,
+			speed : 300,
+			slidesToShow : 4,
+			slidesToScroll : 2,
+			responsive : [ {
+				breakpoint : 1024,
+				settings : {
+					slidesToShow : 3,
+					slidesToScroll : 3
+				}
+			}
+			// You can unslick at a given breakpoint now by adding:
+			// settings: "unslick"
+			// instead of a settings object
+			]
+		});
+	});
+</script>
 </head>
 <body>
 	<div class="header">
@@ -23,21 +56,46 @@
 				<a href="/"><img alt="" src="/resources/img/logo/logo (2).png"
 					style="height: 100px;"></a>
 			</div>
-			<div class="nav">
-				<ul style="padding-inline-start: 0px;">
-					<li class="nav-item-search">
-						<form action="" style="margin-left: 0px;">
-							<img class="search-icon" style="width: 64px; height: 64px;"
-								src="/resources/img/search.svg"> <input class="search-form"
-								type="text" placeholder="통합검색"> <span class="underline"></span>
-						</form>
-					</li>
-					<li class="nav-item"><a href="/clist/cpl">캠핑장</a></li>
-					<li class="nav-item"><a href="/clist/gl">글램핑</a></li>
-					<li class="nav-item"><a href="/clist/cvl">카라반</a></li>
-					<li class="nav-item"><a href="/usedtradelist">중고거래</a></li>
-					<li class="nav-item"><a href="/communitylist">커뮤니티</a></li>
-				</ul>
+			<div class="nav-item-search">
+				<form class="form-tag" action="" style="">
+					<img class="search-icon" style="width: 64px; height: 64px;" 
+					src="/resources/img/search.svg"> 
+					<input class="search-form" type="text" placeholder="통합검색"> 
+					<span class="underline"></span>
+				</form>
+			</div>
+			<div class="nav_wrap">
+				<div class="nav">
+					<ul class="header_menu">
+						<li class="nav-item"><a href="/camplist">캠핑모아</a></li>
+						<li class="nav-item"><a href="/usedtradelist">중고모아</a></li>
+						<li class="nav-item"><a href="/communitylist">커뮤모아</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="menu_pan">
+				<div class="camp-moa">
+					<div class="menu_category">
+						<div class="category">
+							<a href=""> 베스트 모아</a>
+						</div>
+						<div class="category">
+							<a href=""> 새로움 모아</a>
+						</div>
+						<div class="category">
+							<a href=""> 캠핑장 모아</a>
+						</div>
+						<div class="category">
+							<a href=""> 카라반 모아</a>
+						</div>
+						<div class="category">
+							<a href=""> 글램핑 모아</a>
+						</div>
+						<div class="category">
+							<a href=""> 반려견 모아</a>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="profile">
 				<ul>
@@ -84,28 +142,28 @@
 		<div class="notice_inner">
 			<div class="notice_wrap">
 				<div class="notice_top">
-					<h1>국내 여행</h1>
+					<h1>추천 캠핑장</h1>
 					<div class="slider">
-						<div class="slider-btn-wrapper slider-btn-wrapper-left">
-							<!-- 왼쪽 화살표 -->
-							<h1>&lt;</h1>
-						</div>
 						<div class="item-wrapper">
-							<div class="item">
-								<img src="/resources/img/banner/banner_2.jpg" />
-							</div>
-							<div class="item">
-								<img src="/resources/img/banner/banner_2.jpg" />
-							</div>
-							<div class="item">
-								<img src="/resources/img/banner/banner_2.jpg" />
-							</div>
-							<div class="item">
-								<img src="/resources/img/banner/banner_2.jpg" />
-							</div>
-						</div>
-						<div class="slider-btn-wrapper slider-btn-wrapper-right">
-							<h1>&gt;</h1>
+							<c:choose>
+								<c:when test="${empty list }">
+									<c:forEach begin="0" end="8">
+										<div class="item">
+											<img src="/resources/img/banner/banner_2.jpg" />
+										</div>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<c:forEach begin="0" end="8" items="${list }" var="dto">
+										<div class="item">
+											<a class="test"> ${dto.camp_name } </a>
+											<div class="test-2">
+												<a><img src="${dto.camp_img }" /></a>
+											</div>
+										</div>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="notice_bottom_wrap">
 							<div class="notice_bottom"></div>

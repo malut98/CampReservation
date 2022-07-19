@@ -6,13 +6,11 @@
 
 html, body {
   margin: 0;
-  width: 100%;
   background: -webkit-linear-gradient(top, rgb(0, 0, 0) 50%, rgb(25, 19, 39)80%, rgb(43, 32, 72));
 }
 
 
 .noite {
-  width: 100%;
   height: 70%;
   position: relative;
 }
