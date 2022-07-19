@@ -8,11 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.camp.campreservation.campdb.dto.CampDBDto;
 import com.camp.campreservation.camplist.service.CampListService;
-import com.camp.campreservation.paging.Criteria;
-import com.camp.campreservation.paging.PaginationInfo;
+import com.camp.campreservation.paging.Pagination;
+
 
 @Controller
 @RequestMapping("/clist")
@@ -22,15 +23,9 @@ public class CampListController {
 	private CampListService campListService;
 
 	@GetMapping("/cpl")
-	public String campList(Model model, @ModelAttribute("params") CampDBDto params) {
-		List<CampDBDto> campDto = campListService.getCampList(params);
-		model.addAttribute("camp",campDto);
-		
-		Criteria cr = new Criteria();
-		PaginationInfo pagin = new PaginationInfo(cr);
-		pagin.setTotalRecordCount(campListService.selectCampCount(params));
-		model.addAttribute("cr",cr);
-		model.addAttribute("page",pagin);
+	public String campList(Model model, @RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "6") String contentnum) {
+//		List<CampDBDto> camp = new campListService.
+		campListService.getCampList(model, pagenum, contentnum);
 		
 		return "camplist";
 	}

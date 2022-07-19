@@ -1,0 +1,87 @@
+@charset "UTF-8";
+
+body{
+	background-color : black;
+	
+}
+
+#list{
+	background-color : lightgray;
+	color : black;
+	
+	border: solid 2px white;
+	border-radius: 12px;
+	
+	position : relative;
+	top : 30px;
+	left : 40%;
+	width : 80px;
+	height : 40px;
+	
+	cursor : pointer;
+	
+	
+}
+
+#title{
+	background-color : white;
+	color : black;
+	
+	position : relative;
+	top : 20px;
+	left : 40.5%;
+}
+
+#memberID{
+	background-color : white;
+	color : black;
+	position : relative;
+	top : 50px;
+	left : 31%;
+}
+
+#content{
+	background-color : white;
+	color: black;
+	position : relative;
+	top : 60px;
+	left : 45%;
+}
+
+#commentContent{
+	background-color : white;
+	color : black;
+	border: solid 2px white;
+	border-radius: 6px;
+	position : relative;
+	top: 100px;
+	left: 230%;
+	width: 300px; 
+	height: 40px;
+}
+#commentwrite{
+	background-color : gray;
+	color : white;
+	border: solid 2px white;
+	border-radius: 6px;
+	position : relative;
+	top: 100px;
+	left: 240%;
+	
+	width : 60px;
+	height: 30px;
+	
+	cursor : pointer;
+}
+
+
+
+#nullcomment{
+	background-color : white;
+	color: black;
+	position: relative;
+	top: 210px;
+	left: 25%;
+	width : 60px;
+	height: 30px;
+}

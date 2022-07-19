@@ -14,6 +14,21 @@
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+function page(idx){
+	var pagenum = idx;
+	var contentnum = $("#contentnum option:selected").val();
+	
+	if(contentnum == 5){
+	    location.href="${pageContext.request.contextPath}/camplist?pagenum="+pagenum+"&contentnum="+contentnum
+
+	  }else if(contentnum == 10){
+	    location.href="${pageContext.request.contextPath}/camplist?pagenum="+pagenum+"&contentnum="+contentnum
+
+	  }else if(contentnum == 20){
+	    location.href="${pageContext.request.contextPath}/camplist?pagenum="+pagenum+"&contentnum="+contentnum
+
+	  }
+}
 </script>
 	<style>
 		h1{
@@ -75,7 +90,12 @@
 	<h1>캠핑장</h1>
 	
 	<div class="camplist">	
-		<c:forEach items="${camp}" var="dto" varStatus="status">
+	<select name="contentnum" id="contentnum" onchange="page(1)">
+      <option value="5" id="cn1" <c:if test="${page.getContentnum() == 5 }">selected="selected"</c:if> >5 개</option>
+      <option value="10" id="cn2" <c:if test="${page.getContentnum() == 10 }">selected="selected"</c:if> >10 개</option>
+      <option value="20" id="cn3" <c:if test="${page.getContentnum() == 20 }">selected="selected"</c:if> >20 개</option>
+    </select>
+		<c:forEach items="${clist}" var="dto" varStatus="status">
 			<c:if test="${status.count%2 == '1'}">
 				<div class="left">
 					<table class="table_left">
@@ -131,18 +151,18 @@
 				</div>
 			</c:if>
 		</c:forEach>
-		<div class="paginate">
-    	<a href="?currentPageNo=${page.firstPage}" class="prev">이전 페이지</a>
-    	<span>
-       		<c:forEach var="i" begin="${page.firstPage}" end="${page.lastPage}" step="1">
-          	 	<c:choose>
-                	<c:when test="${i eq cr.currentPageNo}"><a href="?currentPageNo=${i}">${i}</a></c:when>
-                	<c:otherwise><a href="?currentPageNo=${i}">${i}</a></c:otherwise>
-            	</c:choose>
-        	</c:forEach>
-    	</span>
-    	<a href="?currentPageNo=${page.lastPage}" class="next">다음 페이지</a>
-	</div>
+		<div class="paging">
+			<c:if test="${page.prev}">
+                    <a href="javascript:page(${page.getStartPage()-1});">&laquo;</a>
+                  </c:if>
+                  <c:forEach begin="${page.getStartPage()}" end="${page.getEndPage()}" var="idx">
+                    <a href="javascript:page(${idx});">${idx}</a>
+                  </c:forEach>
+                  <c:if test="${page.next}">
+                    <a href="javascript:page(${page.getEndPage()+1});">&raquo;</a>
+                  </c:if>
+			
+			</div>
 	</div>
 	
 </body>

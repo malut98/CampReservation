@@ -15,6 +15,9 @@ body{
 	top : 50px;
 	left : 70%;
 	
+	border: solid 2px white;
+	border-radius: 12px;
+	
 }
 #title{
 	color: black;
@@ -24,7 +27,7 @@ body{
 }
 #memid{
 	color: black;
-		position : relative;
+	position : relative;
 	top : 20px;
 	left : 90%;
 }
@@ -36,10 +39,19 @@ body{
 }
 #writebutton{
 	cursor : pointer;
-	color: black;
+	color: white;
 	position : relative;
 	top : 100px;
 	left : 80%;
 	width: 60px;
 	height: 50px;
+	background-color: skyblue;
+	border: solid 2px;
+	border-radius: 12px;
+}
+#image{
+	cursor : pointer;
+	position : relative;
+	top : 35px;
+	left : 90%;
 }
