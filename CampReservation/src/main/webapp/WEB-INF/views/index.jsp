@@ -12,6 +12,8 @@
 <link rel="StyleSheet" href="/resources/css/star.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/banner.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/notice.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/Category.css"
+	type="text/css">
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/resources/js/star.js"></script>
@@ -23,6 +25,7 @@
 	href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <link rel="stylesheet" type="text/css"
 	href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<script src="/resources/js/category.js"></script>
 <script>
 	$(function() {
 		$('.item-wrapper').slick({
@@ -53,19 +56,46 @@
 				<a href="/"><img alt="" src="/resources/img/logo/logo (2).png"
 					style="height: 100px;"></a>
 			</div>
-			<div class="nav">
-				<ul style="padding-inline-start: 0px;">
-					<li class="nav-item-search">
-						<form action="" style="margin-left: 0px;">
+			<div class="nav-item-search">
+						<form class="form-tag" action="" style="">
 							<img class="search-icon" style="width: 64px; height: 64px;"
-								src="/resources/img/search.svg"> <input class="search-form"
-								type="text" placeholder="통합검색"> <span class="underline"></span>
+								src="/resources/img/search.svg"> <input
+								class="search-form" type="text" placeholder="통합검색"> <span
+								class="underline"></span>
 						</form>
-					</li>
-					<li class="nav-item"><a href="/camplist">캠핑모아</a></li>
-					<li class="nav-item"><a href="/usedtradelist">중고모아</a></li>
-					<li class="nav-item"><a href="/communitylist">커뮤모아</a></li>
-				</ul>
+					</div>
+			<div class="nav_wrap">
+				<div class="nav">
+					<ul class="header_menu">
+						<li class="nav-item"><a href="/camplist">캠핑모아</a></li>
+						<li class="nav-item"><a href="/usedtradelist">중고모아</a></li>
+						<li class="nav-item"><a href="/communitylist">커뮤모아</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="menu_pan">
+				<div class="camp-moa">
+					<div class="menu_category">
+						<div class="category">
+							<a href=""> 베스트 모아</a>
+						</div>
+						<div class="category">
+							<a href=""> 새로운 모아</a>
+						</div>
+						<div class="category">
+							<a href=""> 캠핑장 모아</a>
+						</div>
+						<div class="category">
+							<a href=""> 카라반 모아</a>
+						</div>
+						<div class="category">
+							<a href=""> 글램핑 모아</a>
+						</div>
+						<div class="category">
+							<a href=""> 반려견 모아</a>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="profile">
 				<ul>
