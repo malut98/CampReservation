@@ -6,6 +6,28 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+$(function(){
+function sign(){
+	var id = $("#ID").val()
+	$.ajax({
+		url:"/idcheck",
+		type:"post",
+		data:{"ID":id},
+		success:function(cnt){
+			if(cnt != 1){
+				alert("회원가입이 완료되었습니다");
+			}else {
+				alert("ID가 이미 존재합니다");
+			}
+		},
+		error:function(){
+			alert("잘못 입력하셨습니다");
+		}
+	});
+};
+});
+</script>
 <style>
 body{
 	background-color:black;
@@ -13,7 +35,7 @@ body{
 .signup{
 	color: white;
 	width: 400px;
-	height: 500px;
+	height: 450px;
 	background-color:gray;
 	font-size: 10pt;
 	transform: translate(700px, 200px);
@@ -33,51 +55,43 @@ table{
 	margin-left: 850px;
 	margin-top: 250px;
 	border-radius: 15px;
+	cursor : pointer;
 }
 </style>
 </head>
 <body>
-
+	<form action="/login" method="post">
 	<div class="signup">
 		<table>
 			<tr>
 				<th>ID</th>
-				<td><input type="text" placeholder="ID" style="width:300px;height:50px;"></td>
+				<td><input type="text" placeholder="ID" id="ID" name="memberid" style="width:300px;height:50px;"></td>
 			</tr>
 			<tr>
 				<th>PW</th>
-				<td><input type="password" placeholder="****" style="width:300px;height:50px;"></td>
+				<td><input type="password" placeholder="****" name="memberpw" style="width:300px;height:50px;"></td>
 			</tr>
 			<tr>
 				<th>이름</th>
-				<td><input type="text" placeholder="이름" style="width:300px;height:50px;"></td>
+				<td><input type="text" placeholder="이름" name="membername" style="width:300px;height:50px;"></td>
 			</tr>
 			<tr>
 				<th>성별</th>
-				<td><input type="text" placeholder="성별" style="width:300px;height:50px;"></td>
+				<td>남<input type="radio" name="gender" value="M">
+				여<input type="radio" name="gender" value="W">
+				</td>
 			</tr>
 			<tr>
 				<th>주소</th>
-				<td><input type="text" placeholder="주소" style="width:300px;height:50px;"></td>
+				<td><input type="text" placeholder="주소" name="address" style="width:300px;height:50px;"></td>
 			</tr>
 			<tr>
 				<th>휴대폰</th>
-				<td><input type="button" value="phone" onclick="" style="width:300px;height:50px;"></td>
-			</tr>
-			<tr>
-				<th>날씨</th>
-				<td>
-				<select style="width:300px;height:50px;">
-					<option value="맑음">맑음</option>
-					<option value="흐림">흐림</option>
-					<option value="비">비</option>
-					<option value="눈">눈</option>
-				</select>
-				<td>
+				<td><input type="text" placeholder="휴대폰 -없이" name="phone" style="width:300px;height:50px;"></td>
 			</tr>
 		</table>
 		</div>
-			<input type="submit" value="회원가입" id="sbt" style="width:150px; height:50px;">회원가입</button>
-				
+			<input type="submit" value="회원가입" id="sbt" onclick="sign();" style="width:150px; height:50px;">
+	</form>			
 			
 </body>

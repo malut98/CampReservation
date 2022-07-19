@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+.Banner_container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	position:relative;
+	z-index: 1;
+}
+
+.Banner_inner {
+	background-image: url("../img/banner/banner_2.jpg;");
+	width: 50%;
+	height: 500px;
+	background-repeat: no-repeat;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 80px;
+	background-size: cover;
+}
+
+.Banner_inner .Banner_warp {
+	width: 80%;
+	height: 80%;
+	margin: auto;
+}
+
+.Top_wrap {
+	height: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.Bottom_warp {
+	height: 40%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.Banner-btn {
+	width:70px;
+	background: rgb(26, 188, 156);
+	border: none;
+	border-radius: 12px;
+}
+

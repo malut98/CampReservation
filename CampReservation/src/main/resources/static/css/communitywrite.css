@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+body{
+	background-color: black;
+}
+
+#menu{
+	cursor : pointer;
+	width: 80px;
+	height: 40px;
+	background-color: lightgray;
+	color: black;
+	
+	position : relative;
+	top : 50px;
+	left : 70%;
+	
+	border: solid 2px white;
+	border-radius: 12px;
+	
+}
+#title{
+	color: black;
+	position : relative;
+	top : 10px;
+	left : 90%;
+}
+#memid{
+	color: black;
+	position : relative;
+	top : 20px;
+	left : 90%;
+}
+#content{
+	color: black;
+		position : relative;
+	top : 50px;
+	left : 90%;
+}
+#writebutton{
+	cursor : pointer;
+	color: white;
+	position : relative;
+	top : 100px;
+	left : 80%;
+	width: 60px;
+	height: 50px;
+	background-color: skyblue;
+	border: solid 2px;
+	border-radius: 12px;
+}
+#image{
+	cursor : pointer;
+	position : relative;
+	top : 35px;
+	left : 90%;
+}

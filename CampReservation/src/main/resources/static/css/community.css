@@ -22,14 +22,40 @@
 	position: relative;
 	left: 58%;
 	top: 20px;
+	border: solid 2px ;
+	border-radius: 12px;
 }
 #serachbox{
 	background-color: white;
-	
+	color: black;
 	position: relative;
 	left: 38%;
 	top: 40px;
 	
-	width: 160px;
-	height: 40px;
+	width: 140px;
+	height: 30px;
+}
+body{
+	background-color: black;
+}
+#contentnum{
+	color: black;
+}
+#cn1{
+	color: black;
+}
+#cn2{
+	color: black;
+}
+#cn3{
+	color: black;
+}
+.paging{
+	background-color: blue;
+	
+	position: relative;
+	top : 40px;
+	left : 35%;
+	width: 30%;
+	heigth: 30%;
 }

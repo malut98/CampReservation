@@ -5,12 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+
+</script>
 <style>
 body{
 	background-color:black;
 }
 .login{
-	color: white;
+	color: black;
 	width: 450px;
 	height: 350px;
 	background-color:gray;
@@ -85,22 +89,24 @@ h1{
 	<div class="login">
 		<h1>캠모아</h1>
 		<div class="idpw">
+		<form action="/login/index" method="post">
 		<table>
 			<tr>
 				<th>ID</th>
-				<td><input type="text" id="memberid" placeholder="Username" style="width:300px;height:50px;"></td>
+				<td><input type="text" id="id" placeholder="Username" style="width:300px;height:50px; color:black;" ></td>
 			</tr>
 			<tr>
 				<th>PW</th>
-				<td><input type="text" id="memberpw" placeholder="****" style="width:300px;height:50px;"></td>
+				<td><input type="text" id="password" placeholder="****" style="width:300px;height:50px; color:black;"></td>
 			</tr>
 			<tr>
-				<td colspan="2"><button type="submit" id="login">로그인</button></td>
+				<td colspan="2"><input type="submit" id="login" value="로그인"></td>
 			</tr>
 			<tr>
-				<td colspan="2"><button id="btnsign" onclick="location.href='/sign'">회원가입</button>
+				<td colspan="2"><input type="button" id="btnsign" value="회원가입" onclick="location.href='/sign'"></td>
 			</tr>
 		</table>
+		</form>
 		</div>
 	</div>
 	

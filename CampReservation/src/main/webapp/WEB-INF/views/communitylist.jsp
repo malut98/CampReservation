@@ -3,27 +3,47 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
 <head>
 <meta charset="UTF-8">
 <title>community</title>
-<link rel="StyleSheet" href="css/community.css" type="text/css">
-<link rel="StyleSheet" href="css/Main.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/community.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+function page(idx){
+	var pagenum = idx;
+	var contentnum = $("#contentnum option:selected").val();
+	
+	if(contentnum == 5){
+	    location.href="${pageContext.request.contextPath}/communitylist?pagenum="+pagenum+"&contentnum="+contentnum
+
+	  }else if(contentnum == 10){
+	    location.href="${pageContext.request.contextPath}/communitylist?pagenum="+pagenum+"&contentnum="+contentnum
+
+	  }else if(contentnum == 20){
+	    location.href="${pageContext.request.contextPath}/communitylist?pagenum="+pagenum+"&contentnum="+contentnum
+
+	  }
+}
+</script>
 </head>
 <body>
-		<div class="header">
+	
+
+
+	<div class="header">
 		<div class="section">
 			<div class="logo">
-				<a href="/"><b>캠모아</b></a>
+				<a href="/"><img alt="" src="img/logo/logo (2).png" style=" height: 100px;"></a>
 			</div>
 			<div class="nav">
-				<ul>
+				<ul style="padding-inline-start: 0px;">
 					<li class="nav-item-search">
-						<form action="">
+						<form action="" style="margin-left: 0px;">
 							<img class="search-icon" style="width: 64px; height: 64px;"
-								src="img/search.svg"> <input class="search-form" type="text"
-								placeholder="통합검색"> <span class="underline"></span>
+								src="img/search.svg"> 
+								<input class="search-form" type="text" placeholder="통합검색"> <span class="underline"></span>
 						</form>
 					</li>
 					<li class="nav-item"><a href="/camplist">캠핑장</a></li>
@@ -31,6 +51,7 @@
 					<li class="nav-item"><a href="/caravanlist">카라반</a></li>
 					<li class="nav-item"><a href="/usedtradelist">중고거래</a></li>
 					<li class="nav-item"><a href="/communitylist">커뮤니티</a></li>
+					<li class="nav-item"><a href="/DB/CampDb">db</a></li>
 				</ul>
 			</div>
 			<div class="profile">
@@ -42,6 +63,12 @@
 	</div>
 	<br><br><br><br>
 	<div class = "communityboard">
+	<select name="contentnum" id="contentnum" onchange="page(1)">
+      <option value="5" id="cn1" <c:if test="${page.getContentnum() == 5 }">selected="selected"</c:if> >5 개</option>
+      <option value="10" id="cn2" <c:if test="${page.getContentnum() == 10 }">selected="selected"</c:if> >10 개</option>
+      <option value="20" id="cn3" <c:if test="${page.getContentnum() == 20 }">selected="selected"</c:if> >20 개</option>
+    </select>
+	
 		<table border = "1" class="board">
 		<tr>
 		<th >글번호</th>
@@ -51,13 +78,13 @@
 		<th >조회</th>
 		</tr>
 		<c:choose>
-		<c:when test="${empty list }">
+		<c:when test="${empty clist }">
 		<tr>
 			<td colspan="4" align="center">--------작성된 글이 없습니다---------</td>
 			</tr>
 			</c:when>
 			<c:otherwise>
-			<c:forEach items="${list }" var="dto">
+			<c:forEach items="${clist }" var="dto">
 			<tr>
 			<td>${dto.com_num}</td>
 			<td><a href="communitydetail?com_num=${dto.com_num}">${dto.com_title}</a></td>
@@ -70,7 +97,35 @@
 			</c:choose>
 		</table>
 			<input type="button" id="boardwrite" value="글 작성" onclick="location.href='communitywrite'">
-			<input type="search" id="serachbox">
-	</div>
+			<form method="post" action="communitysearch">
+			<select name="searchoption">
+			<option value="제목">
+			<option value="작성자">
+			<option value="내용">
+			</select>
+			<input type="text" id="serachbox">
+			<input type="submit" value="검색">
+			</form>
+			<br><br>
+			<div class="paging">
+			<c:if test="${page.prev}">
+                    <a href="javascript:page(${page.getStartPage()-1});">&laquo;</a>
+                  </c:if>
+                  <c:forEach begin="${page.getStartPage()}" end="${page.getEndPage()}" var="idx">
+                    <a href="javascript:page(${idx});">${idx}</a>
+                  </c:forEach>
+                  <c:if test="${page.next}">
+                    <a href="javascript:page(${page.getEndPage()+1});">&raquo;</a>
+                  </c:if>
+			
+			</div>
+			
+		</div>
+		
+		
+
+	
+	
 </body>
+
 </html>
