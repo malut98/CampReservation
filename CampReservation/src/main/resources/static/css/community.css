@@ -29,7 +29,7 @@
 	background-color: white;
 	color: black;
 	position: relative;
-	left: 38%;
+	left: 40%;
 	top: 40px;
 	
 	width: 140px;
@@ -58,4 +58,28 @@ body{
 	left : 35%;
 	width: 30%;
 	heigth: 30%;
+}
+#searchoption{
+	background-color : white;
+	color: black;
+	width: 60px;
+	heigth: 30px;
+	position: relative;
+	top : 40px;
+	left: 40%;
+}
+#st{
+	color: black;
+}
+#sc{
+	color: black;
+}
+#sw{
+	color: black;
+}
+#searchbutton{
+	color: black;
+	position: relative;
+	top : 40px;
+	left: 40%;
 }

@@ -14,15 +14,16 @@
 function page(idx){
 	var pagenum = idx;
 	var contentnum = $("#contentnum option:selected").val();
-	
+	var searchOption = '${searchOption}';
+	var keyword = '${keyword}';
+	console.log(searchOption);
 	if(contentnum == 5){
-	    location.href="${pageContext.request.contextPath}/communitylist?pagenum="+pagenum+"&contentnum="+contentnum
-
+	    location.href="${pageContext.request.contextPath}/communitysearch?pagenum="+pagenum+"&contentnum="+contentnum+"&searchOption="+searchOption+"&keyword="+keyword
 	  }else if(contentnum == 10){
-	    location.href="${pageContext.request.contextPath}/communitylist?pagenum="+pagenum+"&contentnum="+contentnum
+	    location.href="${pageContext.request.contextPath}/communitysearch?pagenum="+pagenum+"&contentnum="+contentnum+"&searchOption="+searchOption+"&keyword="+keyword
 
 	  }else if(contentnum == 20){
-	    location.href="${pageContext.request.contextPath}/communitylist?pagenum="+pagenum+"&contentnum="+contentnum
+	    location.href="${pageContext.request.contextPath}/communitysearch?pagenum="+pagenum+"&contentnum="+contentnum+"&searchOption="+searchOption+"&keyword="+keyword
 
 	  }
 }

@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -69,9 +70,18 @@ public class CommunityController {
 	
 	
 	
-	@PostMapping("communitysearch")
-	public String communitysearch(@RequestParam(defaultValue="title") String searchOption, @RequestParam(defaultValue="") String keyword) {
+	@RequestMapping("communitysearch")
+	public String communitysearch(@RequestParam(defaultValue="com_title") String searchOption, @RequestParam(defaultValue="") String keyword, Model model, @RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "5") String contentnum) {
+		List<CommunityDto> list = cs.listAll(model,searchOption, keyword, pagenum, contentnum);
 		
-		return null;
+		model.addAttribute("list",list);
+		
+		model.addAttribute("searchOption",searchOption);
+		model.addAttribute("keyword",keyword);
+		
+		System.out.println(searchOption);
+		System.out.println(keyword);
+	
+		return "communitysearch";
 	}
 }

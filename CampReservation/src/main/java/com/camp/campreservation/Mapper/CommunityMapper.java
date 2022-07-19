@@ -24,9 +24,6 @@ public interface CommunityMapper {
 	@Select("select *  from community order by com_num desc " )
 	public List<CommunityDto> communitylist();
 	
-																                   
-	
-	
 	@Select("select count(*) from community")
 	public int selectBoardCount();
 	
@@ -41,4 +38,10 @@ public interface CommunityMapper {
 	
 	@Update("update community set com_hit=com_hit+1 where com_num = #{com_num}")
 	public void communityhit(CommunityDto dto);
+	
+	@Select("select * from community where ${searchOption} like concat('%',#{keyword},'%') limit #{pagenum}, #{contentnum}")
+	public List<CommunityDto> listAll(String searchOption, String keyword, int pagenum, int contentnum);
+	
+	@Select("select count(*) from community where ${searchOption} like concat('%',#{keyword},'%') ")
+	public int countArticle(String searchOption, String keyword);
 }
