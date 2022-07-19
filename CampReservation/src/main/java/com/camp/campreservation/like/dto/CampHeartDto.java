@@ -1,5 +1,7 @@
 package com.camp.campreservation.like.dto;
 
-public class CampHeartDto {
+import com.camp.campreservation.campdb.dto.CampDBDto;
+
+public class CampHeartDto extends CampDBDto{
 	
 }

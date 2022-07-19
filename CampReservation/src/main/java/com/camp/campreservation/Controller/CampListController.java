@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.camp.campreservation.campdb.dto.CampDBDto;
 import com.camp.campreservation.camplist.service.CampListService;
+import com.camp.campreservation.paging.Criteria;
+import com.camp.campreservation.paging.PaginationInfo;
 
 @Controller
 @RequestMapping("/clist")
@@ -20,9 +22,16 @@ public class CampListController {
 	private CampListService campListService;
 
 	@GetMapping("/cpl")
-	public String campList(Model model) {
-		List<CampDBDto> campDto = campListService.campList();
+	public String campList(Model model, @ModelAttribute("params") CampDBDto params) {
+		List<CampDBDto> campDto = campListService.getCampList(params);
 		model.addAttribute("camp",campDto);
+		
+		Criteria cr = new Criteria();
+		PaginationInfo pagin = new PaginationInfo(cr);
+		pagin.setTotalRecordCount(campListService.selectCampCount(params));
+		model.addAttribute("cr",cr);
+		model.addAttribute("page",pagin);
+		
 		return "camplist";
 	}
 	

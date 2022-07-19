@@ -8,10 +8,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="StyleSheet" href="css/Main.css" type="text/css">
-<link rel="StyleSheet" href="css/star.css" type="text/css">
-<link rel="StyleSheet" href="css/banner.css" type="text/css">
-<link rel="StyleSheet" href="css/notice.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/star.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/banner.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/notice.css" type="text/css">
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="js/star.js"></script>
@@ -20,7 +20,7 @@
 	<div class="header">
 		<div class="section">
 			<div class="logo">
-				<a href="/"><img alt="" src="img/logo/logo (2).png"
+				<a href="/"><img alt="" src="/resources/img/logo/logo (2).png"
 					style="height: 100px;"></a>
 			</div>
 			<div class="nav">
@@ -28,7 +28,7 @@
 					<li class="nav-item-search">
 						<form action="" style="margin-left: 0px;">
 							<img class="search-icon" style="width: 64px; height: 64px;"
-								src="img/search.svg"> <input class="search-form"
+								src="/resources/img/search.svg"> <input class="search-form"
 								type="text" placeholder="통합검색"> <span class="underline"></span>
 						</form>
 					</li>
@@ -41,7 +41,7 @@
 			</div>
 			<div class="profile">
 				<ul>
-					<li><a href="/login">로그인</a></li>
+					<li><a href="/resources/login">로그인</a></li>
 				</ul>
 			</div>
 		</div>
@@ -92,16 +92,16 @@
 						</div>
 						<div class="item-wrapper">
 							<div class="item">
-								<img src="img/banner/banner_2.jpg" />
+								<img src="/resources/img/banner/banner_2.jpg" />
 							</div>
 							<div class="item">
-								<img src="img/banner/banner_2.jpg" />
+								<img src="/resources/img/banner/banner_2.jpg" />
 							</div>
 							<div class="item">
-								<img src="img/banner/banner_2.jpg" />
+								<img src="/resources/img/banner/banner_2.jpg" />
 							</div>
 							<div class="item">
-								<img src="img/banner/banner_2.jpg" />
+								<img src="/resources/img/banner/banner_2.jpg" />
 							</div>
 						</div>
 						<div class="slider-btn-wrapper slider-btn-wrapper-right">

@@ -72,7 +72,7 @@ public class PaginationInfo {
 
 		/* SQL의 조건절에 사용되는 마지막 RNUM */
 		lastRecordIndex = criteria.getCurrentPageNo() * criteria.getRecordsPerPage();
-
+		
 		/* 이전 페이지 존재 여부 */
 		hasPreviousPage = firstPage != 1;
 

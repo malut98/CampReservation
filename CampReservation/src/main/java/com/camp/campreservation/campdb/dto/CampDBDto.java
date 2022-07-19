@@ -1,6 +1,8 @@
 package com.camp.campreservation.campdb.dto;
 
-public class CampDBDto {
+import com.camp.campreservation.Dto.CommonDto;
+
+public class CampDBDto extends CommonDto {
 	private int camp_id;
 	private String camp_name;
 	private String camp_one;	//캠핑장 한줄소개
