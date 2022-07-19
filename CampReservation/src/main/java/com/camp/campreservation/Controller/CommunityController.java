@@ -28,13 +28,12 @@ public class CommunityController {
 	private CommunityService cs;
 	
 	@GetMapping("/communitylist")
-	public String communityList(Model model, @ModelAttribute("params") CommunityDto params) {
-		//리스트에 서비스에서 가져온 데이터 저장
-		List<CommunityDto> boardList = cs.getBoardList(params);
-	model.addAttribute("boardList", boardList);	
-	
-	model.addAttribute("list",cs.communitylist());
+	public String communityList(Model model, @RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "5") String contentnum) {
+		
+		cs.communitylist(model, pagenum, contentnum);
+		
 		return "communitylist";
+		
 	}
 	
 	@GetMapping("/communitywrite")
@@ -66,5 +65,13 @@ public class CommunityController {
 		model.addAttribute("dto", cs.communitydetail(dto));
 		model.addAttribute("cot", cs.commentList(dto));
 		return "communitydetail";
+	}
+	
+	
+	
+	@PostMapping("communitysearch")
+	public String communitysearch(@RequestParam(defaultValue="title") String searchOption, @RequestParam(defaultValue="") String keyword) {
+		
+		return null;
 	}
 }

@@ -16,15 +16,19 @@ import com.camp.campreservation.Dto.CommunityDto;
 @Mapper
 public interface CommunityMapper {
 	
+	
+	
+	@Select("select * from community order by com_num desc limit #{pagenum}, #{contentnum}")
+	public List<CommunityDto>testlist(int pagenum, int contentnum);
+	
 	@Select("select *  from community order by com_num desc " )
 	public List<CommunityDto> communitylist();
 	
-																// 시작 위치                             가지고 올 데이터 개수
-	@Select("select * from community order by com_num desc limit #{paginationInfo.firstRecordIndex}, #{recordsPerPage}")
-	public List<CommunityDto> selectBoardList(CommunityDto param);
+																                   
+	
 	
 	@Select("select count(*) from community")
-	public int selectBoardCount(CommunityDto param);
+	public int selectBoardCount();
 	
 	@Insert("insert into community values(null, #{com_title}, now(), #{com_content},#{com_image}, default, #{member_id})")
 	public int communitywrite(CommunityDto dto);

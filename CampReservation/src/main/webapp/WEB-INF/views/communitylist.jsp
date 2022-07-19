@@ -10,7 +10,23 @@
 <link rel="StyleSheet" href="/resources/css/community.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+function page(idx){
+	var pagenum = idx;
+	var contentnum = $("#contentnum option:selected").val();
+	
+	if(contentnum == 5){
+	    location.href="${pageContext.request.contextPath}/communitylist?pagenum="+pagenum+"&contentnum="+contentnum
 
+	  }else if(contentnum == 10){
+	    location.href="${pageContext.request.contextPath}/communitylist?pagenum="+pagenum+"&contentnum="+contentnum
+
+	  }else if(contentnum == 20){
+	    location.href="${pageContext.request.contextPath}/communitylist?pagenum="+pagenum+"&contentnum="+contentnum
+
+	  }
+}
+</script>
 </head>
 <body>
 	
@@ -47,6 +63,12 @@
 	</div>
 	<br><br><br><br>
 	<div class = "communityboard">
+	<select name="contentnum" id="contentnum" onchange="page(1)">
+      <option value="5" id="cn1" <c:if test="${page.getContentnum() == 5 }">selected="selected"</c:if> >5 개</option>
+      <option value="10" id="cn2" <c:if test="${page.getContentnum() == 10 }">selected="selected"</c:if> >10 개</option>
+      <option value="20" id="cn3" <c:if test="${page.getContentnum() == 20 }">selected="selected"</c:if> >20 개</option>
+    </select>
+	
 		<table border = "1" class="board">
 		<tr>
 		<th >글번호</th>
@@ -56,13 +78,13 @@
 		<th >조회</th>
 		</tr>
 		<c:choose>
-		<c:when test="${empty boardList }">
+		<c:when test="${empty clist }">
 		<tr>
 			<td colspan="4" align="center">--------작성된 글이 없습니다---------</td>
 			</tr>
 			</c:when>
 			<c:otherwise>
-			<c:forEach items="${boardList }" var="dto">
+			<c:forEach items="${clist }" var="dto">
 			<tr>
 			<td>${dto.com_num}</td>
 			<td><a href="communitydetail?com_num=${dto.com_num}">${dto.com_title}</a></td>
@@ -75,24 +97,34 @@
 			</c:choose>
 		</table>
 			<input type="button" id="boardwrite" value="글 작성" onclick="location.href='communitywrite'">
+			<form method="post" action="communitysearch">
+			<select name="searchoption">
+			<option value="제목">
+			<option value="작성자">
+			<option value="내용">
+			</select>
 			<input type="text" id="serachbox">
+			<input type="submit" value="검색">
+			</form>
+			<br><br>
+			<div class="paging">
+			<c:if test="${page.prev}">
+                    <a href="javascript:page(${page.getStartPage()-1});">&laquo;</a>
+                  </c:if>
+                  <c:forEach begin="${page.getStartPage()}" end="${page.getEndPage()}" var="idx">
+                    <a href="javascript:page(${idx});">${idx}</a>
+                  </c:forEach>
+                  <c:if test="${page.next}">
+                    <a href="javascript:page(${page.getEndPage()+1});">&raquo;</a>
+                  </c:if>
+			
+			</div>
+			
 		</div>
 		
-		<th:block layout:fragment="paging">
-				<nav th:replace="resources/templates/community/common :: pagination"></nav>
-			</th:block>
+		
 
-	<th:block layout:fragment="script">
-		<script th:inline="javascript">
-			/*<![CDATA[*/
-
-			function movePage(uri, queryString) {
-				location.href = uri + queryString;
-			}
-
-			/*]]>*/
-		</script>
-	</th:block>
+	
 	
 </body>
 

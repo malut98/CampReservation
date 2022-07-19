@@ -2,7 +2,7 @@ package com.camp.campreservation.Dto;
 
 import java.util.Date;
 
-public class CommunityDto extends CommonDto {
+public class CommunityDto  {
 
 	private int com_num;
 	private String com_title;

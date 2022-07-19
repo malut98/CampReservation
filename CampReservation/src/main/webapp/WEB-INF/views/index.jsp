@@ -8,10 +8,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="StyleSheet" href="css/Main.css" type="text/css">
-<link rel="StyleSheet" href="css/star.css" type="text/css">
-<link rel="StyleSheet" href="css/banner.css" type="text/css">
-<link rel="StyleSheet" href="css/notice.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/star.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/banner.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/notice.css" type="text/css">
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="js/star.js"></script>
