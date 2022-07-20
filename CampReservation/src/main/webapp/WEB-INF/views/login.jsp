@@ -55,20 +55,20 @@ h1{
 	cursor: pointer;
 }
 </style>
-<link rel="StyleSheet" href="css/Main.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
 </head>
 <body>
 	<div class="header">
 		<div class="section">
 			<div class="logo">
-				<a href="/"><img alt="" src="img/logo/logo (2).png" style=" height: 100px;"></a>
+				<a href="/"><img alt="" src="/resources/img/logo/logo (2).png" style=" height: 100px;"></a>
 			</div>
 			<div class="nav">
 				<ul style="padding-inline-start: 0px;">
 					<li class="nav-item-search">
 						<form action="" style="margin-left: 0px;">
 							<img class="search-icon" style="width: 64px; height: 64px;"
-								src="img/search.svg"> 
+								src="/resources/img/search.svg"> 
 								<input class="search-form" type="text" placeholder="통합검색"> <span class="underline"></span>
 						</form>
 					</li>
