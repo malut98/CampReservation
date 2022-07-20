@@ -99,7 +99,7 @@
 			</div>
 			<div class="profile">
 				<ul>
-					<li><a href="/resources/login">로그인</a></li>
+					<li><a href="/login">로그인</a></li>
 				</ul>
 			</div>
 		</div>
