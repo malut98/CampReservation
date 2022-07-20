@@ -47,8 +47,7 @@ public class CommunityController {
 	
 	@PostMapping("communitywriteres")
 	public String communityWriteRes(@RequestParam("fileimage") MultipartFile file,CommunityDto dto) {
-		System.out.println(file.getOriginalFilename());
-			
+		
 		dto.setCom_image(file.getOriginalFilename());
 		int res = cs.communitywrite(dto);
 		
