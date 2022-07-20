@@ -19,6 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.camp.campreservation.Dto.CommunityDto;
 import com.camp.campreservation.Service.CommunityService;
 
+import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
+
 
 @Controller
 public class CommunityController {
@@ -46,7 +48,6 @@ public class CommunityController {
 	@PostMapping("communitywriteres")
 	public String communityWriteRes(@RequestParam("fileimage") MultipartFile file,CommunityDto dto) {
 		
-			
 		dto.setCom_image(file.getOriginalFilename());
 		int res = cs.communitywrite(dto);
 		

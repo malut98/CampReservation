@@ -1,32 +1,35 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-$(function(){
-function sign(){
-	var id = $("#ID").val()
+function checkId(){
+	var id = $("#id").val()
 	$.ajax({
 		url:"/idcheck",
 		type:"post",
-		data:{"ID":id},
+		data:{"id":id},
 		success:function(cnt){
-			if(cnt != 1){
-				alert("È¸¿ø°¡ÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù");
+			if(cnt == 0){
+				console.log("ê°€ëŠ¥");
+				$(".id_ok").css("display","block");
+				$(".id_cannot").css("display","none");
 			}else {
-				alert("ID°¡ ÀÌ¹Ì Á¸ÀçÇÕ´Ï´Ù");
+				console.log("ë¶ˆê°€ëŠ¥");
+				$(".id_cannot").css("display","block");
+				$(".id_ok").css("display","none");
+				alert("ì‚¬ìš© ì¤‘ì¸ ì•„ì´ë””ì…ë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”");
 			}
 		},
 		error:function(){
-			alert("Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù");
+			alert("ë¡œê·¸ì¸ ì—ëŸ¬");
 		}
 	});
 };
-});
 </script>
 <style>
 body{
@@ -65,33 +68,35 @@ table{
 		<table>
 			<tr>
 				<th>ID</th>
-				<td><input type="text" placeholder="ID" id="ID" name="memberid" style="width:300px;height:50px;"></td>
+				<td><input type="text" placeholder="ID" id="id" name="memberid" style="width:300px;height:50px;"></td>
+				<td><span class="id_ok" style="color: blue; display: none;">ì‚¬ìš© ê°€ëŠ¥í•œ ì•„ì´ë””ì…ë‹ˆë‹¤.</span></td>
+				<td><span class="id_cannot" style="color: red; display: none;">ì‚¬ìš© ë¶ˆê°€ëŠ¥í•œ ì•„ì´ë””ì…ë‹ˆë‹¤.</span></td>
 			</tr>
 			<tr>
 				<th>PW</th>
 				<td><input type="password" placeholder="****" name="memberpw" style="width:300px;height:50px;"></td>
 			</tr>
 			<tr>
-				<th>ÀÌ¸§</th>
-				<td><input type="text" placeholder="ÀÌ¸§" name="membername" style="width:300px;height:50px;"></td>
+				<th>ì´ë¦„</th>
+				<td><input type="text" placeholder="ì´ë¦„" name="membername" style="width:300px;height:50px;"></td>
 			</tr>
 			<tr>
-				<th>¼ºº°</th>
-				<td>³²<input type="radio" name="gender" value="M">
-				¿©<input type="radio" name="gender" value="W">
+				<th>ì„±ë³„</th>
+				<td>ë‚¨<input type="radio" name="gender" value="M">
+				ì—¬<input type="radio" name="gender" value="W">
 				</td>
 			</tr>
 			<tr>
-				<th>ÁÖ¼Ò</th>
-				<td><input type="text" placeholder="ÁÖ¼Ò" name="address" style="width:300px;height:50px;"></td>
+				<th>ì£¼ì†Œ</th>
+				<td><input type="text" placeholder="ì£¼ì†Œ" name="address" style="width:300px;height:50px;"></td>
 			</tr>
 			<tr>
-				<th>ÈŞ´ëÆù</th>
-				<td><input type="text" placeholder="ÈŞ´ëÆù -¾øÀÌ" name="phone" style="width:300px;height:50px;"></td>
+				<th>íœ´ëŒ€í°</th>
+				<td><input type="text" placeholder="íœ´ëŒ€í° -ì—†ì´" name="phone" style="width:300px;height:50px;"></td>
 			</tr>
 		</table>
 		</div>
-			<input type="submit" value="È¸¿ø°¡ÀÔ" id="sbt" onclick="sign();" style="width:150px; height:50px;">
+			<input type="submit" value="íšŒì›ê°€ì…" id="sbt" onclick="checkId();" style="width:150px; height:50px;">
 	</form>			
 			
 </body>
