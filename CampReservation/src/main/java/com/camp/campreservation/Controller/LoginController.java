@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.camp.campreservation.Dto.LoginDto;
@@ -70,14 +71,12 @@ public class LoginController {
 	
 	@PostMapping("/idcheck")
 	@ResponseBody
-	public Map<Object,Object> idcheck(@RequestBody String id) {
-		int count = 0;
-		Map<Object, Object> map = new HashMap<Object, Object>();
+	public int idCheck(@RequestParam("id") String id) {
 		
-		count = loginservice.idCheck(id);
-		map.put("cnt", count);
+		int cnt = loginservice.idCheck(id);
+		System.out.println("i'm controller cnt:"+cnt);
+		return cnt;
 		
-		return map;
 	}
 
 }

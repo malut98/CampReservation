@@ -7,14 +7,14 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-$(function(){
-function sign(){
-	var id = $("#ID").val()
+function checkId(){
+	var id = $("#id").val()
 	$.ajax({
 		url:"/idcheck",
 		type:"post",
-		data:{"ID":id},
+		data:{"id":id},
 		success:function(cnt){
+<<<<<<< HEAD
 			if(cnt != 1){
 				alert("회원가입이 완료되었습니다");
 			}else {
@@ -23,10 +23,24 @@ function sign(){
 		},
 		error:function(){
 			alert("잘못 입력하셨습니다");
+=======
+			if(cnt == 0){
+				console.log("가능");
+				$(".id_ok").css("display","block");
+				$(".id_cannot").css("display","none");
+			}else {
+				console.log("불가능");
+				$(".id_cannot").css("display","block");
+				$(".id_ok").css("display","none");
+				alert("사용 중인 아이디입니다. 다시 입력해주세요");
+			}
+		},
+		error:function(){
+			alert("로그인 에러");
+>>>>>>> f827afe34f2cbacc1e26859185dac86cb1bb5c43
 		}
 	});
 };
-});
 </script>
 <style>
 body{
@@ -65,7 +79,9 @@ table{
 		<table>
 			<tr>
 				<th>ID</th>
-				<td><input type="text" placeholder="ID" id="ID" name="memberid" style="width:300px;height:50px;"></td>
+				<td><input type="text" placeholder="ID" id="id" name="memberid" style="width:300px;height:50px;"></td>
+				<td><span class="id_ok" style="color: blue; display: none;">사용 가능한 아이디입니다.</span></td>
+				<td><span class="id_cannot" style="color: red; display: none;">사용 불가능한 아이디입니다.</span></td>
 			</tr>
 			<tr>
 				<th>PW</th>
@@ -91,7 +107,11 @@ table{
 			</tr>
 		</table>
 		</div>
+<<<<<<< HEAD
 			<input type="submit" value="회원가입" id="sbt" onclick="sign();" style="width:150px; height:50px;">
+=======
+			<input type="submit" value="회원가입" id="sbt" onclick="checkId();" style="width:150px; height:50px;">
+>>>>>>> f827afe34f2cbacc1e26859185dac86cb1bb5c43
 	</form>			
 			
 </body>
