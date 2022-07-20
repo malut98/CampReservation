@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,15 +47,28 @@
 	<input type="button" id="list" value="목록" onclick="location.href='communitylist'">
 	<input type="text" id="title" name="com_title" value="${dto.com_title}" readonly="readonly">
 	<input type="text" id="memberID" name="member_id" value="${dto.member_id}" readonly="readonly"><br>
-	<textarea name="com_content" id="content" rows="30" cols="100" readonly="readonly" >${dto.com_content}</textarea>
+	<div  id="content" >
+	<c:if test="${!empty dto.com_image}">
+	<c:forTokens var="token" items="${dto.com_image}" delims="." varStatus="status">   
+	 <c:if test="${status.last}">
+		<c:choose>
+		<c:when test="${token eq 'jpg' || token eq 'gif' || token eq 'png' || token eq 'bmp' }">
+	<img src="/resources/img/communityImg/${dto.com_image}">
+			</c:when>
+			</c:choose>
+			</c:if>
+			</c:forTokens>
+	</c:if>
+	<p class="ccontent">${dto.com_content}</p>
+	</div>
 	<div class="comment">
 	<form action="commentwrite" method="get">
 	<input type="hidden" name="com_num" value="${dto.com_num }">
 	<input type="text" id="commentContent" name="cot_content">
 	<input type="submit" id="commentwrite" value="작성">
 	</form>
-	<div class="commentListbox">
 	
+	<div class="commentListbox">
 	<c:choose>
 	<c:when test="${empty cot }">
 	<div class="nullcot">
@@ -63,14 +77,18 @@
 	</c:when>
 	<c:otherwise>
 	<c:forEach items="${cot}" var="co">
+	<div class="commentlist">
 	<div class="commentId">
 	<span class="co_id">${co.member_id}</span>
 	</div>
 	<div class="commentContent">
 	<span class="co_content">${co.cot_content}</span>
 	</div>
+	<input type="button" value="수정" id="commentupdate" onclick="location.href='commentupdate?cot_num=${co.cot_num}&com_num=${dto.com_num}'">
+	<input type="button" value="삭제" id="commentdelete" onclick="location.href='commentdelete?cot_num=${co.cot_num}&com_num=${dto.com_num }'">
 	<div class="commentDate">
 	<span class="co_Date"><fmt:formatDate value="${co.cot_date }" pattern="yyyy.MM.dd"/></span>
+	</div>	
 	</div>
 	</c:forEach>
 	</c:otherwise>

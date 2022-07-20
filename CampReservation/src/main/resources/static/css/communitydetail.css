@@ -46,6 +46,9 @@ body{
 	position : relative;
 	top : 60px;
 	left : 45%;
+	width: 40%;
+	height: 350px;
+	margin-right: 0px;
 }
 
 #commentContent{
@@ -54,8 +57,8 @@ body{
 	border: solid 2px white;
 	border-radius: 6px;
 	position : relative;
-	top: 100px;
-	left: 230%;
+	top: 130px;
+	left: 50%;
 	width: 300px; 
 	height: 40px;
 }
@@ -65,8 +68,8 @@ body{
 	border: solid 2px white;
 	border-radius: 6px;
 	position : relative;
-	top: 100px;
-	left: 240%;
+	top: 130px;
+	left: 50%;
 	
 	width : 60px;
 	height: 30px;
@@ -81,7 +84,46 @@ body{
 	color: black;
 	position: relative;
 	top: 210px;
-	left: 25%;
+	left: 50%;
 	width : 60px;
-	height: 30px;
+	height: 40px;
+}
+.ccontent{
+	color: black;
+}
+.commentListbox{
+	position: relative;
+	top: 170px;
+	left: 50%;
+	width: 250px;
+	height: 70px;
+}
+.commentlist{
+	background-color: darkblue;
+	color: black;
+	border: solid 1px white;
+	
+}
+
+.commentId{
+	color: black;
+	border-bottom: solid 1px white;
+}
+.commentContent{
+	color: black;
+}
+.commentDate{
+	color: black;
+}
+#commentdelete{
+	color: black;
+	position:relative;
+	top: 10px;
+	left: 60%;
+}
+#commentupdate{
+	color: black;
+	position:relative;
+	top: 10px;
+	left: 60%;
 }

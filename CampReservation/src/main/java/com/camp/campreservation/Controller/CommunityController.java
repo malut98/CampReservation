@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.swing.filechooser.FileSystemView;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,11 +49,27 @@ public class CommunityController {
 	
 	@PostMapping("communitywriteres")
 	public String communityWriteRes(@RequestParam("fileimage") MultipartFile file,CommunityDto dto) {
-		
-		dto.setCom_image(file.getOriginalFilename());
+		String filename= file.getOriginalFilename();
+		if(!filename.isEmpty()) {
+			dto.setCom_image(dto.getCom_num()+dto.getMember_id()+dto.getCom_title()+file.getOriginalFilename());
+			
+		}
+		String path = "C:\\Users\\tmdgh\\git\\CampReservation\\CampReservation\\src\\main\\resources\\static\\Img\\communityImg";
+		System.out.println(path);
+		String filePath = path +"\\"+dto.getCom_num()+dto.getMember_id()+dto.getCom_title()+ file.getOriginalFilename();
+		File dest = new File(filePath);
 		int res = cs.communitywrite(dto);
 		
 		if(res>0) {
+			try {
+				if(filename.isEmpty()) {
+					return "redirect:communitylist";
+				}
+				
+				file.transferTo(dest);
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}
 			return "redirect:communitylist";
 		}else {
 			return "redirect:communitywrite";
@@ -85,4 +103,6 @@ public class CommunityController {
 	
 		return "communitysearch";
 	}
+	
+	
 }

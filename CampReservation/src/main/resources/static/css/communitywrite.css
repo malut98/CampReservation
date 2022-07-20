@@ -32,10 +32,12 @@ body{
 	left : 36%;
 }
 #content{
+	
 	color: black;
-		position : relative;
+	position : relative;
 	top : 50px;
 	left : 36%;
+	
 }
 #writebutton{
 	cursor : pointer;

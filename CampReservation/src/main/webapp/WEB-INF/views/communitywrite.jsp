@@ -43,7 +43,7 @@
      <div class="writeform">
      <input type="text" name="com_title" id="title"><br>
      <input type="text" name="member_id" id="memid" readonly="readonly" ><br>
-     <input type="file" name="fileimage" id="image" ><br>
+     <input type="file" name="fileimage" id="image" accept=".jpg, .png, .gif, .bmp"><br>
      <textarea name="com_content" id="content" rows="30" cols="100"></textarea>
      <input type="submit" id="writebutton" value="작성">
      </div>
