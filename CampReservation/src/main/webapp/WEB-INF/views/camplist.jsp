@@ -131,7 +131,7 @@ $(function() {
 					<table class="table_left">
 						<tr>
 							<td colspan="2">
-							<c:if test="${dto.camp_img eq 'x'}">
+							<c:if test="${dto.camp_img eq ''}">
 								<img style="width: 540px; height: 350px;"
 								src="https://pbs.twimg.com/media/Et8y5ArVcAYlA28.jpg:large"
 								onclick="location.href='cdetail?camp_id=${dto.camp_id}'"></c:if>
