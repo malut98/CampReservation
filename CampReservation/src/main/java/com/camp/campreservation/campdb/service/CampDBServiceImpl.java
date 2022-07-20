@@ -35,4 +35,9 @@ public class CampDBServiceImpl implements CampDBService {
 		return campDBMapper.imginsert(dto);
 	}
 
+	@Override
+	public int campAdd(CampDBDto dto) {
+		return campDBMapper.campAdd(dto);
+	}
+
 }

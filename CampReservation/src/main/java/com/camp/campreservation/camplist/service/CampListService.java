@@ -11,4 +11,5 @@ public interface CampListService {
 	List<CampDBDto> getCampList(Model model,String pagenum, String contentnum);
 	List<CampDBDto> glamList();
 	List<CampDBDto> caravanList();
+	CampDBDto campDetail(int camp_id);
 }

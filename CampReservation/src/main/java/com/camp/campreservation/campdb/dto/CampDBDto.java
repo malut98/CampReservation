@@ -6,12 +6,15 @@ public class CampDBDto {
 	private String camp_one;	//캠핑장 한줄소개
 	private String camp_info;	//캠핑장 소개
 	private String camp_open;	//영업시간
+	private String camp_open_de; // 운영기간
+	private String camp_open_pd; // 운영일
 	private String camp_char;	//특징
 	private String camp_se;		//업종
 	private String camp_loc;	//입지
 	private String camp_addr;
 	private String camp_phone;
 	private String camp_web;
+	private String camp_around;
 	private String camp_img;
 	private int camp_price;
 	private float camp_lat;		//경도
@@ -27,26 +30,28 @@ public class CampDBDto {
 	}
 
 	public CampDBDto(int camp_id, String camp_name, String camp_one, String camp_info, String camp_open,
-			String camp_char, String camp_se, String camp_loc, String camp_addr, String camp_phone, String camp_web,
-			String camp_img, int camp_price, float camp_lat, float camp_long) {
+			String camp_open_de, String camp_open_pd, String camp_char, String camp_se, String camp_loc,
+			String camp_addr, String camp_phone, String camp_web, String camp_around, String camp_img, int camp_price,
+			float camp_lat, float camp_long) {
 		super();
-		
 		this.camp_id = camp_id;
 		this.camp_name = camp_name;
 		this.camp_one = camp_one;
 		this.camp_info = camp_info;
 		this.camp_open = camp_open;
+		this.camp_open_de = camp_open_de;
+		this.camp_open_pd = camp_open_pd;
 		this.camp_char = camp_char;
 		this.camp_se = camp_se;
 		this.camp_loc = camp_loc;
 		this.camp_addr = camp_addr;
 		this.camp_phone = camp_phone;
 		this.camp_web = camp_web;
+		this.camp_around = camp_around;
 		this.camp_img = camp_img;
 		this.camp_price = camp_price;
 		this.camp_lat = camp_lat;
 		this.camp_long = camp_long;
-		
 	}
 
 	public int getCamp_id() {
@@ -87,6 +92,22 @@ public class CampDBDto {
 
 	public void setCamp_open(String camp_open) {
 		this.camp_open = camp_open;
+	}
+
+	public String getCamp_open_de() {
+		return camp_open_de;
+	}
+
+	public void setCamp_open_de(String camp_open_de) {
+		this.camp_open_de = camp_open_de;
+	}
+
+	public String getCamp_open_pd() {
+		return camp_open_pd;
+	}
+
+	public void setCamp_open_pd(String camp_open_pd) {
+		this.camp_open_pd = camp_open_pd;
 	}
 
 	public String getCamp_char() {
@@ -137,6 +158,14 @@ public class CampDBDto {
 		this.camp_web = camp_web;
 	}
 
+	public String getCamp_around() {
+		return camp_around;
+	}
+
+	public void setCamp_around(String camp_around) {
+		this.camp_around = camp_around;
+	}
+
 	public String getCamp_img() {
 		return camp_img;
 	}
@@ -168,7 +197,5 @@ public class CampDBDto {
 	public void setCamp_long(float camp_long) {
 		this.camp_long = camp_long;
 	}
-	
-	
-	
+
 }

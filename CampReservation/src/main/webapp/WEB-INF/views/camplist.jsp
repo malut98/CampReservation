@@ -11,24 +11,35 @@
 <link rel="StyleSheet" href="/resources/css/star.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/banner.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/notice.css" type="text/css">
-
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="StyleSheet" href="/resources/css/Category.css"
+	type="text/css">
+<script type="text/javascript" src="/resources/js/star.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<script src="/resources/js/category.js"></script>
 <script type="text/javascript">
-function page(idx){
-	var pagenum = idx;
-	var contentnum = $("#contentnum option:selected").val();
-	
-	if(contentnum == 5){
-	    location.href="${pageContext.request.contextPath}/camplist?pagenum="+pagenum+"&contentnum="+contentnum
-
-	  }else if(contentnum == 10){
-	    location.href="${pageContext.request.contextPath}/camplist?pagenum="+pagenum+"&contentnum="+contentnum
-
-	  }else if(contentnum == 20){
-	    location.href="${pageContext.request.contextPath}/camplist?pagenum="+pagenum+"&contentnum="+contentnum
-
-	  }
-}
+$(function() {
+	$('.item-wrapper').slick({
+		dots : false,
+		infinite : true,
+		speed : 300,
+		slidesToShow : 4,
+		slidesToScroll : 2,
+		responsive : [ {
+			breakpoint : 1024,
+			settings : {
+				slidesToShow : 3,
+				slidesToScroll : 3
+			}
+		}
+		// You can unslick at a given breakpoint now by adding:
+		// settings: "unslick"
+		// instead of a settings object
+		]
+	});
+});
 </script>
 	<style>
 		h1{
@@ -38,7 +49,7 @@ function page(idx){
 		
 		.camplist{
 			width:100%;
-			height: 100%;
+			height: 1400px;
 		}
 		
 		.left{
@@ -63,21 +74,46 @@ function page(idx){
 				<a href="/"><img alt="" src="/resources/img/logo/logo (2).png"
 					style="height: 100px;"></a>
 			</div>
-			<div class="nav">
-				<ul style="padding-inline-start: 0px;">
-					<li class="nav-item-search">
-						<form action="" style="margin-left: 0px;">
-							<img class="search-icon" style="width: 64px; height: 64px;"
-								src="/resources/img/search.svg"> <input class="search-form"
-								type="text" placeholder="통합검색"> <span class="underline"></span>
-						</form>
-					</li>
-					<li class="nav-item"><a href="/clist/cpl">캠핑장</a></li>
-					<li class="nav-item"><a href="/clist/gl">글램핑</a></li>
-					<li class="nav-item"><a href="/clist/cvl">카라반</a></li>
-					<li class="nav-item"><a href="/usedtradelist">중고거래</a></li>
-					<li class="nav-item"><a href="/communitylist">커뮤니티</a></li>
-				</ul>
+			<div class="nav-item-search">
+				<form class="form-tag" action="" style="">
+					<img class="search-icon" style="width: 64px; height: 64px;" 
+					src="/resources/img/search.svg"> 
+					<input class="search-form" type="text" placeholder="통합검색"> 
+					<span class="underline"></span>
+				</form>
+			</div>
+			<div class="nav_wrap">
+				<div class="nav">
+					<ul class="header_menu">
+						<li class="nav-item"><a href="/clist/cpl">캠핑모아</a></li>
+						<li class="nav-item"><a href="/usedtradelist">중고모아</a></li>
+						<li class="nav-item"><a href="/communitylist">커뮤모아</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="menu_pan">
+				<div class="camp-moa">
+					<div class="menu_category">
+						<div class="category">
+							<a href=""> 베스트 모아</a>
+						</div>
+						<div class="category">
+							<a href=""> 새로움 모아</a>
+						</div>
+						<div class="category">
+							<a href=""> 캠핑장 모아</a>
+						</div>
+						<div class="category">
+							<a href=""> 카라반 모아</a>
+						</div>
+						<div class="category">
+							<a href=""> 글램핑 모아</a>
+						</div>
+						<div class="category">
+							<a href=""> 반려견 모아</a>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="profile">
 				<ul>
@@ -88,26 +124,21 @@ function page(idx){
 	</div>
 	<br><br><br>
 	<h1>캠핑장</h1>
-	
 	<div class="camplist">	
-	<select name="contentnum" id="contentnum" onchange="page(1)">
-      <option value="5" id="cn1" <c:if test="${page.getContentnum() == 5 }">selected="selected"</c:if> >5 개</option>
-      <option value="10" id="cn2" <c:if test="${page.getContentnum() == 10 }">selected="selected"</c:if> >10 개</option>
-      <option value="20" id="cn3" <c:if test="${page.getContentnum() == 20 }">selected="selected"</c:if> >20 개</option>
-    </select>
-		<c:forEach items="${clist}" var="dto" varStatus="status">
+		<c:forEach items="${camp}" var="dto" varStatus="status">
 			<c:if test="${status.count%2 == '1'}">
 				<div class="left">
 					<table class="table_left">
 						<tr>
 							<td colspan="2">
 							<c:if test="${dto.camp_img eq 'x'}">
-								<a href="/campdetail"><img style="width: 540px; height: 350px;"
-								src="https://pbs.twimg.com/media/Et8y5ArVcAYlA28.jpg:large"></a></c:if>
+								<img style="width: 540px; height: 350px;"
+								src="https://pbs.twimg.com/media/Et8y5ArVcAYlA28.jpg:large"
+								onclick="location.href='cdetail?camp_id=${dto.camp_id}'"></c:if>
 								
 							<c:if test="${dto.camp_img ne 'x'}">
-								<a href="/campdetail"><img style="width: 540px; height: 350px;"
-								src="${dto.camp_img}"></a></c:if>
+								<img style="width: 540px; height: 350px;"
+								src="${dto.camp_img}" onclick="location.href='cdetail?camp_id=${dto.camp_id}'"></c:if>
 							</td>
 						</tr>
 						<tr>
@@ -129,12 +160,13 @@ function page(idx){
 						<tr>
 							<td colspan="2">
 							<c:if test="${dto.camp_img eq 'x'}">
-								<a href="/campdetail"><img style="width: 540px; height: 350px;"
-								src="https://pbs.twimg.com/media/Et8y5ArVcAYlA28.jpg:large"></a></c:if>
+								<img style="width: 540px; height: 350px;"
+								src="https://pbs.twimg.com/media/Et8y5ArVcAYlA28.jpg:large"
+								onclick="location.href='cdetail?camp_id=${dto.camp_id}'"></c:if>
 								
 							<c:if test="${dto.camp_img ne 'x'}">
-								<a href="/campdetail"><img style="width: 540px; height: 350px;"
-								src="${dto.camp_img}"></a></c:if>
+								<img style="width: 540px; height: 350px;"
+								src="${dto.camp_img}" onclick="location.href='cdetail?camp_id=${dto.camp_id}'"></c:if>
 							</td>
 						</tr>
 						<tr>
@@ -153,17 +185,15 @@ function page(idx){
 		</c:forEach>
 		<div class="paging">
 			<c:if test="${page.prev}">
-                    <a href="javascript:page(${page.getStartPage()-1});">&laquo;</a>
-                  </c:if>
-                  <c:forEach begin="${page.getStartPage()}" end="${page.getEndPage()}" var="idx">
-                    <a href="javascript:page(${idx});">${idx}</a>
-                  </c:forEach>
-                  <c:if test="${page.next}">
-                    <a href="javascript:page(${page.getEndPage()+1});">&raquo;</a>
-                  </c:if>
-			
-			</div>
+            	<a href="?pagenum=${page.getStartPage()-1}">&laquo;</a>
+            </c:if>
+                <c:forEach begin="${page.getStartPage()}" end="${page.getEndPage()}" var="idx">
+                	<a href="?pagenum=${idx}">${idx}</a>
+                </c:forEach>
+            <c:if test="${page.next}">
+                    <a href="?pagenum=${page.getEndPage()+1}">&raquo;</a>
+            </c:if>
+		</div>
 	</div>
-	
 </body>
 </html>

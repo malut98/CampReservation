@@ -67,7 +67,7 @@
 			<div class="nav_wrap">
 				<div class="nav">
 					<ul class="header_menu">
-						<li class="nav-item"><a href="/camplist">캠핑모아</a></li>
+						<li class="nav-item"><a href="/clist/cpl">캠핑모아</a></li>
 						<li class="nav-item"><a href="/usedtradelist">중고모아</a></li>
 						<li class="nav-item"><a href="/communitylist">커뮤모아</a></li>
 					</ul>

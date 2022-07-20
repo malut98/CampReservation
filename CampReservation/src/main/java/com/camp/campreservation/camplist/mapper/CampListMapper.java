@@ -13,10 +13,10 @@ import com.camp.campreservation.campdb.dto.CampDBDto;
 public interface CampListMapper {
 	
 	@Select(" SELECT count(*) FROM CAMP WHERE CAMP_SE LIKE '일반야영장%'")
-	public int selectCampCount();
+	int selectCampCount();
 	
 	@Select("SELECT * FROM CAMP WHERE CAMP_SE LIKE '일반야영장%' limit #{pagenum}, #{contentnum} ")
-	public List<CampDBDto> getCampList(Model model,String pagenum, String contentnum);
+	List<CampDBDto> getCampList(int pagenum, int contentnum);
 	
 	@Select(" SELECT * FROM CAMP WHERE CAMP_SE LIKE '%글램핑%' ")
 	List<CampDBDto> glamList();
@@ -24,6 +24,6 @@ public interface CampListMapper {
 	@Select(" SELECT * FROM CAMP WHERE CAMP_SE LIKE '%카라반%' ")
 	List<CampDBDto> caravanList();
 	
-	@Select(" SELECT * FROM CAMP WHERE CAMP_SE LIKE '일반야영장%' limit #{pagenum}, #{contentnum}")
-	public List<CampDBDto> testlist(int pagenum, int contentnum);
+	@Select(" SELECT * FROM CAMP WHERE CAMP_ID = #{camp_id} ")
+	CampDBDto campDetail(int camp_id);
 }

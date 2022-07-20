@@ -24,9 +24,8 @@ public class CampListController {
 
 	@GetMapping("/cpl")
 	public String campList(Model model, @RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "6") String contentnum) {
-//		List<CampDBDto> camp = new campListService.
-		campListService.getCampList(model, pagenum, contentnum);
-		
+		List<CampDBDto> campDto=campListService.getCampList(model, pagenum, contentnum);
+		model.addAttribute("camp",campDto);
 		return "camplist";
 	}
 	
@@ -42,5 +41,13 @@ public class CampListController {
 		List<CampDBDto> campDto = campListService.caravanList();
 		model.addAttribute("camp",campDto);
 		return "caravanlist";
+	}
+	
+	@GetMapping("/cdetail")
+	public String campDetail(Model model, int camp_id) {
+		System.out.println(camp_id);
+		CampDBDto campDto = campListService.campDetail(camp_id);
+		model.addAttribute("camp",campDto);
+		return "campdetail";
 	}
 }

@@ -10,4 +10,5 @@ public interface CampDBService {
 	public CampDBDto selectOne(int camp_id);
 	public int insert(CampDBDto dto);
 	public int imginsert(CampImgDto dto);
+	public int campAdd(CampDBDto dto);
 }
