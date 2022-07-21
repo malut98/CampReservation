@@ -19,8 +19,8 @@ public interface CampDBMapper {
 	CampDBDto selectOne(int camp_id);
 	
 	@Insert(" INSERT INTO CAMP VALUES(#{camp_id}, #{camp_name}, "
-			+ "#{camp_one}, #{camp_info}, #{camp_open}, #{camp_open_de}, #{camp_open_pd}, #{camp_char}, #{camp_se}, "
-			+ "#{camp_loc}, #{camp_addr}, #{camp_phone}, #{camp_web}, CAMP_AROUND=#{camp_around}, #{camp_img}, "
+			+ "#{camp_one}, #{camp_info}, #{camp_open}, #{camp_open_de}, #{camp_open_pd}, #{camp_char},#{camp_se}, "
+			+ "#{camp_loc}, #{camp_addr}, #{camp_phone}, #{camp_web},#{camp_around}, #{camp_img}, "
 			+ "#{camp_price}, #{camp_lat}, #{camp_long}) ")
 	int insert(CampDBDto dto);
 	
