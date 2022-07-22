@@ -1,0 +1,148 @@
+@charset "UTF-8";
+
+body{
+	background-color : black;
+	
+}
+
+#list{
+	background-color : lightgray;
+	color : black;
+	
+	border: solid 2px white;
+	border-radius: 12px;
+	
+	position : relative;
+	top : 30px;
+	left : 22%;
+	width : 80px;
+	height : 40px;
+	
+	cursor : pointer;
+	
+	
+}
+.boardbutton{
+	
+	width: 60%;
+	height : 30px;
+	margin: 0px;
+	position : relative;
+	left : 30%;
+}
+#update{
+	color: black;
+	position: relative;
+	top: 70px;
+	left: 75%;
+}
+#delete{
+	color: black;
+	position: relative;
+	top: 70px;
+	left: 75%;
+}
+#title{
+	background-color : white;
+	color : black;
+	
+	position : relative;
+	top : 5px;
+	left :49.9%;
+}
+
+#memberID{
+	background-color : white;
+	color : black;
+	position : relative;
+	top : 40px;
+	left : 40.3%;
+}
+
+#content{
+	background-color : white;
+	color: black;
+	position : relative;
+	top : 60px;
+	left : 45%;
+	width: 40%;
+	height: 350px;
+	margin-right: 0px;
+}
+
+#commentContent{
+	background-color : white;
+	color : black;
+	border: solid 2px white;
+	border-radius: 6px;
+	position : relative;
+	top: 130px;
+	left: 50%;
+	width: 300px; 
+	height: 40px;
+}
+#commentwrite{
+	background-color : gray;
+	color : white;
+	border: solid 2px white;
+	border-radius: 6px;
+	position : relative;
+	top: 130px;
+	left: 50%;
+	
+	width : 60px;
+	height: 30px;
+	
+	cursor : pointer;
+}
+
+
+
+#nullcomment{
+	background-color : white;
+	color: black;
+	position: relative;
+	top: 210px;
+	left: 50%;
+	width : 60px;
+	height: 40px;
+}
+.ccontent{
+	color: black;
+}
+.commentListbox{
+	position: relative;
+	top: 170px;
+	left: 50%;
+	width: 250px;
+	height: 70px;
+}
+.commentlist{
+	background-color: darkblue;
+	color: black;
+	border: solid 1px white;
+	
+}
+
+.commentId{
+	color: black;
+	border-bottom: solid 1px white;
+}
+.commentContent{
+	color: black;
+}
+.commentDate{
+	color: black;
+}
+#commentdelete{
+	color: black;
+	position:relative;
+	top: 10px;
+	left: 60%;
+}
+#commentupdate{
+	color: black;
+	position:relative;
+	top: 10px;
+	left: 60%;
+}

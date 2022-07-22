@@ -31,4 +31,15 @@ public class CommentController {
 		
 	}
 	
+	@GetMapping("commentdelete")
+	public String onlycommentdelete(CommentDto comment) {
+		
+		int res =cs.onlycommentdelete(comment);
+		if(res>0) {
+			return "redirect:communitydetail?com_num="+comment.getCom_num();
+		}else {
+		return "redirect:communitydetail?com_num="+comment.getCom_num();
+	}
+	}
+	
 }

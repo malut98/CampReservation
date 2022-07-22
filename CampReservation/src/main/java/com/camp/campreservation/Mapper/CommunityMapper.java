@@ -2,6 +2,7 @@ package com.camp.campreservation.Mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -18,30 +19,36 @@ public interface CommunityMapper {
 	
 	
 	
-	@Select("select * from community order by com_num desc limit #{pagenum}, #{contentnum}")
+	@Select("SELECT * FROM COMMUNITY ORDER BY COM_NUM DESC LIMIT #{pagenum}, #{contentnum}")
 	public List<CommunityDto>testlist(int pagenum, int contentnum);
 	
-	@Select("select *  from community order by com_num desc " )
+	@Select("SELECT *  FROM COMMUNITY ORDER BY COM_NUM DESC " )
 	public List<CommunityDto> communitylist();
 	
-	@Select("select count(*) from community")
+	@Select("SELECT COUNT(*) FROM COMMUNITY")
 	public int selectBoardCount();
 	
-	@Insert("insert into community values(null, #{com_title}, now(), #{com_content},#{com_image}, default, #{member_id})")
+	@Insert("INSERT INTO COMMUNITY VALUES(NULL, #{com_title}, NOW(), #{com_content}, DEFAULT,#{com_image}, #{member_id})")
 	public int communitywrite(CommunityDto dto);
 	
-	@Select("select * from community where com_num = #{com_num}")
+	@Select("SELECT * FROM COMMUNITY WHERE COM_NUM = #{com_num}")
 	public CommunityDto communitydetail(CommunityDto dto);
 	
-	@Select("select * from comment where com_num = #{com_num}")
+	@Select("SELECT * FROM COMMENT WHERE COM_NUM = #{com_num}")
 	public List<CommentDto> commentList(CommunityDto dto);
 	
-	@Update("update community set com_hit=com_hit+1 where com_num = #{com_num}")
+	@Update("UPDATE COMMUNITY SET COM_HIT=COM_HIT+1 WHERE COM_NUM = #{com_num}")
 	public void communityhit(CommunityDto dto);
 	
-	@Select("select * from community where ${searchOption} like concat('%',#{keyword},'%') limit #{pagenum}, #{contentnum}")
+	@Select("SELECT * FROM COMMUNITY WHERE ${searchOption} LIKE CONCAT('%',#{keyword},'%') LIMIT #{pagenum}, #{contentnum}")
 	public List<CommunityDto> listAll(String searchOption, String keyword, int pagenum, int contentnum);
 	
-	@Select("select count(*) from community where ${searchOption} like concat('%',#{keyword},'%') ")
+	@Select("SELECT COUNT(*) FROM COMMUNITY WHERE ${searchOption} LIKE CONCAT('%',#{keyword},'%') ")
 	public int countArticle(String searchOption, String keyword);
+	
+	@Delete("DELETE FROM COMMUNITY WHERE COM_NUM=#{com_num}")
+	public int communitydelete(CommunityDto dto);
+	
+	@Update("UPDATE COMMUNITY SET COM_TITLE=#{com_title}, COM_CONTENT=#{com_content}, COM_IMAGE=#{com_image} WHERE COM_NUM=#{com_num} ")
+	public int communityupdate(CommunityDto dto);
 }

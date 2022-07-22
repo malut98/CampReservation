@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+.container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.camplist_inner{
+	width: 70%;
+}
+.whatever{
+}
+.camplist_Top{
+	width: 70%;
+}
+.table_left{
+	width: 40%;
+}
+.camplist{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#wrap{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.camplist_bottom{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

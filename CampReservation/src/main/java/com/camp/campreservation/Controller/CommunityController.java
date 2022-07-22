@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.camp.campreservation.Dto.CommunityDto;
+import com.camp.campreservation.Service.CommentService;
 import com.camp.campreservation.Service.CommunityService;
 
 import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
@@ -31,6 +32,9 @@ public class CommunityController {
 	
 	@Autowired
 	private CommunityService cs;
+	
+	@Autowired
+	private CommentService comments;
 	
 	@GetMapping("/communitylist")
 	public String communityList(Model model, @RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "5") String contentnum) {
@@ -50,13 +54,14 @@ public class CommunityController {
 	@PostMapping("communitywriteres")
 	public String communityWriteRes(@RequestParam("fileimage") MultipartFile file,CommunityDto dto) {
 		String filename= file.getOriginalFilename();
+		UUID uuid = UUID.randomUUID();
 		if(!filename.isEmpty()) {
-			dto.setCom_image(dto.getCom_num()+dto.getMember_id()+dto.getCom_title()+file.getOriginalFilename());
+			dto.setCom_image(uuid+dto.getMember_id()+dto.getCom_title()+file.getOriginalFilename());
 			
 		}
 		String path = "C:\\Users\\tmdgh\\git\\CampReservation\\CampReservation\\src\\main\\resources\\static\\Img\\communityImg";
 		System.out.println(path);
-		String filePath = path +"\\"+dto.getCom_num()+dto.getMember_id()+dto.getCom_title()+ file.getOriginalFilename();
+		String filePath = path +"\\"+uuid+dto.getMember_id()+dto.getCom_title()+ file.getOriginalFilename();
 		File dest = new File(filePath);
 		int res = cs.communitywrite(dto);
 		
@@ -79,12 +84,12 @@ public class CommunityController {
 	}
 	
 	@GetMapping("/communitydetail")
-	public String communitydetail(CommunityDto dto, Model model) {
+	public String communitydetail(CommunityDto dto, Model model,@RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "5") String contentnum) {
 		cs.communityhit(dto);
 		
 		model.addAttribute("dto", cs.communitydetail(dto));
-		model.addAttribute("cot", cs.commentList(dto));
-		return "communitydetail";
+		comments.commentList(model, dto, pagenum, contentnum);
+		return "communitywriterdetail";
 	}
 	
 	
@@ -104,5 +109,55 @@ public class CommunityController {
 		return "communitysearch";
 	}
 	
+	@GetMapping("communitydelete")
+	public String communitydelete(CommunityDto dto) {
+		System.out.println(dto.getCom_num());
+		int res = cs.communitydelete(dto);
+		int res2 = comments.commentdelete(dto);
+		
+		String path = "C:\\Users\\tmdgh\\git\\CampReservation\\CampReservation\\src\\main\\resources\\static\\Img\\communityImg";
+		String filePath = path +"\\"+dto.getCom_image();
+		
+		File dest = new File(filePath);
+		dest.delete();
+		
+		if(res>0 ) {
+			return "redirect:communitylist";
+			
+		}
+		return "redirect:communitydetail?com_num="+dto.getCom_num();
+	}
+	
+	@GetMapping("communityupdate")
+	public String communityupdate(CommunityDto dto, Model model) {
+		model.addAttribute("dto", cs.communitydetail(dto));
+		return "communityupdate";
+	}
+	@PostMapping("communityupdateres")
+	public String communityupdateres(CommunityDto dto, Model model,@RequestParam("fileimage") MultipartFile file) throws IllegalStateException, IOException {
+		UUID uuid = UUID.randomUUID();		
+		String path = "C:\\Users\\tmdgh\\git\\CampReservation\\CampReservation\\src\\main\\resources\\static\\Img\\communityImg";
+		if(dto.getCom_image().isEmpty() && !file.getOriginalFilename().isEmpty()) {
+			String filePath = path + "\\" + uuid+dto.getMember_id()+dto.getCom_title()+file.getOriginalFilename();	
+			File dest = new File(filePath);
+			file.transferTo(dest);
+			dto.setCom_image(uuid+dto.getMember_id()+dto.getCom_title()+file.getOriginalFilename());
+			
+		}else if(!dto.getCom_image().isEmpty() && !file.getOriginalFilename().isEmpty()) {
+			if(!dto.getCom_image().equals(file.getOriginalFilename())) {
+				String filePath = path + "\\" +uuid + dto.getMember_id()+dto.getCom_title()+file.getOriginalFilename();
+				String deletePath = path + "\\" + dto.getCom_image();
+				File dest = new File(filePath);
+				File delete = new File(deletePath);
+				file.transferTo(dest);
+				delete.delete();
+				dto.setCom_image(uuid+dto.getMember_id()+dto.getCom_title()+file.getOriginalFilename());
+				
+			}
+		}
+		int res =cs.communityupdate(dto);
+		
+		return "redirect:communitylist";
+	}
 	
 }
