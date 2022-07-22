@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="StyleSheet" href="/resources/css/communitydetail.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/communitywriterdetail.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
 <script type="text/javascript">
 function page(idx){
@@ -16,7 +16,7 @@ function page(idx){
 	var contentnum = 5;
 	var com_num = ${dto.com_num};
 	
-	    location.href="${pageContext.request.contextPath}/communitydetail?pagenum="+pagenum+"&contentnum="+contentnum+"&com_num=${dto.com_num}";
+	    location.href="${pageContext.request.contextPath}/communitydetail?pagenum="+pagenum+"&contentnum="+contentnum+"&com_num="+com_num;
 
 	 
 }
@@ -55,9 +55,14 @@ function page(idx){
 	</div>
 	
 	<div class="board">
+	<div class="boardbutton">
 	<input type="button" id="list" value="목록" onclick="location.href='communitylist'">
+	<input type="button" id="update" value="수정" onclick="location.href='communityupdate?com_num=${dto.com_num}'">
+	<input type="button" id="delete" value="삭제" onclick="location.href='communitydelete?com_num=${dto.com_num}&com_image=${dto.com_image}'">
+	</div>
 	<input type="text" id="title" name="com_title" value="${dto.com_title}" readonly="readonly">
 	<input type="text" id="memberID" name="member_id" value="${dto.member_id}" readonly="readonly"><br>
+	
 	<div  id="content" >
 	<c:if test="${!empty dto.com_image}">
 	<c:forTokens var="token" items="${dto.com_image}" delims="." varStatus="status">   

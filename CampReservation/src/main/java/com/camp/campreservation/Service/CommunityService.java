@@ -103,9 +103,13 @@ public class CommunityService {
 	}
 	
 	public int countArticle(String searchOption, String keyword) {
-		
-	
-		
 		return cm.countArticle(searchOption, keyword);
+	}
+	
+	public int communitydelete(CommunityDto dto) {
+		return cm.communitydelete(dto);
+	}
+	public int communityupdate(CommunityDto dto) {
+		return cm.communityupdate(dto);
 	}
 }
