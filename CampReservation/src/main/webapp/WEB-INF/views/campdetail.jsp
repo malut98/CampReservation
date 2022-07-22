@@ -6,13 +6,16 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 <link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/star.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/banner.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/notice.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/Category.css"
 	type="text/css">
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=lony5bkfmj"></script>
 <script type="text/javascript" src="/resources/js/star.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -20,6 +23,7 @@
 <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 <script src="/resources/js/category.js"></script>
 <script type="text/javascript">
+
 $(function() {
 	$('.item-wrapper').slick({
 		dots : false,
@@ -33,11 +37,23 @@ $(function() {
 				slidesToShow : 3,
 				slidesToScroll : 3
 			}
-		}
-		// You can unslick at a given breakpoint now by adding:
-		// settings: "unslick"
-		// instead of a settings object
-		]
+		}]
+	});
+});
+$(document).ready(function(){
+	$("#unlike").show();
+	$("#like").hide();
+
+	/*img1을 클릭했을 때 img2를 보여줌*/
+	$("#unlike").click(function(){
+    	$("#unlike").hide();
+    	$("#like").show();
+	});
+
+	/*img2를 클릭했을 때 img1을 보여줌*/
+	$("#like").click(function(){
+    	$("#unlike").show();
+    	$("#like").hide();
 	});
 });
 </script>
@@ -54,7 +70,7 @@ $(function() {
 		}
 		.cont{
 			width: 100%;
-			height:1500px;
+			height:2100px;
 		}
 		.c_table{
 			width:45%;
@@ -185,14 +201,103 @@ $(function() {
 		</div>
 		<div style="width: 100%">
 			<div class="heart">
-				<img style="width: 50px; height: 50px;"src="/resources/Img/unlike.png">
+				<img id="unlike" style="width: 50px; height: 50px;" src="/resources/Img/unlike.png">
+				<img id="like" style="width: 50px; height: 50px;"src="/resources/Img/like.png">
 			</div>
 			<div class="reservation">
 				<button style="width : 80px; height : 35px;">예약하기</button>
 			</div>
 		</div>
-		
-		
+		<div class="notice_container" style="height:300px;">
+		<div class="notice_inner" style="width: 90%; height:300px;">
+			<div class="notice_wrap" style="height:300px;">
+				<div class="notice_top" style="height:300px;">
+					<div class="slider">
+						<div class="item-wrapper">
+							<c:choose>
+								<c:when test="${empty ci }">
+									<c:forEach begin="0" end="10">
+										<div class="item">
+											<img src="/resources/img/banner/banner_2.jpg" />
+										</div>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<c:forEach items="${ci}" var="dto">
+										<div class="item">
+											<img src="${dto.img}" style="width:375px; height:250px;"/>
+										</div>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
+						</div>
+						<div class="notice_bottom_wrap">
+							<div class="notice_bottom"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
+	<h1 style="margin-left: 20%;">오시는 길</h1>
+	<div id="map" style="width:1000px;height:500px; margin: auto;"></div>
+	<div class="notice_container">
+		<div class="notice_inner" 	style="width: 72%;">
+			<div class="notice_wrap">
+				<div class="notice_top">
+					<h1>추천 캠핑장</h1>
+					<div class="slider">
+						<div class="item-wrapper">
+							<c:choose>
+								<c:when test="${empty list }">
+									<c:forEach begin="0" end="8">
+										<div class="item">
+											<img src="/resources/img/banner/banner_2.jpg" />
+										</div>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<c:forEach begin="0" end="8" items="${list }" var="dto">
+										<div class="item">
+											<a class="test"> ${dto.camp_name } </a>
+											<div class="test-2">
+												<a><img src="${dto.camp_img }" /></a>
+											</div>
+										</div>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
+						</div>
+						<div class="notice_bottom_wrap">
+							<div class="notice_bottom"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="footer">
+		<div class="floresta">
+			<!-- <img style=""
+				src="https://raw.githubusercontent.com/interaminense/starry-sky/master/src/img/bgTree.png"
+				alt="" />  -->
+		</div>
+	</div>
+<script>
+	var lat=${camp.camp_lat};
+	var lon=${camp.camp_long};
+	var mapOptions = {
+    center: new naver.maps.LatLng(lon, lat),
+    zoom: 17
+	};
+	var map = new naver.maps.Map('map', mapOptions);
+	
+	var marker = new naver.maps.Marker({
+	    position: new naver.maps.LatLng(lon, lat),
+	    map: map
+	});
+</script>
+
 </body>
 </html>

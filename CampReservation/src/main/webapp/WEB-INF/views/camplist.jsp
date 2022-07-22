@@ -101,13 +101,13 @@ $(function() {
 							<a href=""> 새로움 모아</a>
 						</div>
 						<div class="category">
-							<a href=""> 캠핑장 모아</a>
+							<a href="/clist/gl"> 캠핑장 모아</a>
 						</div>
 						<div class="category">
-							<a href=""> 카라반 모아</a>
+							<a href="/clist/cvl"> 카라반 모아</a>
 						</div>
 						<div class="category">
-							<a href=""> 글램핑 모아</a>
+							<a href="/clist/cpl"> 글램핑 모아</a>
 						</div>
 						<div class="category">
 							<a href=""> 반려견 모아</a>
