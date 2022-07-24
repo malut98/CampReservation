@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+.compaer-container {
+	width: 100%;
+	height: 17vw;
+	position: -webkit-sticky;
+	position: sticky;
+	bottom: 0;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	z-index: 99;
+}
+
+.compare-inner {
+	width: 70%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.compare-wrap {
+	width: 84.7%;
+	height: 100%;
+	margin: auto;
+}
+
+.compare-top-wrap {
+	height: 20%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #2d2926;
+	width: 100%;
+}
+
+.compare-top {
+	background: #2d2926;
+	width: 100%;
+}
+
+.compare-bottom-wrap {
+	width: 100%;
+	height: 80%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #fff;
+}
+
+.compare-bottom {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.left-compare {
+	width: 50%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.right-compare {
+	width: 50%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.compare-img {
+	width: 60%;
+	height: 90%;
+}
+.compare-img img{
+	width: 200px;
+	height: 160px;
+}

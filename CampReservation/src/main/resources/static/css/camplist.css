@@ -6,29 +6,40 @@
 	justify-content: center;
 	align-items: center;
 }
-.camplist_inner{
+
+.camplist_inner {
 	width: 70%;
 }
-.whatever{
+
+.whatever {
+	width: 70%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
-.camplist_Top{
+
+.camplist_Top {
 	width: 70%;
 }
-.table_left{
+
+.table_left {
 	width: 40%;
 }
-.camplist{
+
+.camplist {
 	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
-#wrap{
+
+.wrap {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
-.camplist_bottom{
+.camplist_bottom {
+	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
