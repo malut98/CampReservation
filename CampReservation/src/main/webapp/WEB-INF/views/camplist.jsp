@@ -24,12 +24,27 @@
    href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <script src="/resources/js/category.js"></script>
 <script type="text/javascript">
-   $(function() {
-      $('123button').click(function() {
-         var id_check = $(this).attr("id");
-         console.log(id_check);
-      });
-   });
+function pag(a) {
+	var pagenum=a;
+    $.ajax({
+    	type: 'GET',	
+    	url: '/clist/pagin',
+    	data: {"pagenum":pagenum},
+    	error: function (request, error) {
+    		alert("fail");
+    		console.log("code:"+request.status + "\n" + "message:"+request.responseText+ "\n" + "error:"+error);
+    	},
+    	success: function (result) {
+    		var html = jQuery('<div>').html(result);
+    		var contents = html.find("div#indexListAjax").html();
+    		console.log(html);
+    		console.log(contents);
+    		$(".camplist_inner").empty();
+    		$(".camplist_inner").html(contents);
+    		
+    	}
+    });
+}
    function compare(camp_id, camp_img, camp_name, camp_addr) {
       // 받아야하는 값 dto.camp_id/dto.camp_img/dto.camp_name/dto.camp_addr
       // 1. 버튼을 누르면 비교 div를 display none;에서 block;으로 바꾼다
@@ -102,60 +117,57 @@
          </div>
          <div class="camplist">
          	<div class="camplist_Top">
-            <c:forEach items="${camp}" var="dto" varStatus="status">
-            <c:if test="${status.count % 2 ==1 or status.count == 1}">
-                  <div id="wrap">
-               </c:if> 
-
-               <div class="left" id="${dto.camp_id}">
-                  <table class="table_left">
-                     <tr>
-                        <td colspan="2"><c:if test="${dto.camp_img eq 'x'}">
-                              <img style="width: 430px; height: 250px;"
-                                 src="/resources/Img/noimage-black.png"
-                                 onclick="location.href='cdetail?camp_id=${dto.camp_id}'">
-                           </c:if> <c:if test="${dto.camp_img ne 'x'}">
-                              <img style="width: 430px; height: 250px;"
-                                 src="${dto.camp_img}"
-                                 onclick="location.href='cdetail?camp_id=${dto.camp_id}'">
+            	<c:forEach items="${camp}" var="dto" varStatus="status">
+            	<c:if test="${status.count % 2 ==1 or status.count == 1}">
+                	<div id="wrap">
+            	</c:if> 
+               		<div class="left" id="${dto.camp_id}">
+                  		<table class="table_left">
+                     		<tr>
+                        		<td class="table_img" colspan="2"><c:if test="${dto.camp_img eq 'x'}">
+                              		<img style="width: 430px; height: 250px;"
+                                 		src="/resources/Img/noimage-black.png"
+                                 		onclick="location.href='cdetail?camp_id=${dto.camp_id}'">
+                           </c:if><c:if test="${dto.camp_img ne 'x'}">
+                              		<img style="width: 430px; height: 250px;"
+                                		src="${dto.camp_img}"
+                                 		onclick="location.href='cdetail?camp_id=${dto.camp_id}'">
                            </c:if></td>
-                     </tr>
-                     <tr>
-                        <td>${dto.camp_name}</td>
-                        <td style="text-align: center;"><img
-                           style="width: 20px; height: 20px;"
-                           src="/resources/Img/unlike.png"></td>
-                     </tr>
-                     <tr>
-                        <td>${dto.camp_addr}</td>
-                        <td style="text-align: center;"><button id="${dto.camp_id}"
-                              onclick="compare('${dto.camp_id}' , '${dto.camp_img}' , '${dto.camp_name}' , '${dto.camp_addr}'); return false;">비교</button>
-                        <td>
-                     </tr>
-                     <tr>
-                        <td>&nbsp;</td>
-                     </tr>
-                  </table>
-               </div>
-               <c:if test="${fn:length(calculateList) %2 == 1 and status.count == list.size}">
-                  </div>
+                     		</tr>
+                     		<tr>
+                        		<td  class="table_name">${dto.camp_name}</td>
+                        		<td style="text-align: center;"><img
+                          			style="width: 20px; height: 20px;"
+                           			src="/resources/Img/unlike.png"></td>
+                     		</tr>
+                     		<tr>
+                        		<td class="table_addr">${dto.camp_addr}</td>
+                        		<td style="text-align: center;"><button id="${dto.camp_id}"
+                              		onclick="compare('${dto.camp_id}' , '${dto.camp_img}' , '${dto.camp_name}' , '${dto.camp_addr}'); return false;">비교</button>
+                        		</td>
+                     		</tr>
+                     		<tr>
+                        		<td>&nbsp;</td>
+                     		</tr>
+                  		</table>
+               		</div>
+               	<c:if test="${fn:length(calculateList) %2 == 1 and status.count == list.size}">
+             </div>
+               	</c:if>
+            	<c:if test="${status.count % 2 ==0}">
+             </div>
                </c:if>
-               <c:if test="${status.count % 2 ==0}">
-                  </div>
-               </c:if>
-      </c:forEach>
+     	 </c:forEach>
       </div>
    </div>
-   </div>
-   </div>
-         <div class="camplist_bottom">
-      	<div class="paging">
+
+        <div class="camplist_bottom">
+      	<div class="pagingDiv">
          	<c:if test="${page.prev}">
             	<a href="?pagenum=${page.getStartPage()-1}">&laquo;</a>
          	</c:if>
-         	<c:forEach begin="${page.getStartPage()}" end="${page.getEndPage()}"
-            	var="idx">
-            	<a href="?pagenum=${idx}">${idx}</a>
+         	<c:forEach begin="${page.getStartPage()}" end="${page.getEndPage()}" var="idx">
+            	<div onclick="pag(${idx});">${idx}</div>
          	</c:forEach>
          	<c:if test="${page.next}">
             	<a href="?pagenum=${page.getEndPage()+1}">&raquo;</a>

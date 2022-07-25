@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.camp.campreservation.campdb.dto.CampDBDto;
 import com.camp.campreservation.campimg.dto.CampImgDto;
@@ -62,4 +63,13 @@ public class CampListController {
 		model.addAttribute("ci",campImg);
 		return "campdetail";
 	}
+	
+	@GetMapping("/pagin")
+	@ResponseBody
+	public String idCheck(Model model, @RequestParam("pagenum") String pagenum, @RequestParam(defaultValue = "6") String contentnum) {
+		List<CampDBDto> campDto = campListService.getAllList(model, pagenum, contentnum);
+		model.addAttribute("camp",campDto);
+		return "paging_con";
+	}
+	
 }
