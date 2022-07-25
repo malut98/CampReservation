@@ -13,6 +13,7 @@
 <link rel="StyleSheet" href="/resources/css/star.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/banner.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/notice.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/compare.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/camplist.css"
    type="text/css">
 <link rel="StyleSheet" href="/resources/css/Category.css"
@@ -51,7 +52,8 @@ function pag(a) {
       // 
       console.log(camp_id + " " + camp_img + " " + camp_name + " "
             + camp_addr);
-
+      $(".compaer-container").attr("style","display:flex");
+      $(".left-compare > .compare-img > img").attr("src",camp_img);
    }
 </script>
 </head>
@@ -174,5 +176,30 @@ function pag(a) {
          	</c:if>
       </div>
       </div>
+     <div class="compaer-container" >
+     	<div class="compare-inner">
+     		 <div class="compare-wrap">
+     		 	<div class="compare-top-wrap">
+     		      <div class="compare-top">
+     		      		&nbsp;비교하기
+     		      </div>
+     		    </div>
+     		    <div class="compare-bottom-wrap">
+     		      <div class="compare-bottom">
+     		      		<div class="left-compare">
+     		      			<div class="compare-img">
+     		      				<img src="https://gocamping.or.kr/upload/camp/21/thumb/thumb_720_0101P4RZ9jhvwMhT2ZVJUof8.jpg" >
+     		      			</div>
+     		      		</div>
+     		      		<div class="right-compare">
+     		      			<div class="compare-img">
+     		      				<img src="https://gocamping.or.kr/upload/camp/21/thumb/thumb_720_0101P4RZ9jhvwMhT2ZVJUof8.jpg" >
+     		      			</div>
+     		      		</div>
+     		      </div>
+     		    </div>
+     		 </div>
+     	</div>
+     </div>
 </body>
 </html>

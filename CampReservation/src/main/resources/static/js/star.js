@@ -19,7 +19,7 @@ function init(){
   for (var i = 0; i < qtdeEstrelas; i++) {
     estrela += "<span class='estrela " + style[getRandomArbitrary(0, 4)] + " " + opacity[getRandomArbitrary(0, 6)] + " "
     + tam[getRandomArbitrary(0, 5)] + "' style='animation-delay: ." +getRandomArbitrary(0, 9)+ "s; left: "
-    + getRandomArbitrary(0, widthWindow) + "px; top: " + getRandomArbitrary(0, heightWindow) + "px;'></span>";
+    + getRandomArbitrary(0, widthWindow-20) + "px; top: " + getRandomArbitrary(0, heightWindow) + "px;'></span>";
   }
 
   noite.innerHTML = estrela;
