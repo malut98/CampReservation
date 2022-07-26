@@ -29,7 +29,7 @@
 function pag(a) {
 	var pagenum=a;
     $.ajax({
-    	type: 'GET',	
+    	type: 'post',	
     	url: '/clist/pagin',
     	data: {"pagenum":pagenum},
     	error: function (request, error) {
@@ -39,11 +39,14 @@ function pag(a) {
     	success: function (result) {
     		var html = jQuery('<div>').html(result);
     		var contents = html.find("div#indexListAjax").html();
-    		console.log(html);
-    		console.log(contents);
-    		$(".camplist_inner").empty();
-    		$(".camplist_inner").html(contents);
-    		
+    		$(".camplist_Top").empty();
+    		$(".camplist_Top").html(contents);
+    		if(pagenum>=${page.getEndPage()+1} || ${page.getStartPage()-1}==0){
+    			var html = jQuery('<div>').html(result);
+        		var contents = html.find("div#indexListAjax2").html();
+    			$(".camplist_bottom").empty();
+    			$(".camplist_bottom").html(contents);
+    		}
     	}
     });
 }
@@ -66,7 +69,7 @@ function pag(a) {
          <div class="nav_wrap">
             <div class="nav">
                <ul class="header_menu">
-                  <li class="nav-item"><a href="/clist/cpl">캠핑모아</a></li>
+                  <li class="nav-item"><a href="/clist/ca">캠핑모아</a></li>
                   <li class="nav-item"><a href="/usedtradelist">중고모아</a></li>
                   <li class="nav-item"><a href="/communitylist">커뮤모아</a></li>
                </ul>
@@ -76,23 +79,23 @@ function pag(a) {
             <div class="camp-moa">
                <div class="menu_category">
                   <div class="category">
-                     <a href=""> 베스트 모아</a>
-                  </div>
-                  <div class="category">
-                     <a href=""> 새로움 모아</a>
-                  </div>
-                  <div class="category">
-                     <a href=""> 캠핑장 모아</a>
-                  </div>
-                  <div class="category">
-                     <a href=""> 카라반 모아</a>
-                  </div>
-                  <div class="category">
-                     <a href=""> 글램핑 모아</a>
-                  </div>
-                  <div class="category">
-                     <a href=""> 반려견 모아</a>
-                  </div>
+						<a href=""> 베스트 모아</a>
+					</div>
+					<div class="category">
+						<a href=""> 새로움 모아</a>
+					</div>
+					<div class="category">
+						<a href="/clist/cpl"> 캠핑장 모아</a>
+					</div>
+					<div class="category">
+						<a href="/clist/cvl"> 카라반 모아</a>
+					</div>
+					<div class="category">
+						<a href="/clist/gl"> 글램핑 모아</a>
+					</div>
+					<div class="category">
+						<a href=""> 반려견 모아</a>
+					</div>
                </div>
             </div>
          </div>
@@ -107,7 +110,7 @@ function pag(a) {
    <div class="container">
       <div class="camplist_inner">
          <div class="whatever">
-         	<h1>캠핑장</h1>
+         	<h1>${tag}</h1>
          </div>
          <div class="camplist">
          	<div class="camplist_Top">
@@ -158,16 +161,17 @@ function pag(a) {
         <div class="camplist_bottom">
       	<div class="pagingDiv">
          	<c:if test="${page.prev}">
-            	<a href="?pagenum=${page.getStartPage()-1}">&laquo;</a>
+            	<div onclick="pag(${page.getStartPage()-1});">&laquo;</div>
          	</c:if>
          	<c:forEach begin="${page.getStartPage()}" end="${page.getEndPage()}" var="idx">
             	<div onclick="pag(${idx});">${idx}</div>
          	</c:forEach>
          	<c:if test="${page.next}">
-            	<a href="?pagenum=${page.getEndPage()+1}">&raquo;</a>
+            	<div onclick="pag(${page.getEndPage()+1});">&raquo;</div>
          	</c:if>
       </div>
       </div>
+
      <div class="compaer-container" >
      	<div class="compare-inner">
      		 <div class="compare-wrap">     
