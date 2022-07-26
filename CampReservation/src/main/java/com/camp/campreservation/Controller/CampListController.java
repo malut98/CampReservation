@@ -71,5 +71,4 @@ public class CampListController {
 		model.addAttribute("camp",campDto);
 		return "paging_con";
 	}
-	
 }
