@@ -13,7 +13,7 @@
 }
 
 .compare-inner {
-	width: 70%;
+	width: 80%;
 	height: 100%;
 	display: flex;
 	justify-content: center;
@@ -38,6 +38,9 @@
 .compare-top {
 	background: #2d2926;
 	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .compare-bottom-wrap {
@@ -76,8 +79,89 @@
 .compare-img {
 	width: 60%;
 	height: 90%;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 .compare-img img{
-	width: 200px;
-	height: 160px;
+	width: 14vw;
+	height: 11vw;
+}
+.close-btn{
+	position: absolute;
+	color: gray;
+	z-index: 5;
+	display: none;
+	top: 0.6vw;
+    left: 2.2vw;
+    background: black;
+    cursor:pointer;
+}
+.close-btn:after {
+	content: "\00d7"; 
+	font-size:25pt;
+	line-height:26px;
+}
+.compare-bottom span{
+	color: black;
+}
+.compare-name-addr-wrap{
+	width: 50%;
+    height: 100%;
+}
+.compare-name {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    height: 30%;
+}
+.compare-addr {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    height: 70%;
+}
+.cnt_compare{
+	width: 55%;
+}
+.cnt_compare_btn {
+    width: 40%;
+    display: flex;
+    justify-content: right;
+}
+.modal{ 
+  position:absolute; 
+  width:100%; height:100%; 
+  background: rgba(0,0,0,0.8); 
+  top:0; left:0;
+  z-index: 50;
+  display: none;
+}
+.modal-overlap{ 
+  position:absolute; 
+  width:100%; height:100%; 
+  background: rgba(0,0,0,0.8); 
+  top:0; left:0;
+  z-index: 50;
+  display: none;
+}
+.modal_content{
+  width:400px; height:200px;
+  background:#fff; border-radius:10px;
+  position:relative; top:50%; left:50%;
+  margin-top:-100px; margin-left:-200px;
+  text-align:center;
+  box-sizing:border-box; padding:74px 0;
+  line-height:23px; cursor:pointer;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cnt_compare_btn span{
+	cursor:pointer;
 }

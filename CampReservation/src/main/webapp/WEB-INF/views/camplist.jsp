@@ -24,6 +24,7 @@
 <link rel="stylesheet"
    href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <script src="/resources/js/category.js"></script>
+<script type="text/javascript" src="/resources/js/compare.js"></script>
 <script type="text/javascript">
 function pag(a) {
 	var pagenum=a;
@@ -46,15 +47,6 @@ function pag(a) {
     	}
     });
 }
-   function compare(camp_id, camp_img, camp_name, camp_addr) {
-      // 받아야하는 값 dto.camp_id/dto.camp_img/dto.camp_name/dto.camp_addr
-      // 1. 버튼을 누르면 비교 div를 display none;에서 block;으로 바꾼다
-      // 
-      console.log(camp_id + " " + camp_img + " " + camp_name + " "
-            + camp_addr);
-      $(".compaer-container").attr("style","display:flex");
-      $(".left-compare > .compare-img > img").attr("src",camp_img);
-   }
 </script>
 </head>
 <body>
@@ -121,7 +113,7 @@ function pag(a) {
          	<div class="camplist_Top">
             	<c:forEach items="${camp}" var="dto" varStatus="status">
             	<c:if test="${status.count % 2 ==1 or status.count == 1}">
-                	<div id="wrap">
+                	<div class="wrap">
             	</c:if> 
                		<div class="left" id="${dto.camp_id}">
                   		<table class="table_left">
@@ -178,22 +170,60 @@ function pag(a) {
       </div>
      <div class="compaer-container" >
      	<div class="compare-inner">
-     		 <div class="compare-wrap">
+     		 <div class="compare-wrap">     
+     		 	<div class="modal">
+  					<div class="modal_content" title="클릭하면 창이 닫힙니다.">
+    					최대 2개 까지 선택이 가능합니다.
+ 		 			</div>
+				</div>
+				<div class="modal-overlap">
+  					<div class="modal_content" title="클릭하면 창이 닫힙니다.">
+    					같은 숙소를 클릭하셨습니다.<br>
+    					다른 숙소를 선택 해주세요.
+ 		 			</div>
+				</div>        		 
      		 	<div class="compare-top-wrap">
      		      <div class="compare-top">
-     		      		&nbsp;비교하기
-     		      </div>
+     		      		<div class="cnt_compare">
+     		      			비교하기(0)
+     		      		</div>
+     		      		<div class="cnt_compare_btn">
+     		      			<span>비교하기</span>
+     		      		</div>
+     		      </div>    		      
      		    </div>
-     		    <div class="compare-bottom-wrap">
-     		      <div class="compare-bottom">
+     		    <div class="compare-bottom-wrap">    		        		
+     		      <div class="compare-bottom">     		      
      		      		<div class="left-compare">
+     		      		
      		      			<div class="compare-img">
      		      				<img src="https://gocamping.or.kr/upload/camp/21/thumb/thumb_720_0101P4RZ9jhvwMhT2ZVJUof8.jpg" >
+     		      				<div class="close-btn"></div>
+     		      			</div>		
+     		      			
+     		      		<div class="compare-name-addr-wrap">	
+     		      		
+     		      			<div class="compare-name">
+     		      				<span></span>
      		      			</div>
+     		      			
+     		      			<div class="compare-addr">
+     		      				<span></span>
+     		      			</div>    		      			
+     		      		</div>
      		      		</div>
      		      		<div class="right-compare">
      		      			<div class="compare-img">
-     		      				<img src="https://gocamping.or.kr/upload/camp/21/thumb/thumb_720_0101P4RZ9jhvwMhT2ZVJUof8.jpg" >
+     		      				<img src="/resources/img/unknown_img.png" >
+     		      				<div class="close-btn"></div>
+     		      			</div>     		      		
+     		      			<div class="compare-name-addr-wrap">	
+     		      				<div class="compare-name">
+     		      					<span></span>
+     		      				</div>
+     		      				<div class="compare-addr">
+     		      					<span></span>
+     		      				</div>
      		      			</div>
      		      		</div>
      		      </div>
