@@ -70,9 +70,10 @@
 			<div class="nav_wrap">
 				<div class="nav">
 					<ul class="header_menu">
-						<li class="nav-item"><a href="/camplist">캠핑모아</a></li>
+						<li class="nav-item"><a href="/clist/ca">캠핑모아</a></li>
 						<li class="nav-item"><a href="/usedtradelist">중고모아</a></li>
 						<li class="nav-item"><a href="/communitylist">커뮤모아</a></li>
+<<<<<<< HEAD
 						<li class="nav-item"><a href="/DB/CampImg">db</a></li>
 						<%
 							if(id!=null){
@@ -81,6 +82,9 @@
 						<%
 							}
 						%>
+=======
+						<!-- <li class="nav-item"><a href="/DB/CampImg">db</a></li> -->
+>>>>>>> 9e5b346f07a597b6776e8cb00165e5ad757e1193
 					</ul>
 				</div>
 			</div>
@@ -94,13 +98,13 @@
 							<a href=""> 새로움 모아</a>
 						</div>
 						<div class="category">
-							<a href=""> 캠핑장 모아</a>
+							<a href="/clist/cpl"> 캠핑장 모아</a>
 						</div>
 						<div class="category">
-							<a href=""> 카라반 모아</a>
+							<a href="/clist/cvl"> 카라반 모아</a>
 						</div>
 						<div class="category">
-							<a href=""> 글램핑 모아</a>
+							<a href="/clist/gl"> 글램핑 모아</a>
 						</div>
 						<div class="category">
 							<a href=""> 반려견 모아</a>
@@ -160,7 +164,7 @@
 	<div class="chuvaMeteoro"></div>
 
 	<div class="notice_container">
-		<div class="notice_inner">
+		<div class="notice_inner" 	style="width: 72%;">
 			<div class="notice_wrap">
 				<div class="notice_top">
 					<h1>추천 캠핑장</h1>

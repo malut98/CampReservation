@@ -5,11 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="StyleSheet" href="/resources/css/communitywrite.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/communitydetail.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
 </head>
 <body>
-     <div class="header">
+<div class="header">
 		<div class="section">
 			<div class="logo">
 				<a href="/"><img alt="" src="img/logo/logo (2).png" style=" height: 100px;"></a>
@@ -38,15 +38,23 @@
 			</div>
 		</div>
 	</div>
-     <form action="communitywriteres" method="post" enctype="multipart/form-data">
-     <input type="button" id="menu" value="목록" onclick="location.href='communitylist'">
-     <div class="writeform">
-     <input type="text" name="com_title" id="title"><br>
-     <input type="text" name="member_id" id="memid" readonly="readonly" ><br>
-     <input type="file" name="fileimage" id="image" accept=".jpg, .png, .gif, .bmp"><br>
-     <textarea name="com_content" id="content" rows="30" cols="100"></textarea>
-     <input type="submit" id="writebutton" value="작성">
-     </div>
-     </form>
+	<form action="communityupdateres" method="post" enctype="multipart/form-data">
+	<div class="board">
+	<input type="hidden" name="com_num" value="${dto.com_num}">
+	<input type="hidden" name="com_image" value="${dto.com_image }">
+	<input type="button" id="list" value="목록" onclick="location.href='communitylist'">
+	<input type="text" id="title" name="com_title" value="${dto.com_title}" >
+	<input type="text" id="memberID" name="member_id" value="${dto.member_id}" readonly="readonly"><br>
+	<input type="file" name="fileimage" id="image" accept=".jpg, .png, .gif, .bmp">
+	<p class="filename" >저장된 파일: ${dto.com_image}</p>
+	<textarea id="content" name="com_content" cols="40" rows="60" >${dto.com_content}</textarea>
+	</div>
+	<input type="submit" value="저장">
+	<input type="button" value="취소" onclick="location.href='communitylist'">
+	</form>
+	</div>
+	
+	
+</body>
 </body>
 </html>
