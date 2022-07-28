@@ -1,18 +1,19 @@
 package com.camp.campreservation.Controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.camp.campreservation.Dto.LoginDto;
 import com.camp.campreservation.Service.LoginService;
@@ -23,12 +24,20 @@ public class LoginController {
 	@Autowired
 	private LoginService loginservice;
 	
-
+	@GetMapping("/mapage")
+	public String mypage() {
+		return "mypage";
+	}
+	
 	@GetMapping("/login")
 	public String loginhp() {
 		return "login";
 	}
 	
+	@GetMapping("/index")
+	public String main() {
+		return "index";
+	}
 	
 	@GetMapping("/sign")
 	public String signForm() {
@@ -38,35 +47,48 @@ public class LoginController {
 	public String login() {
 		return "login";
 	}
-	
-	
-	@PostMapping("/index")
-	public String main() {
-		return "index";
-	}
-	
-	@PostMapping("/login_in")
-	public String main(HttpServletRequest request, Model model, String memberid, String memberpw) {
-		if(loginservice.login(memberid,memberpw)!=null) {
-			model.addAttribute("memberid",memberid);
-			request.getSession().setAttribute("memberid", memberid);
-			request.getSession().setAttribute("msg", "");
-			return "index";
-		}else{
-			request.getSession().setAttribute("msg", "아이디 또는 비밀번호를 확인해주세요");
-			return "/";
+		
+	@RequestMapping(value="/logincheck",method=RequestMethod.POST)
+	public String logincheck(@ModelAttribute LoginDto dto,HttpSession session,HttpServletRequest request,HttpServletResponse response) {
+		
+		String result = loginservice.logincheck(dto, session);
+		ModelAndView mav = new ModelAndView();
+		
+		
+		
+		mav.setViewName("login");
+		
+		if(result != null) {
+			session.setAttribute("memberid", dto.getMemberid());
+			return "redirect:/index";
+		}else {
+			return "redirect:/login";
 		}
 		
 	}
 	
-	@PostMapping("insert")
-	public String insert(LoginDto dto) {
+	@RequestMapping("/logout")
+	public ModelAndView logout(HttpSession session) {
+		loginservice.logout(session);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("login");
+		mav.addObject("msg", "logout");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/signup",method=RequestMethod.POST)
+	public String membersign(LoginDto dto) {
+		
 		int res = loginservice.insert(dto);
+		System.out.println("res="+ res);
+		
 		if(res > 0) {
 			return "redirect:/login";
 		}else {
 			return "redirect:/sign";
 		}
+		
 	}
 	
 	@PostMapping("/idcheck")

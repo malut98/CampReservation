@@ -1,8 +1,10 @@
 package com.camp.campreservation.Service;
 
 import java.util.List;
+import java.util.Map;
 
-import org.apache.ibatis.annotations.Mapper;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,10 +22,6 @@ public class LoginServiceImpl implements LoginService{
 		return loginmapper.selectList();
 	}
 
-	@Override
-	public LoginDto selectOne(String memberid) {
-		return loginmapper.selectOne(memberid);
-	}
 
 	@Override
 	public int insert(LoginDto dto) {
@@ -46,9 +44,33 @@ public class LoginServiceImpl implements LoginService{
 	}
 
 	@Override
-	public LoginDto login(String memberid, String memberpw) {
-		return loginmapper.login(memberid, memberpw);
+	public String logincheck(LoginDto dto, HttpSession session) {
+		
+		String result = loginmapper.logincheck(dto);
+		System.out.println(result);
+		
+		if(result != null) {
+			System.out.print(result);
+			session.setAttribute("memberid", dto.getMemberid());
+		}
+				
+		return result;
 	}
-	
+
+
+	@Override
+	public void logout(HttpSession session) {
+		session.invalidate();
+	}
+
+
+	@Override
+	public void sign(LoginDto dto) {
+		loginmapper.signup(dto);
+	}
+
+
+
+
 
 }

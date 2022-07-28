@@ -77,7 +77,7 @@ public class CampDBController {
 	@GetMapping("/CampImg")
 	public String CampImgSave(Model model) throws IOException, ParseException{
 		CampImg campimg = new CampImg();
-		for(int i=100248; i<=100459; i++) { //i = 0부터 8217, 끝나고 100000~100459
+		for(int i=0; i<=8217; i++) { //i = 0부터 8217, 끝나고 100000~100459
 			if(campDBService.selectOne(i)==null) {
 				continue;
 			}else{

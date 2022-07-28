@@ -6,20 +6,26 @@ public class LoginDto {
 	private String membername;
 	private String memberphone;
 	private String gender;
-	private String pointer;
+	private String adress;
+	private String Wtype;
+	private int pointer;
+	private String admin;
 	public LoginDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public LoginDto(String memberid, String memberpw, String membername, String memberphone, String gender,
-			String pointer) {
+			String adress, String wtype, int pointer, String admin) {
 		super();
 		this.memberid = memberid;
 		this.memberpw = memberpw;
 		this.membername = membername;
 		this.memberphone = memberphone;
 		this.gender = gender;
+		this.adress = adress;
+		Wtype = wtype;
 		this.pointer = pointer;
+		this.admin = admin;
 	}
 	public String getMemberid() {
 		return memberid;
@@ -51,16 +57,35 @@ public class LoginDto {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String getPointer() {
+	public String getAdress() {
+		return adress;
+	}
+	public void setAdress(String adress) {
+		this.adress = adress;
+	}
+	public String getWtype() {
+		return Wtype;
+	}
+	public void setWtype(String wtype) {
+		Wtype = wtype;
+	}
+	public int getPointer() {
 		return pointer;
 	}
-	public void setPointer(String pointer) {
+	public void setPointer(int pointer) {
 		this.pointer = pointer;
+	}
+	public String getAdmin() {
+		return admin;
+	}
+	public void setAdmin(String admin) {
+		this.admin = admin;
 	}
 	@Override
 	public String toString() {
 		return "LoginDto [memberid=" + memberid + ", memberpw=" + memberpw + ", membername=" + membername
-				+ ", memberphone=" + memberphone + ", gender=" + gender + ", pointer=" + pointer + "]";
+				+ ", memberphone=" + memberphone + ", gender=" + gender + ", adress=" + adress + ", Wtype=" + Wtype
+				+ ", pointer=" + pointer + ", admin=" + admin + "]";
 	}
 	
 	
