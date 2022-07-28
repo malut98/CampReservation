@@ -27,24 +27,21 @@
 <script type="text/javascript" src="/resources/js/compare.js"></script>
 <script type="text/javascript">
 function pag(a) {
-	var pagenum=a;
+	var pagenum=a;;
     $.ajax({
     	type: 'post',	
     	url: '/clist/pagin',
-    	data: {"pagenum":pagenum},
+    	data: {"pagenum":pagenum,"name":'${tag}'},
     	error: function (request, error) {
     		alert("fail");
     		console.log("code:"+request.status + "\n" + "message:"+request.responseText+ "\n" + "error:"+error);
     	},
     	success: function (result) {
-    		var html = jQuery('<div>').html(result);
+    		var html = $('<div>').html(result);
     		var contents = html.find("div#indexListAjax").html();
-    		$(".camplist_Top").empty();
     		$(".camplist_Top").html(contents);
     		if(pagenum>=${page.getEndPage()+1} || ${page.getStartPage()-1}==0){
-    			var html = jQuery('<div>').html(result);
         		var contents = html.find("div#indexListAjax2").html();
-    			$(".camplist_bottom").empty();
     			$(".camplist_bottom").html(contents);
     		}
     	}
@@ -101,7 +98,7 @@ function pag(a) {
          </div>
          <div class="profile">
             <ul>
-               <li><a href="/resources/login">로그인</a></li>
+               <li><a href="/login">로그인</a></li>
             </ul>
          </div>
       </div>
@@ -133,9 +130,6 @@ function pag(a) {
                      		</tr>
                      		<tr>
                         		<td  class="table_name">${dto.camp_name}</td>
-                        		<td style="text-align: center;"><img
-                          			style="width: 20px; height: 20px;"
-                           			src="/resources/Img/unlike.png"></td>
                      		</tr>
                      		<tr>
                         		<td class="table_addr">${dto.camp_addr}</td>

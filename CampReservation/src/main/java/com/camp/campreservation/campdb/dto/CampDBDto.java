@@ -1,6 +1,8 @@
 package com.camp.campreservation.campdb.dto;
 
-public class CampDBDto {
+import com.camp.campreservation.Dto.LoginDto;
+
+public class CampDBDto extends LoginDto{
 	private int camp_id;
 	private String camp_name;
 	private String camp_one;	//캠핑장 한줄소개
@@ -52,6 +54,11 @@ public class CampDBDto {
 		this.camp_price = camp_price;
 		this.camp_lat = camp_lat;
 		this.camp_long = camp_long;
+	}
+
+	public CampDBDto(String memberid, int camp_id) {
+		super(memberid);
+		this.camp_id=camp_id;
 	}
 
 	public int getCamp_id() {

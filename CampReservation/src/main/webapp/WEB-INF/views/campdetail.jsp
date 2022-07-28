@@ -34,8 +34,8 @@ $(function() {
 		responsive : [ {
 			breakpoint : 1024,
 			settings : {
-				slidesToShow : 3,
-				slidesToScroll : 3
+				slidesToShow : 1,
+				slidesToScroll : 1
 			}
 		}]
 	});
@@ -201,8 +201,8 @@ $(document).ready(function(){
 		</div>
 		<div style="width: 100%">
 			<div class="heart">
-				<img id="unlike" style="width: 50px; height: 50px;" src="/resources/Img/unlike.png">
-				<img id="like" style="width: 50px; height: 50px;"src="/resources/Img/like.png">
+				<img id="unlike" style="width: 50px; height: 50px;" src="/resources/Img/unlike.png" onclick="unlike(${camp.id})">
+				<img id="like" style="width: 50px; height: 50px;"src="/resources/Img/like.png" onclick="like(${camp.id})">
 			</div>
 			<div class="reservation">
 				<button style="width : 80px; height : 35px;">예약하기</button>
