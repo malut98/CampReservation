@@ -50,6 +50,9 @@
 </script>
 </head>
 <body>
+<%
+	String id = (String)session.getAttribute("memberid");
+%>
 	<div class="header">
 		<div class="section">
 			<div class="logo">
@@ -70,7 +73,18 @@
 						<li class="nav-item"><a href="/clist/ca">캠핑모아</a></li>
 						<li class="nav-item"><a href="/usedtradelist">중고모아</a></li>
 						<li class="nav-item"><a href="/communitylist">커뮤모아</a></li>
+<<<<<<< HEAD
+						<li class="nav-item"><a href="/DB/CampImg">db</a></li>
+						<%
+							if(id!=null){
+						%>
+						<li class="nav-item"><a href="/mypage">마이페이지</a></li>
+						<%
+							}
+						%>
+=======
 						<!-- <li class="nav-item"><a href="/DB/CampImg">db</a></li> -->
+>>>>>>> 9e5b346f07a597b6776e8cb00165e5ad757e1193
 					</ul>
 				</div>
 			</div>
@@ -100,7 +114,17 @@
 			</div>
 			<div class="profile">
 				<ul>
-					<li><a href="/login">로그인</a></li>
+				<%
+				if(id==null){
+				%>
+					<li><a id="login" href="/login">로그인</a></li>
+				<%			
+					}else{
+				%>		
+					<li><a id="logout" href="/logout">로그아웃</a></li>
+				<%		
+					}
+				%>
 				</ul>
 			</div>
 		</div>

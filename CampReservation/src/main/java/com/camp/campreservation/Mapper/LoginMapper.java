@@ -15,10 +15,7 @@ public interface LoginMapper {
 	@Select("SELECT * FROM MEMBER ORDER BY MEMBER_ID DESC")
 	List<LoginDto> selectList();
 	
-	@Select("SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberid}")
-	LoginDto selectOne(String memberid);
-	
-	@Insert("INSERT INTO MEMBER VALUE(#{memberid},#{memberpw},#{membername},#{memberphone},#{gender},#{pointer}")
+	@Insert("INSERT INTO MEMBER VALUES(#{memberid},#{memberpw},#{membername},#{memberphone},#{gender},#{adress},NULL,DEFAULT,DEFAULT)")
 	int insert(LoginDto dto);
 	
 	@Update("UPDATE MEMBER SET MEMBER_PHONE=#{memberphone}")
@@ -27,9 +24,17 @@ public interface LoginMapper {
 	@Select("SELECT COUNT(MEMBER_ID) FROM MEMBER WHERE MEMBER_ID=#{ID}")
 	int idCheck(String id);
 	
-	@Select("SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberid} AND MEMBER_PW=#{memberpw}")
-	LoginDto login(String memberid, String memberpw);
+	/*
+	 * @Select("SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberid} AND MEMBER_PW=#{memberpw}"
+	 * ) LoginDto login(LoginDto dto);
+	 */
 	
 	@Update("UPDATE MEMBER SET MEMBER_NAME=#{membername},MEMBER_GENDER=#{gender}")
 	int updateMP(LoginDto dto);
+	
+	@Select("SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberid} AND MEMBER_PW=#{memberpw}")
+	String logincheck(LoginDto dto);
+	
+	@Insert("INSERT INTO MEMBER VALUES(#{memberid},#{memberpw},#{membername},#{memberphone},#{gender},#{adress},null,DEFAULT,DEFAULT)")
+	void signup(LoginDto dto);
 }
