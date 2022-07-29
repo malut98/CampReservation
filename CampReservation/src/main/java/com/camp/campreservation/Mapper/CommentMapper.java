@@ -17,7 +17,7 @@ public interface CommentMapper {
 //	`COT_CONTENT`	VARCHAR(400)	NOT NULL,
 //	`COM_NUM`	INT(255)	NOT NULL,
 //	`MEMBER_ID`	VARCHAR(255)	NOT NULL
-	@Insert("INSERT INTO COMMENT VALUES(null, NOW(), #{cot_content}, #{com_num}, 'user1')")
+	@Insert("INSERT INTO COMMENT VALUES(null, NOW(), #{cot_content}, #{com_num}, #{member_id})")
 	public int commentwrite(CommentDto comment);
 	
 	@Select("SELECT COUNT(*) FROM COMMENT WHERE COM_NUM=#{com_num}")
@@ -31,4 +31,7 @@ public interface CommentMapper {
 	
 	@Delete("DELETE FROM COMMENT WHERE COM_NUM=#{com_num} AND COT_NUM=#{cot_num}")
 	public int onlycommentdelete(CommentDto dto);
+	
+	@Select("SELECT * FROM COMMENT WHERE MEMBER_ID =#{member_id}")
+	public List<CommentDto>commentwriter(CommentDto dto);
 }

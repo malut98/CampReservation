@@ -14,7 +14,7 @@ body{
 	
 	position : relative;
 	top : 30px;
-	left : 22%;
+	left : 40%;
 	width : 80px;
 	height : 40px;
 	
@@ -22,41 +22,22 @@ body{
 	
 	
 }
-.boardbutton{
-	
-	width: 60%;
-	height : 30px;
-	margin: 0px;
-	position : relative;
-	left : 30%;
-}
-#update{
-	color: black;
-	position: relative;
-	top: 70px;
-	left: 75%;
-}
-#delete{
-	color: black;
-	position: relative;
-	top: 70px;
-	left: 75%;
-}
+
 #title{
 	background-color : white;
 	color : black;
 	
 	position : relative;
-	top : 5px;
-	left :49.9%;
+	top : 20px;
+	left : 40.5%;
 }
 
 #memberID{
 	background-color : white;
 	color : black;
 	position : relative;
-	top : 40px;
-	left : 40.3%;
+	top : 50px;
+	left : 31%;
 }
 
 #content{
@@ -145,4 +126,19 @@ body{
 	position:relative;
 	top: 10px;
 	left: 60%;
+}
+
+#image{
+	display: none;
+}
+#imagebutton{
+	background-color:skyblue;
+	color: white;
+	border: 1px solid white;
+	border-radius: 6px;
+	cursor: pointer;
+}
+#comimage{
+	width:142px;
+	height: 158px;
 }

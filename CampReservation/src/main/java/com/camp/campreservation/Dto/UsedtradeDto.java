@@ -2,7 +2,7 @@ package com.camp.campreservation.Dto;
 
 import java.util.Date;
 
-public class MarketDto {
+public class UsedtradeDto {
 
 	private int mar_num;
 	private String mar_title;
@@ -13,10 +13,10 @@ public class MarketDto {
 	private int mar_hit;
 	private String mar_image;
 	private String member_id;
-	public MarketDto() {
+	public UsedtradeDto() {
 		super();
 	}
-	public MarketDto(int mar_num, String mar_title, String mar_name, Date mar_date, String mar_content, int mar_price,
+	public UsedtradeDto(int mar_num, String mar_title, String mar_name, Date mar_date, String mar_content, int mar_price,
 			int mar_hit, String mar_image, String member_id) {
 		super();
 		this.mar_num = mar_num;
