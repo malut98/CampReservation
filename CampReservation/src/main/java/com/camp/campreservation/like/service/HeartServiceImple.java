@@ -12,13 +12,23 @@ public class HeartServiceImple implements HeartService{
 	private HeartMapper heartMapper;
 	
 	@Override
-	public String heart() {
-		return null;
+	public int heart(String memberid, int campid) {
+		return heartMapper.heart(memberid, campid);
 	}
 
 	@Override
-	public String unheart() {
-		return null;
+	public int unheart(String memberid, int campid) {
+		return heartMapper.unheart(memberid, campid);
+	}
+
+	@Override
+	public int count(int campid) {
+		return heartMapper.count(campid);
+	}
+
+	@Override
+	public int check(String memberid, int campid) {
+		return heartMapper.check(memberid, campid);
 	}
 	
 }

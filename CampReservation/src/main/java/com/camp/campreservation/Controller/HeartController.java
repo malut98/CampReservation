@@ -3,7 +3,10 @@ package com.camp.campreservation.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.camp.campreservation.like.service.HeartService;
 
@@ -14,15 +17,17 @@ public class HeartController {
 	@Autowired
 	private HeartService heartService;
 	
-	@GetMapping("heart")
-	public String heart() {
-		heartService.heart();
-		return null;
+	@PostMapping("heart")
+	@ResponseBody
+	public int heart(@RequestParam("memberid") String memberid, @RequestParam("campid") int campid) {
+		heartService.heart(memberid, campid);
+		return heartService.count(campid);
 	}
 	
-	@GetMapping("unheart")
-	public String unheart() {
-		heartService.unheart();
-		return null;
+	@PostMapping("unheart")
+	@ResponseBody
+	public int unheart(@RequestParam("memberid") String memberid, @RequestParam("campid") int campid) {
+		heartService.unheart(memberid, campid);
+		return heartService.count(campid);
 	}
 }

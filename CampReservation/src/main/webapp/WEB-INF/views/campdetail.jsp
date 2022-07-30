@@ -40,22 +40,53 @@ $(function() {
 		}]
 	});
 });
-$(document).ready(function(){
-	$("#unlike").show();
-	$("#like").hide();
-
-	/*img1을 클릭했을 때 img2를 보여줌*/
-	$("#unlike").click(function(){
-    	$("#unlike").hide();
-    	$("#like").show();
+$(document).ready(function () {
+	var like_count=${count};
+	var check=${check};
+	
+	if(check==1){
+		$("#likeimg").attr("src", "/resources/img/like.png");
+		$("#likeimg").attr("onclick", "like('${sessionScope.memberid}', ${camp.camp_id})");
+	}else{
+		$("#likeimg").attr("src", "/resources/img/unlike.png");
+		$("#likeimg").attr("onclick", "unlike('${sessionScope.memberid}', ${camp.camp_id})");
+	}
 	});
+	
+function unlike(memberid, campid){
+	$.ajax({
+		type: 'post',	
+    	url: '/ht/unheart',
+    	data: {"memberid":memberid, "campid":campid},
+    	error: function (request, error) {
+    		alert("fail");
+    		console.log("code:"+request.status + "\n" + "message:"+request.responseText+ "\n" + "error:"+error);
+    	},
+    	success: function (count) {
+    		$("#likeimg").attr("src", "/resources/img/like.png");
+    		$("#likeimg").attr("onclick", "like('${sessionScope.memberid}', ${camp.camp_id})");
+    		$("label[for='count']").text(count);
+    	}
+    });
+}
 
-	/*img2를 클릭했을 때 img1을 보여줌*/
-	$("#like").click(function(){
-    	$("#unlike").show();
-    	$("#like").hide();
-	});
-});
+function like(memberid, campid){
+	$.ajax({
+		type: 'post',	
+    	url: '/ht/heart',
+    	data: {"memberid":memberid, "campid":campid},
+    	error: function (request, error) {
+    		alert("fail");
+    		console.log("code:"+request.status + "\n" + "message:"+request.responseText+ "\n" + "error:"+error);
+    	},
+    	success: function (count) {
+    		$("#likeimg").attr("src", "/resources/img/unlike.png");
+    		$("#likeimg").attr("onclick", "unlike('${sessionScope.memberid}', ${camp.camp_id})");
+    		$("label[for='count']").text(count);
+    	}
+    });
+}
+
 </script>
 	<style>
 		h1{
@@ -201,8 +232,8 @@ $(document).ready(function(){
 		</div>
 		<div style="width: 100%">
 			<div class="heart">
-				<img id="unlike" style="width: 50px; height: 50px;" src="/resources/Img/unlike.png" onclick="unlike(${camp.id})">
-				<img id="like" style="width: 50px; height: 50px;"src="/resources/Img/like.png" onclick="like(${camp.id})">
+				<img id="likeimg" style="width: 50px; height: 50px;" src="/resources/Img/unlike.png" onclick="unlike('${sessionScope.memberid}', ${camp.camp_id});">
+				<label for="count">${count }</label>
 			</div>
 			<div class="reservation">
 				<button style="width : 80px; height : 35px;">예약하기</button>

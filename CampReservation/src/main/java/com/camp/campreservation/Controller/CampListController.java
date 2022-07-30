@@ -10,11 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.camp.campreservation.Dto.LoginDto;
-import com.camp.campreservation.Service.LoginService;
 import com.camp.campreservation.campdb.dto.CampDBDto;
 import com.camp.campreservation.campimg.dto.CampImgDto;
 import com.camp.campreservation.camplist.service.CampListService;
+import com.camp.campreservation.like.service.HeartService;
 
 
 @Controller
@@ -25,7 +24,8 @@ public class CampListController {
 	private CampListService campListService;
 	
 	@Autowired
-	private LoginService loginService;
+	private HeartService heartService;
+	
 
 	@GetMapping("/ca")
 	public String campAll(Model model, @RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "6") String contentnum) {
@@ -60,15 +60,17 @@ public class CampListController {
 	}
 	
 	@GetMapping("/cdetail")
-	public String campDetail(Model model, int camp_id) {
+	public String campDetail(Model model, int camp_id, String memberid) {
 		CampDBDto campDto = campListService.campDetail(camp_id);
 		model.addAttribute("camp",campDto);
-		
 		List<CampImgDto> campImg = campListService.campImg(camp_id);
 		model.addAttribute("ci",campImg);
 		
-		LoginDto logDto=loginService.selectOne("");
-		model.addAttribute("id",logDto);
+		int count=heartService.count(camp_id);
+		model.addAttribute("count",count);
+		int check=heartService.check(memberid, camp_id);
+		model.addAttribute("check",check);
+		
 		return "campdetail";
 	}
 	
