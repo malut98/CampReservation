@@ -11,6 +11,15 @@
 <link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+window.onload=function(){
+	var mesage = "${mesage}";
+	if(!mesage){
+		console.log(mesage);
+	}else{
+		alert(mesage);
+	}
+}
+
 function page(idx){
 	var pagenum = idx;
 	var contentnum = $("#contentnum option:selected").val();
@@ -25,6 +34,7 @@ function page(idx){
 	    location.href="${pageContext.request.contextPath}/communitylist?pagenum="+pagenum+"&contentnum="+contentnum
 
 	  }
+	
 }
 </script>
 </head>

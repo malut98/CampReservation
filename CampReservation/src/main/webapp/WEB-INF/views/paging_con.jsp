@@ -64,9 +64,6 @@
                      		</tr>
                      		<tr>
                         		<td  class="table_name">${dto.camp_name}</td>
-                        		<td style="text-align: center;"><img
-                          			style="width: 20px; height: 20px;"
-                           			src="/resources/Img/unlike.png"></td>
                      		</tr>
                      		<tr>
                         		<td class="table_addr">${dto.camp_addr}</td>

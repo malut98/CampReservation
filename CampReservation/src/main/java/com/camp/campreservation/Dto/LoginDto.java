@@ -27,6 +27,11 @@ public class LoginDto {
 		this.pointer = pointer;
 		this.admin = admin;
 	}
+	
+	public LoginDto(String memberid) {
+		this.memberid=memberid;
+	}
+	
 	public String getMemberid() {
 		return memberid;
 	}

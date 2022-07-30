@@ -5,8 +5,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="StyleSheet" href="/resources/css/communitydetail.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/communityupdate.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+
+function imagePreview(event){
+	var reader = new FileReader();
+	reader.onload = function(event){
+	$img = document.querySelector("div#image_container>img");
+	$img.src =event.target.result;	
+	};
+	reader.readAsDataURL(event.target.files[0]);
+}
+</script>
 </head>
 <body>
 <div class="header">
@@ -45,8 +58,11 @@
 	<input type="button" id="list" value="목록" onclick="location.href='communitylist'">
 	<input type="text" id="title" name="com_title" value="${dto.com_title}" >
 	<input type="text" id="memberID" name="member_id" value="${dto.member_id}" readonly="readonly"><br>
-	<input type="file" name="fileimage" id="image" accept=".jpg, .png, .gif, .bmp">
-	<p class="filename" >저장된 파일: ${dto.com_image}</p>
+	<input type="file" name="fileimage" id="image" accept="image/*" onchange="imagePreview(event)">
+	<label for="image" id="imagebutton">사진등록</label>
+	<div id="image_container">
+	<img src="/resources/Img/communityimg/${dto.com_image}" id="comimage"><br>
+	</div>
 	<textarea id="content" name="com_content" cols="40" rows="60" >${dto.com_content}</textarea>
 	</div>
 	<input type="submit" value="저장">

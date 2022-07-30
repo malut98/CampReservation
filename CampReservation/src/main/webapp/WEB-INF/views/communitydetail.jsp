@@ -10,13 +10,34 @@
 <title>Insert title here</title>
 <link rel="StyleSheet" href="/resources/css/communitydetail.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+window.onload=function(){
+	var mesage = "${mesage}";
+	console.log(mesage);
+		
+	if(mesage =="작성자"){
+		$("#update").show();
+		$("#delete").show();
+	}
+	else if(mesage == "관리자"){
+		$("#delete").show();
+	}
+
+	if("${writer}" == "작성자"){
+		
+			$(".co_id:contains('${ID}') + .commentdelete").show();
+		
+	}
+}
+
 function page(idx){
 	var pagenum = idx;
 	var contentnum = 5;
 	var com_num = ${dto.com_num};
 	
-	    location.href="${pageContext.request.contextPath}/communitydetail?pagenum="+pagenum+"&contentnum="+contentnum+"&com_num=${dto.com_num}";
+	    location.href="${pageContext.request.contextPath}/communitydetail?pagenum="+pagenum+"&contentnum="+contentnum+"&com_num="+com_num;
 
 	 
 }
@@ -55,16 +76,21 @@ function page(idx){
 	</div>
 	
 	<div class="board">
+	<div class="boardbutton">
 	<input type="button" id="list" value="목록" onclick="location.href='communitylist'">
+	<input type="button" id="update" value="수정" onclick="location.href='communityupdate?com_num=${dto.com_num}'">
+	<input type="button" id="delete" value="삭제" onclick="location.href='communitydelete?com_num=${dto.com_num}&com_image=${dto.com_image}'">
+	</div>
 	<input type="text" id="title" name="com_title" value="${dto.com_title}" readonly="readonly">
 	<input type="text" id="memberID" name="member_id" value="${dto.member_id}" readonly="readonly"><br>
+	
 	<div  id="content" >
 	<c:if test="${!empty dto.com_image}">
 	<c:forTokens var="token" items="${dto.com_image}" delims="." varStatus="status">   
 	 <c:if test="${status.last}">
 		<c:choose>
 		<c:when test="${token eq 'jpg' || token eq 'gif' || token eq 'png' || token eq 'bmp' }">
-	<img src="/resources/img/communityImg/${dto.com_image}">
+	<img src="/resources/img/communityImg/${dto.com_image}" id="boardimage">
 			</c:when>
 			</c:choose>
 			</c:if>
@@ -75,6 +101,7 @@ function page(idx){
 	<div class="comment">
 	<form action="commentwrite" method="get">
 	<input type="hidden" name="com_num" value="${dto.com_num }">
+	<input type="hidden" name="member_id" value="<%=session.getAttribute("memberid")%>">
 	<input type="text" id="commentContent" name="cot_content">
 	<input type="submit" id="commentwrite" value="작성">
 	</form>
@@ -87,19 +114,20 @@ function page(idx){
 	</div>
 	</c:when>
 	<c:otherwise>
-	<c:forEach items="${cot}" var="co">
+	<c:forEach items="${cot}" var="cot">
 	<div class="commentlist">
 	<div class="commentId">
-	<span class="co_id">${co.member_id}</span>
+	<span class="co_id">${cot.member_id}</span>
+	<input type="button" value="삭제" class="commentdelete" onclick="location.href='commentdelete?cot_num=${cot.cot_num}&com_num=${dto.com_num }'">
 	</div>
 	<div class="commentContent">
-	<span class="co_content">${co.cot_content}</span>
+	<span class="co_content">${cot.cot_content}</span>
 	</div>
-	<input type="button" value="삭제" id="commentdelete" onclick="location.href='commentdelete?cot_num=${co.cot_num}&com_num=${dto.com_num }'">
 	<div class="commentDate">
-	<span class="co_Date"><fmt:formatDate value="${co.cot_date }" pattern="yyyy.MM.dd"/></span>
+	<span class="co_Date"><fmt:formatDate value="${cot.cot_date }" pattern="yyyy.MM.dd"/></span>
 	</div>	
 	</div>
+	
 	</c:forEach>
 	</c:otherwise>
 	</c:choose>

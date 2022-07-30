@@ -2,6 +2,8 @@ package com.camp.campreservation.Service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -22,7 +24,7 @@ public class CommentService {
 		return cm.commentwrite(comment);
 	}
 	
-	public void commentList(Model model,CommunityDto dto,String pagenum, String contentnum ) {
+	public void commentList(Model model,CommunityDto dto,String pagenum, String contentnum) {
 		Pagination pagemaker = new Pagination();
 		
 		int cpagenum = Integer.parseInt(pagenum);
@@ -38,9 +40,9 @@ public class CommentService {
         pagemaker.setStartPage(pagemaker.getCurrentblock()); // 시작 페이지를 페이지 블록번호로 정한다.
         pagemaker.setEndPage(pagemaker.getLastblock(),pagemaker.getCurrentblock());
         //마지막 페이지를 마지막 페이지 블록과 현재 페이지 블록 번호로 정한다.
-        
+        	
         	cList = cm.commentList(dto,pagemaker.getPagenum()*5,pagemaker.getContentnum());
-       
+        	
         	model.addAttribute("cot",cList);
         	model.addAttribute("page",pagemaker);
 	}
@@ -52,6 +54,8 @@ public class CommentService {
 	public int onlycommentdelete(CommentDto dto) {
 		return cm.onlycommentdelete(dto);
 	}
-
+	public List<CommentDto> commentwriter(CommentDto dto){
+		return cm.commentwriter(dto);
+	}
 	}
 

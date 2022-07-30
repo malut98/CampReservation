@@ -26,14 +26,6 @@
 	href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 <script src="/resources/js/category.js"></script>
 <script>
-	window.onload=function(){
-		var mesage= "${mesage}";
-		if(!mesage){
-			console.log(mesage);
-		}else{
-			alert(mesage);
-		}
-	}
 	$(function() {
 		$('.item-wrapper').slick({
 			dots : false,
@@ -57,9 +49,11 @@
 	function page(idx){
 		var pagenum = idx;
 		var contentnum = 10;
-		location.href="${pageContext.request.contextPath}/usedtradelist?pagenum="+pagenum+"&contentnum="+contentnum
+		var searchOption = '${searchOption}';
+		var keyword = '${keyword}';
+		location.href="${pageContext.request.contextPath}/usedtradelist?pagenum="+pagenum+"&contentnum="+contentnum+"&searchOption="+searchOption+"&keyword="+keyword
 	}
-
+	
 </script>
 </head>
 <body>
@@ -124,21 +118,21 @@
 		<p class="title">중고거래</p>
 		<div class="usedtradeboard">
 			<c:choose>
-				<c:when test="${empty uList }">
+				<c:when test="${empty ulist }">
 					<p>------글이 없습니다-----</p>
 				</c:when>
 				<c:otherwise>
-					<c:forEach items="${uList }" var="dto">
+					<c:forEach items="${ulist }" var="dto">
 						<div class="usedtradelist" style="cursor: pointer;"
 							onclick="location.href='usedtradedetail?mar_num=${dto.mar_num}'">
 							<div class="tradeimage">
-								<img src="/resources/img/usedtrade/${dto.mar_image }" class= "Thumbnail">
+								<img src="/resources/img/usedtrade/${dto.mar_image }">
 							</div>
 							<div class="tradeboard">
-								<div class="tradetitle">제목:${dto.mar_title}</div>
-								<div class="tradewriter">작성자:${dto.member_id }</div>
-								<div class="tradeprice">가격:${dto.mar_price}원</div>
-								<div class="tradehit">조회수:${dto.mar_hit }</div>
+								<div class="tradetitle">${dto.mar_title}</div>
+								<div class="tradewriter">${dto.member_id }</div>
+								<div class="tradeprice">${dto.mar_price}</div>
+								<div class="tradehit">${dto.mar_hit }</div>
 
 							</div>
 						</div>

@@ -27,24 +27,21 @@
 <script type="text/javascript" src="/resources/js/compare.js"></script>
 <script type="text/javascript">
 function pag(a) {
-	var pagenum=a;
+	var pagenum=a;;
     $.ajax({
     	type: 'post',	
     	url: '/clist/pagin',
-    	data: {"pagenum":pagenum},
+    	data: {"pagenum":pagenum,"name":'${tag}'},
     	error: function (request, error) {
     		alert("fail");
     		console.log("code:"+request.status + "\n" + "message:"+request.responseText+ "\n" + "error:"+error);
     	},
     	success: function (result) {
-    		var html = jQuery('<div>').html(result);
+    		var html = $('<div>').html(result);
     		var contents = html.find("div#indexListAjax").html();
-    		$(".camplist_Top").empty();
     		$(".camplist_Top").html(contents);
     		if(pagenum>=${page.getEndPage()+1} || ${page.getStartPage()-1}==0){
-    			var html = jQuery('<div>').html(result);
         		var contents = html.find("div#indexListAjax2").html();
-    			$(".camplist_bottom").empty();
     			$(".camplist_bottom").html(contents);
     		}
     	}
@@ -53,6 +50,9 @@ function pag(a) {
 </script>
 </head>
 <body>
+<%
+	String id = (String)session.getAttribute("memberid");
+%>
    <div class="header">
       <div class="section">
          <div class="logo">
@@ -69,9 +69,16 @@ function pag(a) {
          <div class="nav_wrap">
             <div class="nav">
                <ul class="header_menu">
-                  <li class="nav-item"><a href="/clist/ca">캠핑모아</a></li>
+                  <li class="nav-item"><a href="/clist/ca?${sessionScope.memberid}">캠핑모아</a></li>
                   <li class="nav-item"><a href="/usedtradelist">중고모아</a></li>
                   <li class="nav-item"><a href="/communitylist">커뮤모아</a></li>
+                  		<%
+							if(id!=null){
+						%>
+						<li class="nav-item"><a href="/mypage">마이페이지</a></li>
+						<%
+							}
+						%>
                </ul>
             </div>
          </div>
@@ -85,13 +92,13 @@ function pag(a) {
 						<a href=""> 새로움 모아</a>
 					</div>
 					<div class="category">
-						<a href="/clist/cpl"> 캠핑장 모아</a>
+						<a href="/clist/cpl?${sessionScope.memberid}"> 캠핑장 모아</a>
 					</div>
 					<div class="category">
-						<a href="/clist/cvl"> 카라반 모아</a>
+						<a href="/clist/cvl?${sessionScope.memberid}"> 카라반 모아</a>
 					</div>
 					<div class="category">
-						<a href="/clist/gl"> 글램핑 모아</a>
+						<a href="/clist/gl?${sessionScope.memberid}"> 글램핑 모아</a>
 					</div>
 					<div class="category">
 						<a href=""> 반려견 모아</a>
@@ -100,9 +107,19 @@ function pag(a) {
             </div>
          </div>
          <div class="profile">
-            <ul>
-               <li><a href="/resources/login">로그인</a></li>
-            </ul>
+           <ul>
+				<%
+				if(id==null){
+				%>
+					<li><a id="login" href="/login">로그인</a></li>
+				<%			
+					}else{
+				%>		
+					<li><a id="logout" href="/logout">로그아웃</a></li>
+				<%		
+					}
+				%>
+				</ul>
          </div>
       </div>
    </div>
@@ -128,14 +145,11 @@ function pag(a) {
                            </c:if><c:if test="${dto.camp_img ne 'x'}">
                               		<img style="width: 430px; height: 250px;"
                                 		src="${dto.camp_img}"
-                                 		onclick="location.href='cdetail?camp_id=${dto.camp_id}'">
+                                 		onclick="location.href='cdetail?camp_id=${dto.camp_id}&memberid=${sessionScope.memberid}'">
                            </c:if></td>
                      		</tr>
                      		<tr>
                         		<td  class="table_name">${dto.camp_name}</td>
-                        		<td style="text-align: center;"><img
-                          			style="width: 20px; height: 20px;"
-                           			src="/resources/Img/unlike.png"></td>
                      		</tr>
                      		<tr>
                         		<td class="table_addr">${dto.camp_addr}</td>
