@@ -6,9 +6,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,8 +26,11 @@ public class LoginController {
 	@Autowired
 	private LoginService loginservice;
 	
-	@GetMapping("/mapage")
-	public String mypage() {
+	@GetMapping("/mypage")
+	public String mypage(Model model,LoginDto dto) {
+		
+		model.addAttribute("dto", loginservice.mypage(dto));
+		
 		return "mypage";
 	}
 	
@@ -77,19 +82,16 @@ public class LoginController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/signup",method=RequestMethod.POST)
-	public String membersign(LoginDto dto) {
-		
-		int res = loginservice.insert(dto);
-		System.out.println("res="+ res);
-		
-		if(res > 0) {
-			return "redirect:/login";
-		}else {
-			return "redirect:/sign";
-		}
-		
-	}
+	/*
+	 * @RequestMapping(value="/signup",method=RequestMethod.POST) public String
+	 * membersign(LoginDto dto) {
+	 * 
+	 * int res = loginservice.insert(dto); System.out.println("res="+ res);
+	 * 
+	 * if(res > 0) { return "redirect:/login"; }else { return "redirect:/sign"; }
+	 * 
+	 * }
+	 */
 	
 	@PostMapping("/idcheck")
 	@ResponseBody
@@ -100,5 +102,13 @@ public class LoginController {
 		return cnt;
 		
 	}
-
+	
+	@PostMapping("/signup")
+	public String signin(LoginDto dto,Model model) {
+		
+		model.addAttribute("login",loginservice.insert(dto));
+		
+		return "/login";
+	}
+	
 }

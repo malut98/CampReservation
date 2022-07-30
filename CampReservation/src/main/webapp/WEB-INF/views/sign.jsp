@@ -65,10 +65,9 @@ $( document ).ready( function() {
 	   }else if($("#checkeid").val() != "Y"){
 	   alert("아이디 중복 체크를 해주세요");
 	   return;
-	   }
-	   else{
+	   }else{
 	      if(confirm("회원가입이 완료되었습니다 로그인 하시겠습니까?")){
-	         location.href='/login';
+	         $("#signup").submit();
 	      }
 	   }
 	   return false;
@@ -135,7 +134,7 @@ table{
 			</div>
 		</div>
 	</div>
-	 <form action="/signup" method="post">
+	 <form id="signup" name="signup" action="/signup" method="post">
    <div class="signup">
       <table><input type="text" value="N" id="checkeid" hidden style="display: none;">
          <tr>
@@ -153,20 +152,20 @@ table{
          </tr>
          <tr>
             <th>휴대폰</th>
-            <td><input type="text" placeholder="휴대폰 -없이" id="memberphone" name="phone" style="width:300px;height:50px; color:black;"></td>
+            <td><input type="text" placeholder="휴대폰 -없이" id="memberphone" name="memberphone" style="width:300px;height:50px; color:black;"></td>
          </tr>
          <tr>
             <th>성별</th>
-            <td>남<input type="radio"  name="gender" value="M">
+            <td>남<input type="radio" name="gender" value="M">
             여<input type="radio" name="gender" value="W">
             </td>
          </tr>
          <tr>
             <th>주소</th>
-            <td><input type="text" placeholder="주소" id="adress" name="address" style="width:300px;height:50px; color:black;"></td>
+            <td><input type="text" placeholder="주소" id="adress" name="adress" style="width:300px;height:50px; color:black;"></td>
          </tr>
       </table>
       </div>
       </form>
-         <input type="submit" value="회원가입" id="sbt" onclick="sign(); return false;" style="width:150px; height:50px; ">
+         <input type="button" value="회원가입" id="sbt" onclick="sign(); return false;" style="width:150px; height:50px; ">
 </body>

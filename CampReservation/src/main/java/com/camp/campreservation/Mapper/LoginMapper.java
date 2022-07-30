@@ -35,6 +35,9 @@ public interface LoginMapper {
 	@Select("SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberid} AND MEMBER_PW=#{memberpw}")
 	String logincheck(LoginDto dto);
 	
-	@Insert("INSERT INTO MEMBER VALUES(#{memberid},#{memberpw},#{membername},#{memberphone},#{gender},#{adress},null,DEFAULT,DEFAULT)")
+	@Insert("INSERT INTO MEMBER VALUES(#{memberid},#{memberpw},#{membername},#{memberphone},#{gender},#{adress},NULL,DEFAULT,DEFAULT)")
 	void signup(LoginDto dto);
+	
+	@Select("SELECT MEMBER_NAME,MEMBER_PHONE,MEMBER_WTYPE,MEMBER_POINT FROM MEMBER WHERE MEMBER_ID=#{memberid}")
+	String mypage(LoginDto dto);
 }

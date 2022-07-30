@@ -15,4 +15,5 @@ public interface LoginService {
 	public String logincheck(LoginDto dto, HttpSession session);
 	public void logout(HttpSession session);
 	public void sign(LoginDto dto);
+	public String mypage(LoginDto dto);
 }

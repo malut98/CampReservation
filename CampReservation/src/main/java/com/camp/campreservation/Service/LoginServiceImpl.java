@@ -70,6 +70,12 @@ public class LoginServiceImpl implements LoginService{
 	}
 
 
+	@Override
+	public String mypage(LoginDto dto) {
+		return loginmapper.mypage(dto);
+	}
+
+
 
 
 
