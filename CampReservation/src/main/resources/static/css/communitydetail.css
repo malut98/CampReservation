@@ -6,38 +6,67 @@ body{
 }
 
 #list{
-	background-color : lightgray;
-	color : black;
-	
+	background-color: rgb(230, 230, 230);
+	color: rgb(131, 131, 131);
+	font-size: 18px;
 	border: solid 2px white;
-	border-radius: 12px;
+	border-radius: 25px;
 	
 	position : relative;
 	top : 30px;
-	left : 40%;
-	width : 80px;
+	left : 22%;
+	width : 100px;
 	height : 40px;
 	
 	cursor : pointer;
 	
 	
 }
-
+.boardbutton{
+	
+	width: 60%;
+	height : 30px;
+	margin: 0px;
+	position : relative;
+	left : 30%;
+}
+#update{
+	background-color: rgba(26, 188, 156);
+	color: white;
+	border-radius: 12px;
+	position: relative;
+	top: 70px;
+	left: 70%;
+	width: 80px;
+	cursor: pointer;
+	display: none;
+}
+#delete{
+	background-color: rgba(26, 188, 156);
+	color: white;
+	border-radius: 12px;
+	position: relative;
+	top: 70px;
+	left: 70%;
+	width: 80px;
+	cursor: pointer;
+	display: none;
+}
 #title{
 	background-color : white;
 	color : black;
 	
 	position : relative;
-	top : 20px;
-	left : 40.5%;
+	top : 5px;
+	left :49.9%;
 }
 
 #memberID{
 	background-color : white;
 	color : black;
 	position : relative;
-	top : 50px;
-	left : 31%;
+	top : 40px;
+	left : 40.3%;
 }
 
 #content{
@@ -115,15 +144,16 @@ body{
 .commentDate{
 	color: black;
 }
-#commentdelete{
+.commentdelete{
+	cursor: pointer;
 	color: black;
 	position:relative;
-	top: 10px;
-	left: 60%;
+	top: 30px;
+	left: 62%;
+	display: none;
 }
-#commentupdate{
-	color: black;
-	position:relative;
-	top: 10px;
-	left: 60%;
+
+.boarimage{
+	width: 300px;
+	height: 168px;
 }

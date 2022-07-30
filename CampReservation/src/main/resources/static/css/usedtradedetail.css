@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+#ut{
+	color: black;
+}
+#member{
+	color: black;
+}
+#un{
+	color: black;
+}
+#up{
+	color: black;
+}
+#uc{
+	color: black;
+}
+body{
+	background-color: black;
+}
+#menubutton{
+	display:none;
+}
+#mb{
+	cursor: pointer;
+	font-size: 40pt;
+}
+#boardupdate{
+	background-color: skyblue;
+	cursor: pointer;
+	border: 1px solid white;
+	border-radius: 6px;
+	display: none;
+}
+#boarddelete{
+	background-color: skyblue;
+	cursor: pointer;
+	border: 1px solid white;
+	border-radius: 6px;
+	display: none;
+}

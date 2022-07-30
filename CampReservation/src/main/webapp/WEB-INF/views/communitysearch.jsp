@@ -104,7 +104,7 @@ function page(idx){
 			<option value="member_id" id="sw" name="member_id" >작성자</option>
 			<option value="com_content" id="sc" name="com_content" >내용</option>
 			</select>
-			<input type="text" id="serachbox" name="keyword" placeholder="검색어를 입력해주세요">
+			<input type="text" id="serachbox" name="keyword" placeholder="검색어를 입력해주세요" >
 			<input type="submit" value="검색" id="searchbutton">
 			</form>
 			<br><br>

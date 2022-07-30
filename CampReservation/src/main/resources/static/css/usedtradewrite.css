@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+#uploadfile{
+	display: none;
+}
+
+body{
+	background-color:black;
+}
+
+.inputfilebutton{
+	cursor:pointer;
+	
+	background-color:skyblue;
+	border: 1px solid white;
+	border-radius: 6px;
+}
+
+#writebutton{
+	background-color:skyblue;
+	border: 1px solid white;
+	border-radius: 6px;
+	cursor:pointer;
+	
+}
+
+#ut{
+	color: black;
+}
+#member{
+	color: black;
+}
+#un{
+	color: black;
+}
+#up{
+	color: black;
+}
+#uc{
+	color: black;
+}

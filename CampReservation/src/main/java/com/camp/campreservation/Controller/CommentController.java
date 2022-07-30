@@ -1,5 +1,7 @@
 package com.camp.campreservation.Controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +17,8 @@ public class CommentController {
 	private CommentService cs;
 	
 	@GetMapping("commentwrite")
-	public String commentwrite(CommentDto comment) {
+	public String commentwrite(CommentDto comment, HttpSession session) {
+		System.out.println(comment.getMember_id());
 		
 		
 		int res = cs.commentwrite(comment);

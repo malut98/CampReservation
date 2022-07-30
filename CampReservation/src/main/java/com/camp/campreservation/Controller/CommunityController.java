@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
 import javax.swing.filechooser.FileSystemView;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.camp.campreservation.Dto.CommentDto;
 import com.camp.campreservation.Dto.CommunityDto;
 import com.camp.campreservation.Service.CommentService;
 import com.camp.campreservation.Service.CommunityService;
@@ -38,7 +41,6 @@ public class CommunityController {
 	
 	@GetMapping("/communitylist")
 	public String communityList(Model model, @RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "5") String contentnum) {
-		
 		cs.communitylist(model, pagenum, contentnum);
 		
 		return "communitylist";
@@ -46,22 +48,37 @@ public class CommunityController {
 	}
 	
 	@GetMapping("/communitywrite")
-	public String communityWrite() {
+	public String communityWrite(HttpSession session, RedirectAttributes redirect, Model model,String keyword, String searchoption) {
 		
+		if(session.getAttribute("memberid")==null) {
+			redirect.addFlashAttribute("mesage","로그인을 해주세요");
+			
+				
+				return "redirect:communitylist";
+		
+		
+		}else {
+			CommunityDto dto = new CommunityDto();
+			String memberid = (String)session.getAttribute("memberid"); 
+			dto.setMember_id(memberid);
+			model.addAttribute("dto",dto);
 		return "communitywrite";
+		}
+		
 	}
+	
 	
 	@PostMapping("communitywriteres")
 	public String communityWriteRes(@RequestParam("fileimage") MultipartFile file,CommunityDto dto) {
 		String filename= file.getOriginalFilename();
 		UUID uuid = UUID.randomUUID();
 		if(!filename.isEmpty()) {
-			dto.setCom_image(uuid+dto.getMember_id()+dto.getCom_title()+file.getOriginalFilename());
+			dto.setCom_image(uuid+"_"+file.getOriginalFilename());
 			
 		}
 		String path = "C:\\Users\\tmdgh\\git\\CampReservation\\CampReservation\\src\\main\\resources\\static\\Img\\communityImg";
 		System.out.println(path);
-		String filePath = path +"\\"+uuid+dto.getMember_id()+dto.getCom_title()+ file.getOriginalFilename();
+		String filePath = path +"\\"+uuid+"_"+file.getOriginalFilename();
 		File dest = new File(filePath);
 		int res = cs.communitywrite(dto);
 		
@@ -84,12 +101,50 @@ public class CommunityController {
 	}
 	
 	@GetMapping("/communitydetail")
-	public String communitydetail(CommunityDto dto, Model model,@RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "5") String contentnum) {
-		cs.communityhit(dto);
-		
-		model.addAttribute("dto", cs.communitydetail(dto));
-		comments.commentList(model, dto, pagenum, contentnum);
-		return "communitywriterdetail";
+	public String communitydetail(CommunityDto dto, Model model,@RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "5") String contentnum, RedirectAttributes redirect,HttpSession session) {
+		CommunityDto dto1 = cs.communitydetail(dto);
+		CommentDto cotDto = new CommentDto();
+		cotDto.setMember_id((String)session.getAttribute("memberid"));
+		List<CommentDto> cot = comments.commentwriter(cotDto);
+		for(int i=0; i<cot.size(); i++) {
+			if(cot.get(i).getMember_id().equals(cotDto.getMember_id())) {
+				model.addAttribute("writer","작성자");
+				model.addAttribute("ID",cot.get(i).getMember_id());
+			}
+		}
+		try {
+			if(session.getAttribute("memberid").equals(dto1.getMember_id())) {
+				cs.communityhit(dto);
+				model.addAttribute("dto", cs.communitydetail(dto));
+				comments.commentList(model, dto, pagenum, contentnum);
+				model.addAttribute("mesage", "작성자");
+				
+				return "communitydetail";
+			}else if(session.getAttribute("memberid").equals("admin")) {
+				cs.communityhit(dto);
+				model.addAttribute("dto", cs.communitydetail(dto));
+				comments.commentList(model, dto, pagenum, contentnum);
+				model.addAttribute("mesage","관리자");
+				return "communitydetail";
+			}else if(session.getAttribute("memberid")==null) {
+				redirect.addFlashAttribute("mesage","로그인해주세요");
+				return "redirect:communitylist";
+				
+			}else {
+				cs.communityhit(dto);
+				model.addAttribute("dto", cs.communitydetail(dto));
+				comments.commentList(model, dto, pagenum, contentnum);
+				return "communitydetail";
+			}
+		} catch (Exception e) {
+			if(session.getAttribute("memberid")==null) {
+				redirect.addFlashAttribute("mesage","로그인해주세요");
+				return "redirect:communitylist";
+				
+			}
+			e.printStackTrace();
+		}
+		return "";
 	}
 	
 	
@@ -138,20 +193,20 @@ public class CommunityController {
 		UUID uuid = UUID.randomUUID();		
 		String path = "C:\\Users\\tmdgh\\git\\CampReservation\\CampReservation\\src\\main\\resources\\static\\Img\\communityImg";
 		if(dto.getCom_image().isEmpty() && !file.getOriginalFilename().isEmpty()) {
-			String filePath = path + "\\" + uuid+dto.getMember_id()+dto.getCom_title()+file.getOriginalFilename();	
+			String filePath = path + "\\" + uuid+"_"+file.getOriginalFilename();	
 			File dest = new File(filePath);
 			file.transferTo(dest);
-			dto.setCom_image(uuid+dto.getMember_id()+dto.getCom_title()+file.getOriginalFilename());
+			dto.setCom_image(uuid+"_"+file.getOriginalFilename());
 			
 		}else if(!dto.getCom_image().isEmpty() && !file.getOriginalFilename().isEmpty()) {
 			if(!dto.getCom_image().equals(file.getOriginalFilename())) {
-				String filePath = path + "\\" +uuid + dto.getMember_id()+dto.getCom_title()+file.getOriginalFilename();
+				String filePath = path + "\\" +uuid + "_"+file.getOriginalFilename();
 				String deletePath = path + "\\" + dto.getCom_image();
 				File dest = new File(filePath);
 				File delete = new File(deletePath);
 				file.transferTo(dest);
 				delete.delete();
-				dto.setCom_image(uuid+dto.getMember_id()+dto.getCom_title()+file.getOriginalFilename());
+				dto.setCom_image(uuid+"_"+file.getOriginalFilename());
 				
 			}
 		}

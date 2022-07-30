@@ -49,6 +49,6 @@ public interface CommunityMapper {
 	@Delete("DELETE FROM COMMUNITY WHERE COM_NUM=#{com_num}")
 	public int communitydelete(CommunityDto dto);
 	
-	@Update("UPDATE COMMUNITY SET COM_TITLE=#{com_title}, COM_CONTENT=#{com_content}, COM_IMAGE=#{com_image} WHERE COM_NUM=#{com_num} ")
+	@Update("UPDATE COMMUNITY SET COM_TITLE=#{com_title}, COM_CONTENT=#{com_content}, COM_IMAGE=#{com_image}, COM_DATE=NOW() WHERE COM_NUM=#{com_num} ")
 	public int communityupdate(CommunityDto dto);
 }
