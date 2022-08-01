@@ -84,7 +84,7 @@ body{
    height: 450px;
    background-color:gray;
    font-size: 10pt;
-   transform: translate(700px, 200px);
+   transform: translate(600px, 100px);
 }
 
 table{
@@ -97,8 +97,8 @@ table{
 #sbt{
    color: white;
    background-color: skyblue;
-   margin-left: 850px;
-   margin-top: 250px;
+   margin-left: 750px;
+   margin-top: 150px;
    border-radius: 15px;
    cursor : pointer;
 }

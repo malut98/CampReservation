@@ -10,13 +10,15 @@ body{
 	background-color:black;
 }
 table{
-	color:black;
-	background-color:red;	
+   margin-left:270px;
+   margin-right:auto;
+   border-spacing: 10px;
+   border-collapse: separate;
 }
 
 h2{	
 	color: white;
-	padding-right:700px;
+	padding-right:800px;
 	font-size: 25pt;
 	text-align: center;
 }
@@ -49,7 +51,6 @@ h2{
 						<li class="nav-item"><a href="/clist/ca">캠핑모아</a></li>
 						<li class="nav-item"><a href="/usedtradelist">중고모아</a></li>
 						<li class="nav-item"><a href="/communitylist">커뮤모아</a></li>
-						<li class="nav-item"><a href="/DB/CampImg">db</a></li>
 						<%
 							if(id!=null){
 						%>
@@ -106,20 +107,28 @@ h2{
 		<div class="myinfomation">
 		<table>
 			<tr>
-				<th>이름</th>
-				<td><input type="text" id="membername" name="membername" readonly value="${dto.membername }"></td>
+				<td><span>이름</span></td>
 			</tr>
 			<tr>
-				<th>휴대폰번호</th>
-				<td><input type="text" id="memberphone" name="memberphone" readonly value="${dto.memberphone }"></td>
+				<td>${dto.membername }</td>
 			</tr>
 			<tr>
-				<th>선호날씨</th>
-				<td><input type="button" id="Wtype" name="Wtype" value="설문조사"></td>
+				<td><span>휴대폰번호</span></td>
 			</tr>
 			<tr>
-				<th>보유 포인트</th>
-				<td><input type="text" id="pointer" name="pointer" readonly value="${dto.pointer }"></td>
+				<td><input type="text" id="memberphone" name="memberphone" readonly value="${dto.memberphone }" style="width:300px;height:50px; color:black;"></td>
+			</tr>
+			<tr>
+				<td><span>선호날씨</span></td>
+			</tr>
+			<tr>	
+				<td><input type="button" id="Wtype" name="Wtype" value="설문조사" style="width:300px;height:50px; color:black;"></td>
+			</tr>
+			<tr>
+				<td><span>보유 포인트</span></td>
+			</tr>
+			<tr>	
+				<td><input type="text" id="pointer" name="pointer" readonly value="${dto.pointer }" style="width:300px;height:50px; color:black;"></td>
 			</tr>
 		</table>
 		</div>

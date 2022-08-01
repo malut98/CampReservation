@@ -29,11 +29,11 @@ public class LoginController {
 	private LoginService loginservice;
 	
 	@GetMapping("/mypage")
-	public String mypage(Model model,LoginDto dto) {
+	public String mypage(Model model, String id) {
 		
-		model.addAttribute("dto", loginservice.mypage(dto));
+		model.addAttribute("dto", loginservice.mypage(id));
 		
-		return "mypage";
+		return "mypage";		
 	}
 	
 	@GetMapping("/login")
@@ -60,7 +60,7 @@ public class LoginController {
 		
 		String result = loginservice.logincheck(dto, session);
 		ModelAndView mav = new ModelAndView();
-		
+		session.setAttribute("memberid", dto.getMemberid());
 		
 		
 		mav.setViewName("login");

@@ -71,8 +71,11 @@ public class LoginServiceImpl implements LoginService{
 
 
 	@Override
-	public String mypage(LoginDto dto) {
-		return loginmapper.mypage(dto);
+	public LoginDto mypage(String id) {
+
+		LoginDto mypage = loginmapper.mypage(id);
+		
+		return mypage;
 	}
 
 
