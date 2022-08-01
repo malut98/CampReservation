@@ -30,7 +30,7 @@ function pag(a) {
 	var pagenum=a;;
     $.ajax({
     	type: 'post',	
-    	url: '/clist/pagin',
+    	url: 'pagin',
     	data: {"pagenum":pagenum,"name":'${tag}'},
     	error: function (request, error) {
     		alert("fail");
