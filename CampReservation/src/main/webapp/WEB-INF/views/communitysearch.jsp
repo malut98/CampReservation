@@ -52,7 +52,6 @@ function page(idx){
 					<li class="nav-item"><a href="/caravanlist">카라반</a></li>
 					<li class="nav-item"><a href="/usedtradelist">중고거래</a></li>
 					<li class="nav-item"><a href="/communitylist">커뮤니티</a></li>
-					<li class="nav-item"><a href="/DB/CampDb">db</a></li>
 				</ul>
 			</div>
 			<div class="profile">

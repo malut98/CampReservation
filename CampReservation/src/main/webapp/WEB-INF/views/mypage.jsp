@@ -49,7 +49,6 @@ h2{
 						<li class="nav-item"><a href="/clist/ca">캠핑모아</a></li>
 						<li class="nav-item"><a href="/usedtradelist">중고모아</a></li>
 						<li class="nav-item"><a href="/communitylist">커뮤모아</a></li>
-						<li class="nav-item"><a href="/DB/CampImg">db</a></li>
 						<%
 							if(id!=null){
 						%>
