@@ -32,19 +32,19 @@ public class UsedtradeController {
 		
 		//model.addAttribute("dto",us.usedtradelist());
 		us.usedtradelist(model, pagenum, contentnum);
-		return "usedtradelist";
+		return "Used_community/usedtradelist";
 	}
 	
 	@GetMapping("/usedtradewrite")
 	public String usedtradewrite(HttpSession session, RedirectAttributes redirect, Model model) {
 		if(session.getAttribute("memberid")==null) {
 			redirect.addFlashAttribute("mesage","로그인해주세요");
-			return "redirect:usedtradelist";
+			return "redirect:Used_community/usedtradelist";
 		}
 		String memberid = (String)session.getAttribute("memberid");
 		model.addAttribute("dto",us.usedtradelogin(memberid));
 		System.out.println(us.usedtradelogin(memberid));
-		return "usedtradewrite";
+		return "Used_community/usedtradewrite";
 	}
 	
 	@PostMapping("/usedtradewriteres")
@@ -64,16 +64,16 @@ public class UsedtradeController {
 		if(res>0) {
 			try {
 				if(filename.isEmpty()) {
-					return "redirect:usedtradelist";
+					return "redirect:Used_community/usedtradelist";
 				}
 				
 				file.transferTo(dest);
 			} catch (IllegalStateException | IOException e) {
 				e.printStackTrace();
 			}
-			return "redirect:usedtradelist";
+			return "redirect:Used_community/usedtradelist";
 		}else {
-			return "redirect:usedtradewrite";
+			return "redirect:Used_community/usedtradewrite";
 		}
 		
 		
@@ -88,25 +88,25 @@ public class UsedtradeController {
 				model.addAttribute("mesage","작성자");
 				model.addAttribute("dto", us.usedtradeselectone(dto));
 				us.usedtradehit(dto);
-				return "usedtradedetail";
+				return "Used_community/usedtradedetail";
 			}else if(session.getAttribute("memberid").equals("admin")) {
 				model.addAttribute("mesage","관리자");
 				model.addAttribute("dto", us.usedtradeselectone(dto));
 				us.usedtradehit(dto);
-				return "usedtradedetail";
+				return "Used_community/usedtradedetail";
 			}else if(session.getAttribute("memberid")==null){
 				redirect.addFlashAttribute("mesage","로그인해주세요");
-				return "redirect:usedtradelist";
+				return "redirect:Used_community/usedtradelist";
 			}else {
 				model.addAttribute("dto", us.usedtradeselectone(dto));
 				us.usedtradehit(dto);
-				return "usedtradedetail";
+				return "Used_community/usedtradedetail";
 			}
 		} catch (Exception e) {
 			if(session.getAttribute("memberid")==null){
 				e.printStackTrace();
 				redirect.addFlashAttribute("mesage","로그인해주세요");
-				return "redirect:usedtradelist";
+				return "redirect:Used_community/usedtradelist";
 		}
 		}
 		return "";
@@ -119,7 +119,7 @@ public class UsedtradeController {
 		model.addAttribute("list", list);
 		model.addAttribute("searchOption",searchOption);
 		model.addAttribute("keyword",keyword);
-		return "usedtradesearch";
+		return "Used_community/usedtradesearch";
 	}
 	
 	@GetMapping("/usedtradedelete")
@@ -132,10 +132,10 @@ public class UsedtradeController {
 		
 		if(res>0) {
 			dest.delete();
-			return "redirect:usedtradelist";
+			return "redirect:Used_community/usedtradelist";
 		}else {
 			
-		return "redirect:usedtradedetail?mar_num="+dto.getMar_num();
+		return "redirect:Used_community/usedtradedetail?mar_num="+dto.getMar_num();
 		}
 	}
 	
@@ -143,7 +143,7 @@ public class UsedtradeController {
 	@GetMapping("/usedtradeupdate")
 	public String usedtradeupdate(Model model,UsedtradeDto dto) {
 		model.addAttribute("dto", us.usedtradeselectone(dto));
-		return "usedtradeupdate";
+		return "Used_community/usedtradeupdate";
 	}
 	
 	@PostMapping("/usedtradeupdateres")
@@ -172,6 +172,6 @@ public class UsedtradeController {
 		
 		int res =us.usedtradeupdate(dto);
 		
-		return "redirect:usedtradelist";
+		return "redirect:Used_community/usedtradelist";
 }
 }

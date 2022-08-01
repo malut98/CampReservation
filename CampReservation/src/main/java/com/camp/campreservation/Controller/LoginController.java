@@ -33,12 +33,12 @@ public class LoginController {
 		
 		model.addAttribute("dto", loginservice.mypage(id));
 		
-		return "mypage";		
+		return "Login/mypage";		
 	}
 	
 	@GetMapping("/login")
 	public String loginhp() {
-		return "login";
+		return "Login/login";
 	}
 	
 	@GetMapping("/index")
@@ -48,11 +48,11 @@ public class LoginController {
 	
 	@GetMapping("/sign")
 	public String signForm() {
-		return "sign";
+		return "Login/sign";
 	}
 	@PostMapping("/login")
 	public String login() {
-		return "login";
+		return "Login/login";
 	}
 	
 	@RequestMapping(value="/logincheck",method=RequestMethod.POST)
@@ -69,7 +69,7 @@ public class LoginController {
 			session.setAttribute("memberid", dto.getMemberid());
 			return "redirect:/index";
 		}else {
-			return "redirect:/login";
+			return "redirect:Login/login";
 		}
 		
 	}
@@ -78,7 +78,7 @@ public class LoginController {
 	public ModelAndView logout(HttpSession session) {
 		loginservice.logout(session);
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("login");
+		mav.setViewName("index");
 		mav.addObject("msg", "logout");
 		
 		return mav;
@@ -110,7 +110,7 @@ public class LoginController {
 		
 		model.addAttribute("login",loginservice.insert(dto));
 		
-		return "/login";
+		return "Login/login";
 	}
 	
 }

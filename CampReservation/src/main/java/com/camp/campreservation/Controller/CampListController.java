@@ -31,7 +31,7 @@ public class CampListController {
 		List<CampDBDto> campDto = campListService.getAllList(model, pagenum, contentnum);
 		model.addAttribute("camp", campDto);
 		model.addAttribute("tag", "전체");
-		return "camplist";
+		return "CampMoa/camplist";
 	}
 
 	@GetMapping("/cpl")

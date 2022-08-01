@@ -43,7 +43,7 @@ public class CommunityController {
 	public String communityList(Model model, @RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "5") String contentnum) {
 		cs.communitylist(model, pagenum, contentnum);
 		
-		return "communitylist";
+		return "Community/communitylist";
 		
 	}
 	
@@ -54,7 +54,7 @@ public class CommunityController {
 			redirect.addFlashAttribute("mesage","로그인을 해주세요");
 			
 				
-				return "redirect:communitylist";
+				return "redirect:Community/communitylist";
 		
 		
 		}else {
@@ -62,7 +62,7 @@ public class CommunityController {
 			String memberid = (String)session.getAttribute("memberid"); 
 			dto.setMember_id(memberid);
 			model.addAttribute("dto",dto);
-		return "communitywrite";
+		return "Community/communitywrite";
 		}
 		
 	}
@@ -85,16 +85,16 @@ public class CommunityController {
 		if(res>0) {
 			try {
 				if(filename.isEmpty()) {
-					return "redirect:communitylist";
+					return "redirect:Community/communitylist";
 				}
 				
 				file.transferTo(dest);
 			} catch (IllegalStateException | IOException e) {
 				e.printStackTrace();
 			}
-			return "redirect:communitylist";
+			return "redirect:Community/communitylist";
 		}else {
-			return "redirect:communitywrite";
+			return "redirect:Community/communitywrite";
 		}
 		
 		
