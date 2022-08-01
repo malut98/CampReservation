@@ -63,9 +63,13 @@ function unlike(memberid, campid){
     		console.log("code:"+request.status + "\n" + "message:"+request.responseText+ "\n" + "error:"+error);
     	},
     	success: function (count) {
+    		if(count==-1){
+    			alert("로그인 후 이용 가능합니다.");
+    		}else{
     		$("#likeimg").attr("src", "/resources/img/like.png");
     		$("#likeimg").attr("onclick", "like('${sessionScope.memberid}', ${camp.camp_id})");
     		$("label[for='count']").text(count);
+    		}
     	}
     });
 }
@@ -80,9 +84,13 @@ function like(memberid, campid){
     		console.log("code:"+request.status + "\n" + "message:"+request.responseText+ "\n" + "error:"+error);
     	},
     	success: function (count) {
+    		if(count==-1){
+    			alert("로그인 후 이용 가능합니다.");
+    		}else{
     		$("#likeimg").attr("src", "/resources/img/unlike.png");
     		$("#likeimg").attr("onclick", "unlike('${sessionScope.memberid}', ${camp.camp_id})");
     		$("label[for='count']").text(count);
+    		}
     	}
     });
 }
@@ -125,6 +133,9 @@ function like(memberid, campid){
 	</style>
 </head>
 <body>
+<%
+	String id = (String)session.getAttribute("memberid");
+%>
 	<div class="header">
 		<div class="section">
 			<div class="logo">
@@ -145,6 +156,13 @@ function like(memberid, campid){
 						<li class="nav-item"><a href="/clist/cpl">캠핑모아</a></li>
 						<li class="nav-item"><a href="/usedtradelist">중고모아</a></li>
 						<li class="nav-item"><a href="/communitylist">커뮤모아</a></li>
+						<%
+							if(id!=null){
+						%>
+						<li class="nav-item"><a href="/mypage">마이페이지</a></li>
+						<%
+							}
+						%>
 					</ul>
 				</div>
 			</div>
@@ -174,7 +192,17 @@ function like(memberid, campid){
 			</div>
 			<div class="profile">
 				<ul>
-					<li><a href="/resources/login">로그인</a></li>
+					<%
+					if(id==null){
+					%>
+					<li><a id="login" href="/login">로그인</a></li>
+					<%			
+					}else{
+					%>		
+					<li><a id="logout" href="/logout">로그아웃</a></li>
+					<%		
+					}
+					%>
 				</ul>
 			</div>
 		</div>
@@ -277,7 +305,7 @@ function like(memberid, campid){
 			<div class="notice_wrap">
 				<div class="notice_top">
 					<h1>추천 캠핑장</h1>
-					<div class="slider">
+					<div class="slider	">
 						<div class="item-wrapper">
 							<c:choose>
 								<c:when test="${empty list }">

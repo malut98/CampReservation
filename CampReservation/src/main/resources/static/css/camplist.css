@@ -8,18 +8,18 @@
 }
 
 .camplist_inner {
-	width: 70%;
+	width: 100%;
 }
 
 .whatever {
-	width: 70%;
+	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
 .camplist_Top {
-	width: 70%;
+	width: 100%;
 }
 
 .table_left {

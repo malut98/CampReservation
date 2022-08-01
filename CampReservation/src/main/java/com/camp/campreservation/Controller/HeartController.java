@@ -20,14 +20,24 @@ public class HeartController {
 	@PostMapping("heart")
 	@ResponseBody
 	public int heart(@RequestParam("memberid") String memberid, @RequestParam("campid") int campid) {
-		heartService.heart(memberid, campid);
-		return heartService.count(campid);
+		if(memberid.equals("")) {
+			return -1;
+		}else {
+			heartService.heart(memberid, campid);
+			return heartService.count(campid);
+		}
+		
 	}
 	
 	@PostMapping("unheart")
 	@ResponseBody
 	public int unheart(@RequestParam("memberid") String memberid, @RequestParam("campid") int campid) {
-		heartService.unheart(memberid, campid);
-		return heartService.count(campid);
+		if(memberid.equals("")) {
+			return -1;
+		}else {
+			heartService.unheart(memberid, campid);
+			return heartService.count(campid);
+		}
+		
 	}
 }

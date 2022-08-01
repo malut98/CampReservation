@@ -46,7 +46,7 @@
 
 	<div id="indexListAjax">
             	<c:forEach items="${camp}" var="dto" varStatus="status">
-            	<c:if test="${status.count % 2 ==1 or status.count == 1}">
+            	<c:if test="${status.count % 3 ==1}">
                 	<div class="wrap">
             	</c:if> 
                		<div class="left" id="${dto.camp_id}">
@@ -79,7 +79,7 @@
                	<c:if test="${fn:length(calculateList) %2 == 1 and status.count == list.size}">
              </div>
                	</c:if>
-            	<c:if test="${status.count % 2 ==0}">
+            	<c:if test="${status.count % 3 ==0}">
              </div>
                </c:if>
      	 </c:forEach>
