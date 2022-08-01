@@ -40,7 +40,7 @@ public class CampListController {
 		List<CampDBDto> campDto = campListService.getCampList(model, pagenum, contentnum);
 		model.addAttribute("camp", campDto);
 		model.addAttribute("tag", "캠핑장");
-		return "camplist";
+		return "CampMoa/camplist";
 	}
 
 	@GetMapping("/gl")
@@ -49,7 +49,7 @@ public class CampListController {
 		List<CampDBDto> campDto = campListService.getGlamList(model, pagenum, contentnum);
 		model.addAttribute("camp", campDto);
 		model.addAttribute("tag", "글램핑");
-		return "camplist";
+		return "CampMoa/camplist";
 	}
 
 	@GetMapping("/cvl")
@@ -58,7 +58,7 @@ public class CampListController {
 		List<CampDBDto> campDto = campListService.getCaravanList(model, pagenum, contentnum);
 		model.addAttribute("camp", campDto);
 		model.addAttribute("tag", "카라반");
-		return "camplist";
+		return "CampMoa/camplist";
 	}
 
 	@GetMapping("/cdetail")
@@ -73,7 +73,7 @@ public class CampListController {
 		int check = heartService.check(memberid, camp_id);
 		model.addAttribute("check", check);
 
-		return "campdetail";
+		return "CampMoa/campdetail";
 	}
 
 	@PostMapping("/pagin")
@@ -95,7 +95,7 @@ public class CampListController {
 			List<CampDBDto> campDto = campListService.getCaravanList(model, pagenum, contentnum);
 			model.addAttribute("camp", campDto);
 		}
-		return "paging_con";
+		return "CampMoa/paging_con";
 	}
 
 	@GetMapping("/compare")

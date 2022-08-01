@@ -1,5 +1,9 @@
 @charset "UTF-8";
-
+@media(max-width: 1024px){
+	.wrap{
+	flex-direction: column;
+	}
+}
 .container {
 	width: 100%;
 	display: flex;
