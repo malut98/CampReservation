@@ -10,6 +10,20 @@
 <title>Insert title here</title>
 <link rel="StyleSheet" href="/resources/css/communitydetail.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/star.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/banner.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/notice.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/Category.css"
+	type="text/css">
+	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript"
+	src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<link rel="stylesheet"
+	href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<link rel="stylesheet" type="text/css"
+	href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<script src="/resources/js/category.js"></script>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -45,31 +59,76 @@ function page(idx){
 </head>
 
 <body>
-<div class="header">
+<%
+	String id = (String)session.getAttribute("memberid");
+%>
+	<div class="header">
 		<div class="section">
 			<div class="logo">
-				<a href="/"><img alt="" src="img/logo/logo (2).png" style=" height: 100px;"></a>
+				<a href="/"><img alt="" src="/resources/img/logo/logo (2).png"
+					style="height: 100px;"></a>
 			</div>
-			<div class="nav">
-				<ul style="padding-inline-start: 0px;">
-					<li class="nav-item-search">
-						<form action="" style="margin-left: 0px;">
-							<img class="search-icon" style="width: 64px; height: 64px;"
-								src="img/search.svg"> 
-								<input class="search-form" type="text" placeholder="통합검색"> <span class="underline"></span>
-						</form>
-					</li>
-					<li class="nav-item"><a href="/camplist">캠핑장</a></li>
-					<li class="nav-item"><a href="/glamlist">글램핑</a></li>
-					<li class="nav-item"><a href="/caravanlist">카라반</a></li>
-					<li class="nav-item"><a href="/usedtradelist">중고거래</a></li>
-					<li class="nav-item"><a href="/communitylist">커뮤니티</a></li>
-					<li class="nav-item"><a href="/DB/CampDb">db</a></li>
-				</ul>
+			<div class="nav-item-search">
+				<form class="form-tag" action="" style="">
+					<img class="search-icon" style="width: 64px; height: 64px;"
+						src="/resources/img/search.svg"> <input class="search-form"
+						type="text" placeholder="통합검색"> <span class="underline"></span>
+				</form>
+			</div>
+			<div class="nav_wrap">
+				<div class="nav">
+					<ul class="header_menu">
+						<li class="nav-item"><a href="/clist/cpl">캠핑모아</a></li>
+						<li class="nav-item"><a href="/usedtradelist">중고모아</a></li>
+						<li class="nav-item"><a href="/communitylist">커뮤모아</a></li>
+						<%
+							if(id!=null){
+						%>
+						<li class="nav-item"><a href="/mypage">마이페이지</a></li>
+						<%
+							}
+						%>
+						
+					</ul>
+				</div>
+			</div>
+			<div class="menu_pan">
+				<div class="camp-moa">
+					<div class="menu_category">
+						<div class="category">
+							<a href=""> 베스트 모아</a>
+						</div>
+						<div class="category">
+							<a href=""> 새로움 모아</a>
+						</div>
+						<div class="category">
+							<a href=""> 캠핑장 모아</a>
+						</div>
+						<div class="category">
+							<a href=""> 카라반 모아</a>
+						</div>
+						<div class="category">
+							<a href=""> 글램핑 모아</a>
+						</div>
+						<div class="category">
+							<a href=""> 반려견 모아</a>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="profile">
 				<ul>
-					<li><a href="/login">로그인</a></li>
+					<%
+				if(id==null){
+				%>
+					<li><a id="login" href="/login">로그인</a></li>
+				<%			
+					}else{
+				%>		
+					<li><a id="logout" href="/logout">로그아웃</a></li>
+				<%		
+					}
+				%>
 				</ul>
 			</div>
 		</div>

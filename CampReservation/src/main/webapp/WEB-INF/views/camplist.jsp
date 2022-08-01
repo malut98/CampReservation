@@ -132,7 +132,7 @@ function pag(a) {
          <div class="camplist">
          	<div class="camplist_Top">
             	<c:forEach items="${camp}" var="dto" varStatus="status">
-            	<c:if test="${status.count % 2 ==1 or status.count == 1}">
+            	<c:if test="${status.count % 3 ==1}">
                 	<div class="wrap">
             	</c:if> 
                		<div class="left" id="${dto.camp_id}">
@@ -165,13 +165,18 @@ function pag(a) {
                	<c:if test="${fn:length(calculateList) %2 == 1 and status.count == list.size}">
              </div>
                	</c:if>
-            	<c:if test="${status.count % 2 ==0}">
+            	<c:if test="${status.count % 3 ==0}">
              </div>
                </c:if>
      	 </c:forEach>
       </div>
    </div>
-
+   		<div style="text-align: center;">
+			<form method="post" action="communitysearch">
+				<input type="text" id="serachbox" name="keyword" placeholder="검색어를 입력해주세요">
+				<input type="submit" value="검색" id="searchbutton">
+			</form>
+		</div>
         <div class="camplist_bottom">
       	<div class="pagingDiv">
          	<c:if test="${page.prev}">
