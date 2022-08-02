@@ -27,7 +27,7 @@
 <script type="text/javascript" src="/resources/js/compare.js"></script>
 <script type="text/javascript">
 function pag(a) {
-	var pagenum=a;;
+	var pagenum=a;
     $.ajax({
     	type: 'post',	
     	url: 'pagin',
@@ -44,6 +44,47 @@ function pag(a) {
         		var contents = html.find("div#indexListAjax2").html();
     			$(".camplist_bottom").html(contents);
     		}
+    	}
+    });
+}
+function spag(a) {
+	let key=$(".key").val();
+	var pagenum=a;
+    $.ajax({
+    	type: 'post',	
+    	url: 'Campsearch',
+    	data: {"key":key,"pagenum":pagenum,"name":'${tag}'},
+    	error: function (request, error) {
+    		alert("fail");
+    		console.log("code:"+request.status + "\n" + "message:"+request.responseText+ "\n" + "error:"+error);
+    	},
+    	success: function (result) {
+    		var html = $('<div>').html(result);
+    		var contents = html.find("div#indexListAjax").html();
+    		$(".camplist_Top").html(contents);
+    		if(pagenum>=${page.getEndPage()+1} || ${page.getStartPage()-1}==0){
+        		var contents = html.find("div#searchAjax").html();
+    			$(".camplist_bottom").html(contents);
+    		}
+    	}
+    });
+}
+function search() {
+	let key=$(".key").val();
+    $.ajax({
+    	type: 'post',	
+    	url: 'Campsearch',
+    	data: {"key":key,"name":'${tag}'},
+    	error: function (request, error) {
+    		alert("fail");
+    		console.log("code:"+request.status + "\n" + "message:"+request.responseText+ "\n" + "error:"+error);
+    	},
+    	success: function (result) {
+    		var html = $('<div>').html(result);
+    		var contents = html.find("div#indexListAjax").html();
+    		$(".camplist_Top").html(contents);
+        	var contents = html.find("div#searchAjax").html();
+    		$(".camplist_bottom").html(contents);
     	}
     });
 }
@@ -172,10 +213,8 @@ function pag(a) {
       </div>
    </div>
    		<div style="text-align: center;">
-			<form method="post" action="communitysearch">
-				<input type="text" id="serachbox" name="keyword" placeholder="검색어를 입력해주세요">
-				<input type="submit" value="검색" id="searchbutton">
-			</form>
+			<input class="key" type="text" placeholder="검색어를 입력해주세요">
+			<input class="se" type="button" value="검색" onclick="search();">
 		</div>
         <div class="camplist_bottom">
       	<div class="pagingDiv">

@@ -97,6 +97,28 @@ public class CampListController {
 		}
 		return "CampMoa/paging_con";
 	}
+	
+	@PostMapping("/Campsearch")
+	public String search(Model model, @RequestParam("key") String key, @RequestParam(defaultValue = "1") String pagenum,
+			@RequestParam(defaultValue = "6") String contentnum, @RequestParam("name") String name) {
+		if (name.equals("전체")) {
+			List<CampDBDto> campDto = campListService.searchAll(model, key, pagenum, contentnum);
+			model.addAttribute("camp", campDto);
+
+		} else if (name.equals("캠핑장")) {
+			List<CampDBDto> campDto = campListService.searchCamp(model, key, pagenum, contentnum);
+			model.addAttribute("camp", campDto);
+
+		} else if (name.equals("글램핑")) {
+			List<CampDBDto> campDto = campListService.searchGlam(model, key, pagenum, contentnum);
+			model.addAttribute("camp", campDto);
+
+		} else if (name.equals("카라반")) {
+			List<CampDBDto> campDto = campListService.searchCaravan(model, key, pagenum, contentnum);
+			model.addAttribute("camp", campDto);
+		}
+		return "CampMoa/paging_con";
+	}
 
 	@GetMapping("/compare")
 	public String Compare(Model model, Model model2, int camp_id, int camp_id2) {

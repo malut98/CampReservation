@@ -28,6 +28,19 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div id="searchAjax">
+	<div class="pagingDiv">
+         	<c:if test="${page.prev}">
+            	<div onclick="spag(${page.getStartPage()-1});">&laquo;</div>
+         	</c:if>
+         	<c:forEach begin="${page.getStartPage()}" end="${page.getEndPage()}" var="idx">
+            	<div onclick="spag(${idx});">${idx}</div>
+         	</c:forEach>
+         	<c:if test="${page.next}">
+            	<div onclick="spag(${page.getEndPage()+1});">&raquo;</div>
+         	</c:if>
+      </div>
+</div>
 <div id="indexListAjax2">
 	<div class="pagingDiv">
          	<c:if test="${page.prev}">
@@ -40,7 +53,6 @@
             	<div onclick="pag(${page.getEndPage()+1});">&raquo;</div>
          	</c:if>
       </div>
-
 </div>
 
 

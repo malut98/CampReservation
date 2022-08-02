@@ -40,4 +40,31 @@ public interface CampListMapper {
 	
 	@Select(" SELECT * FROM CAMP_IMAGE WHERE CAMP_ID = #{camp_id} ")
 	List<CampImgDto> campImg(int camp_id);
+	
+	@Select(" SELECT COUNT(*) FROM CAMP WHERE CAMP_NAME LIKE '%${key}%' ")
+	int searchAllCount(String key);
+	
+	@Select(" SELECT * FROM CAMP WHERE CAMP_NAME LIKE '%${key}%' LIMIT #{pagenum}, #{contentnum} ")
+	List<CampDBDto> searchAll(String key, int pagenum, int contentnum);
+	
+	
+	@Select(" SELECT COUNT(*) FROM CAMP WHERE CAMP_SE LIKE '일반야영장%' AND CAMP_NAME LIKE '%${key}%' ")
+	int searchCampCount(String key);
+	
+	@Select(" SELECT * FROM CAMP WHERE CAMP_SE LIKE '일반야영장%' AND CAMP_NAME LIKE '%${key}%' LIMIT #{pagenum}, #{contentnum} ")
+	List<CampDBDto> searchCamp(String key, int pagenum, int contentnum);
+	
+	
+	@Select(" SELECT COUNT(*) FROM CAMP WHERE CAMP_SE LIKE '%글램핑%' AND CAMP_NAME LIKE '%${key}%' ")
+	int searchGlamCount(String key);
+	
+	@Select(" SELECT * FROM CAMP WHERE CAMP_SE LIKE '%글램핑%' AND CAMP_NAME LIKE '%${key}%' LIMIT #{pagenum}, #{contentnum} ")
+	List<CampDBDto> searchGlam(String key, int pagenum, int contentnum);
+	
+	
+	@Select(" SELECT COUNT(*) FROM CAMP WHERE CAMP_SE LIKE '%카라반%' AND CAMP_NAME LIKE '%${key}%' ")
+	int searchCaravanCount(String key);
+	
+	@Select(" SELECT * FROM CAMP WHERE CAMP_SE LIKE '%카라반%' AND CAMP_NAME LIKE '%${key}%' LIMIT #{pagenum}, #{contentnum} ")
+	List<CampDBDto> searchCaravan(String key, int pagenum, int contentnum);
 }
