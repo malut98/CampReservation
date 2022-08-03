@@ -77,7 +77,7 @@ public class CampListController {
 	}
 
 	@PostMapping("/pagin")
-	public String idCheck(Model model, @RequestParam("pagenum") String pagenum,
+	public String getList(Model model, @RequestParam("pagenum") String pagenum,
 			@RequestParam(defaultValue = "6") String contentnum, @RequestParam("name") String name) {
 		if (name.equals("전체")) {
 			List<CampDBDto> campDto = campListService.getAllList(model, pagenum, contentnum);
@@ -105,16 +105,9 @@ public class CampListController {
 			List<CampDBDto> campDto = campListService.searchAll(model, key, pagenum, contentnum);
 			model.addAttribute("camp", campDto);
 
-		} else if (name.equals("캠핑장")) {
-			List<CampDBDto> campDto = campListService.searchCamp(model, key, pagenum, contentnum);
-			model.addAttribute("camp", campDto);
-
-		} else if (name.equals("글램핑")) {
-			List<CampDBDto> campDto = campListService.searchGlam(model, key, pagenum, contentnum);
-			model.addAttribute("camp", campDto);
-
-		} else if (name.equals("카라반")) {
-			List<CampDBDto> campDto = campListService.searchCaravan(model, key, pagenum, contentnum);
+		} else {
+			System.out.println("cs");
+			List<CampDBDto> campDto = campListService.searchCamp(model, key, pagenum, contentnum, name);
 			model.addAttribute("camp", campDto);
 		}
 		return "CampMoa/paging_con";

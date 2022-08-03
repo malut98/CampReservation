@@ -21,12 +21,7 @@ public interface CampListService {
 	int searchAllCount(String key);
 	List<CampDBDto> searchAll(Model model,String key,String pagenum, String contentnum);
 	
-	int searchCampCount(String key);
-	List<CampDBDto> searchCamp(Model model,String key,String pagenum, String contentnum);
-	
-	int searchGlamCount(String key);
-	List<CampDBDto> searchGlam(Model model,String key,String pagenum, String contentnum);
-	
-	int searchCaravanCount(String key);
-	List<CampDBDto> searchCaravan(Model model,String key,String pagenum, String contentnum);
+	int searchCampCount(String key, String name);
+	List<CampDBDto> searchCamp(Model model,String key,String pagenum, String contentnum, String name);
+
 }
