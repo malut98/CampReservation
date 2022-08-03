@@ -344,6 +344,7 @@ function like(memberid, campid){
 		</div>
 	</div>
 <script>
+	var HOME_PATH = window.HOME_PATH || '.';
 	var lat=${camp.camp_lat};
 	var lon=${camp.camp_long};
 	var mapOptions = {
@@ -356,6 +357,28 @@ function like(memberid, campid){
 	    position: new naver.maps.LatLng(lon, lat),
 	    map: map
 	});
+	var contentString = [
+        '<div class="iw_inner">',
+        '   <h3 style="color:black;">${camp.camp_name}</h3>',
+        '   <p style="color:black;">${camp.camp_addr}<br />',
+        '       <a href="${camp.camp_web}" target="_blank" style="color:black;">&nbsp;${camp.camp_web}&nbsp;</a>',
+        '   </p>',
+        '</div>'
+    ].join('');
+
+	var infowindow = new naver.maps.InfoWindow({
+    	content: contentString
+	});
+
+	naver.maps.Event.addListener(marker, "click", function(e) {
+    	if (infowindow.getMap()) {
+        	infowindow.close();
+    	} else {
+        	infowindow.open(map, marker);
+    	}
+	});
+
+	infowindow.open(map, marker);
 </script>
 
 </body>
