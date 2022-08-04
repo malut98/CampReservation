@@ -304,19 +304,19 @@ function like(memberid, campid){
 		<div class="notice_inner" 	style="width: 72%;">
 			<div class="notice_wrap">
 				<div class="notice_top">
-					<h1>추천 캠핑장</h1>
+					<h1>이 캠핑장과 비슷한 캠핑장</h1>
 					<div class="slider	">
 						<div class="item-wrapper">
 							<c:choose>
-								<c:when test="${empty list }">
-									<c:forEach begin="0" end="8">
+								<c:when test="${empty CR}">
+									<c:forEach begin="0" end="10">
 										<div class="item">
 											<img src="/resources/img/banner/banner_2.jpg" />
 										</div>
 									</c:forEach>
 								</c:when>
 								<c:otherwise>
-									<c:forEach begin="0" end="8" items="${list }" var="dto">
+									<c:forEach begin="0" end="10" items="${CR}" var="dto">
 										<div class="item">
 											<a class="test"> ${dto.camp_name } </a>
 											<div class="test-2">

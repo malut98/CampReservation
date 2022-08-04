@@ -38,6 +38,9 @@ public interface CampListMapper {
 	@Select(" SELECT * FROM CAMP WHERE CAMP_ID = #{camp_id} ")
 	CampDBDto campDetail(int camp_id);
 	
+	@Select(" SELECT * FROM CAMP WHERE CAMP_SE LIKE '%${camp_se}%' ")
+	List<CampDBDto> campRecommen(String camp_se);
+	
 	@Select(" SELECT * FROM CAMP_IMAGE WHERE CAMP_ID = #{camp_id} ")
 	List<CampImgDto> campImg(int camp_id);
 	

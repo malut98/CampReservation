@@ -16,8 +16,11 @@ public interface CampListService {
 	List<CampDBDto> getCampList(Model model,String pagenum, String contentnum);
 	List<CampDBDto> getGlamList(Model model,String pagenum, String contentnum);
 	List<CampDBDto> getCaravanList(Model model,String pagenum, String contentnum);
+	
 	CampDBDto campDetail(int camp_id);
+	List<CampDBDto> campRecommen(String camp_se);
 	List<CampImgDto> campImg(int camp_id);
+	
 	int searchAllCount(String key);
 	List<CampDBDto> searchAll(Model model,String key,String pagenum, String contentnum);
 	

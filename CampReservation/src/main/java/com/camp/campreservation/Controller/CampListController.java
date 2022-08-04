@@ -62,12 +62,15 @@ public class CampListController {
 	}
 
 	@GetMapping("/cdetail")
-	public String campDetail(Model model, int camp_id, String memberid) {
+	public String campDetail(Model model, int camp_id, String camp_se, String memberid) {
 		CampDBDto campDto = campListService.campDetail(camp_id);
 		model.addAttribute("camp", campDto);
+		List<CampDBDto> campReco = campListService.campRecommen(camp_se);
+		model.addAttribute("CR",campReco);
 		List<CampImgDto> campImg = campListService.campImg(camp_id);
 		model.addAttribute("ci", campImg);
-
+		
+		
 		int count = heartService.count(camp_id);
 		model.addAttribute("count", count);
 		int check = heartService.check(memberid, camp_id);

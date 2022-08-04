@@ -70,7 +70,7 @@
 			<div class="nav_wrap">
 				<div class="nav">
 					<ul class="header_menu">
-						<li class="nav-item"><a href="/clist/ca?${sessionScope.memberid}">캠핑모아</a></li>
+						<li class="nav-item"><a href="/clist/ca">캠핑모아</a></li>
 						<li class="nav-item"><a href="/usedtradelist">중고모아</a></li>
 						<li class="nav-item"><a href="/communitylist">커뮤모아</a></li>
 						<%
@@ -93,13 +93,13 @@
 							<a href=""> 새로움 모아</a>
 						</div>
 						<div class="category">
-							<a href="/clist/cpl?${sessionScope.memberid}"> 캠핑장 모아</a>
+							<a href="/clist/cpl"> 캠핑장 모아</a>
 						</div>
 						<div class="category">
-							<a href="/clist/cvl?${sessionScope.memberid}"> 카라반 모아</a>
+							<a href="/clist/cvl"> 카라반 모아</a>
 						</div>
 						<div class="category">
-							<a href="/clist/gl?${sessionScope.memberid}"> 글램핑 모아</a>
+							<a href="/clist/gl"> 글램핑 모아</a>
 						</div>
 						<div class="category">
 							<a href=""> 반려견 모아</a>

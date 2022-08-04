@@ -124,6 +124,11 @@ public class CampListServiceImpl implements CampListService {
 	}
 
 	@Override
+	public List<CampDBDto> campRecommen(String camp_se) {
+		return campListMapper.campRecommen(camp_se);
+	}
+	
+	@Override
 	public List<CampImgDto> campImg(int camp_id) {
 		return campListMapper.campImg(camp_id);
 	}
