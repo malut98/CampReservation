@@ -153,7 +153,7 @@ function like(memberid, campid){
 			<div class="nav_wrap">
 				<div class="nav">
 					<ul class="header_menu">
-						<li class="nav-item"><a href="/clist/cpl">캠핑모아</a></li>
+						<li class="nav-item"><a href="/clist/ca">캠핑모아</a></li>
 						<li class="nav-item"><a href="/usedtradelist">중고모아</a></li>
 						<li class="nav-item"><a href="/communitylist">커뮤모아</a></li>
 						<%
@@ -176,13 +176,13 @@ function like(memberid, campid){
 							<a href=""> 새로움 모아</a>
 						</div>
 						<div class="category">
-							<a href=""> 캠핑장 모아</a>
+							<a href="/clist/cpl"> 캠핑장 모아</a>
 						</div>
 						<div class="category">
-							<a href=""> 카라반 모아</a>
+							<a href="/clist/gl"> 카라반 모아</a>
 						</div>
 						<div class="category">
-							<a href=""> 글램핑 모아</a>
+							<a href="/clist/cvl"> 글램핑 모아</a>
 						</div>
 						<div class="category">
 							<a href=""> 반려견 모아</a>
@@ -316,9 +316,9 @@ function like(memberid, campid){
 									</c:forEach>
 								</c:when>
 								<c:otherwise>
-									<c:forEach begin="0" end="10" items="${CR}" var="dto">
+									<c:forEach begin="0" end="9" items="${CR}" var="dto">
 										<div class="item">
-											<a class="test"> ${dto.camp_name } </a>
+											<a class="test" onclick="location.href='cdetail?camp_id=${dto.camp_id}&camp_se=${dto.camp_se}&memberid=${sessionScope.memberid}'"> ${dto.camp_name } </a>
 											<div class="test-2">
 												<a><img src="${dto.camp_img }" /></a>
 											</div>
