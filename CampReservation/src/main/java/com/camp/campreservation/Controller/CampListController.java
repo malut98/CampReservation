@@ -1,5 +1,7 @@
 package com.camp.campreservation.Controller;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -18,6 +20,14 @@ import com.camp.campreservation.campdb.dto.CampDBDto;
 import com.camp.campreservation.campimg.dto.CampImgDto;
 import com.camp.campreservation.camplist.service.CampListService;
 import com.camp.campreservation.like.service.HeartService;
+import com.kennycason.kumo.CollisionMode;
+import com.kennycason.kumo.WordCloud;
+import com.kennycason.kumo.WordFrequency;
+import com.kennycason.kumo.bg.PixelBoundaryBackground;
+import com.kennycason.kumo.bg.RectangleBackground;
+import com.kennycason.kumo.font.scale.LinearFontScalar;
+import com.kennycason.kumo.nlp.FrequencyAnalyzer;
+import com.kennycason.kumo.palette.ColorPalette;
 
 @Controller
 @RequestMapping("/clist")
@@ -116,7 +126,24 @@ public class CampListController {
 
 		List<CampImgDto> campImg2 = campListService.campImg(camp_id2);
 		model2.addAttribute("ci_2", campImg2);
+		
+		try {
+			final FrequencyAnalyzer frequencyAnalyzer = new FrequencyAnalyzer();
+			final List<WordFrequency> wordFrequencies = frequencyAnalyzer.load("text/my_text_file.txt");
+			final Dimension dimension = new Dimension(600, 600);
+			final WordCloud wordCloud = new WordCloud(dimension, CollisionMode.RECTANGLE);
+			wordCloud.setPadding(0);
+			wordCloud.setBackground(new RectangleBackground(dimension));
+			wordCloud.setColorPalette(new ColorPalette(Color.RED, Color.GREEN, Color.YELLOW, Color.BLUE));
+			wordCloud.setFontScalar(new LinearFontScalar(10, 40));
+			wordCloud.build(wordFrequencies);
+			wordCloud.writeToFile("kumo-core/output/wordcloud_rectangle.png");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 
+		
+		
 		return "CampMoa/comparepage";
 	}
 
