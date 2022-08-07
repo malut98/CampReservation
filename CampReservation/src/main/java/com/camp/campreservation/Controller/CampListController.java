@@ -2,6 +2,8 @@ package com.camp.campreservation.Controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.camp.campreservation.Dto.ReservationDto;
 import com.camp.campreservation.campdb.dto.CampDBDto;
 import com.camp.campreservation.campimg.dto.CampImgDto;
 import com.camp.campreservation.camplist.service.CampListService;
@@ -113,16 +117,25 @@ public class CampListController {
 		List<CampImgDto> campImg2 = campListService.campImg(camp_id2);
 		model2.addAttribute("ci_2", campImg2);
 
-		return "comparepage";
+		return "CampMoa/comparepage";
 	}
 
 	@GetMapping("/campreservation")
-	public String Campreservation(Model model, int camp_id) {
-		CampDBDto campDto = campListService.campDetail(camp_id);
-		model.addAttribute("camp", campDto);
-		List<CampImgDto> campImg = campListService.campImg(camp_id);
-		model.addAttribute("ci", campImg);
-
-		return "campreservation";
+	public String Campreservation(HttpSession session, RedirectAttributes redirect, Model model, int camp_id) {
+		if(session.getAttribute("memberid")==null) {
+			redirect.addFlashAttribute("mesage","로그인을 해주세요");
+			
+				
+			return "redirect:/cpl";
+		}else {
+			CampDBDto campDto = campListService.campDetail(camp_id);
+			model.addAttribute("camp", campDto);
+			List<CampImgDto> campImg = campListService.campImg(camp_id);
+			model.addAttribute("ci", campImg);
+			ReservationDto reservdto = new ReservationDto();
+			String memberid = (String)session.getAttribute("memberid");
+			model.addAttribute("reservdto", reservdto);
+			return "CampMoa/campreservation";
+		}
 	}
 }
