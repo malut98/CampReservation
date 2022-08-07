@@ -116,18 +116,22 @@ public class CampListController {
 	public String Compare(Model model, Model model2, int camp_id, int camp_id2) {
 
 		CampDBDto campDto = campListService.campDetail(camp_id);
+		System.out.println(campDto.toString());
 		model.addAttribute("camp", campDto);
-
+		
 		CampDBDto campDto2 = campListService.campDetail(camp_id2);
 		model2.addAttribute("camp_2", campDto2);
 
 		List<CampImgDto> campImg = campListService.campImg(camp_id);
+		
+		
 		model.addAttribute("ci", campImg);
 
 		List<CampImgDto> campImg2 = campListService.campImg(camp_id2);
 		model2.addAttribute("ci_2", campImg2);
 		
 		try {
+			System.out.println("워드 클라우드 실행");
 			final FrequencyAnalyzer frequencyAnalyzer = new FrequencyAnalyzer();
 			final List<WordFrequency> wordFrequencies = frequencyAnalyzer.load("text/my_text_file.txt");
 			final Dimension dimension = new Dimension(600, 600);
