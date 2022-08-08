@@ -51,4 +51,11 @@ public class ReviewDto {
 	public void setMemberid(String memberid) {
 		this.memberid = memberid;
 	}
+	@Override
+	public String toString() {
+		return "ReviewDto [renum=" + renum + ", campid=" + campid + ", redate=" + redate + ", recontent=" + recontent
+				+ ", memberid=" + memberid + "]";
+	}
+	
+	
 }

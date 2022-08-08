@@ -31,7 +31,6 @@ public class ReservationServiceImpl implements ReservationService{
 	@Override
 	public int reservcnt(ReservationDto dto) {
 		// TODO Auto-generated method stub
-		System.out.println(dto);
 		return reservationmapper.Rservcnt(dto);
 	}
 }

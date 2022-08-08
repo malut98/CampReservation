@@ -2,6 +2,12 @@ package com.camp.campreservation.Controller;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -16,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.camp.campreservation.Dto.ReservationDto;
+import com.camp.campreservation.Dto.ReviewDto;
+import com.camp.campreservation.Service.ReviewService;
 import com.camp.campreservation.campdb.dto.CampDBDto;
 import com.camp.campreservation.campimg.dto.CampImgDto;
 import com.camp.campreservation.camplist.service.CampListService;
@@ -23,9 +31,11 @@ import com.camp.campreservation.like.service.HeartService;
 import com.kennycason.kumo.CollisionMode;
 import com.kennycason.kumo.WordCloud;
 import com.kennycason.kumo.WordFrequency;
-import com.kennycason.kumo.bg.PixelBoundaryBackground;
+import com.kennycason.kumo.bg.CircleBackground;
 import com.kennycason.kumo.bg.RectangleBackground;
+import com.kennycason.kumo.font.KumoFont;
 import com.kennycason.kumo.font.scale.LinearFontScalar;
+import com.kennycason.kumo.font.scale.SqrtFontScalar;
 import com.kennycason.kumo.nlp.FrequencyAnalyzer;
 import com.kennycason.kumo.palette.ColorPalette;
 
@@ -35,6 +45,9 @@ public class CampListController {
 
 	@Autowired
 	private CampListService campListService;
+	
+	@Autowired
+	private ReviewService reviewService;
 
 	@Autowired
 	private HeartService heartService;
@@ -114,9 +127,8 @@ public class CampListController {
 
 	@GetMapping("/compare")
 	public String Compare(Model model, Model model2, int camp_id, int camp_id2) {
-
+		
 		CampDBDto campDto = campListService.campDetail(camp_id);
-		System.out.println(campDto.toString());
 		model.addAttribute("camp", campDto);
 		
 		CampDBDto campDto2 = campListService.campDetail(camp_id2);
@@ -132,17 +144,44 @@ public class CampListController {
 		
 		try {
 			System.out.println("워드 클라우드 실행");
-			final FrequencyAnalyzer frequencyAnalyzer = new FrequencyAnalyzer();
-			final List<WordFrequency> wordFrequencies = frequencyAnalyzer.load("text/my_text_file.txt");
-			final Dimension dimension = new Dimension(600, 600);
-			final WordCloud wordCloud = new WordCloud(dimension, CollisionMode.RECTANGLE);
-			wordCloud.setPadding(0);
-			wordCloud.setBackground(new RectangleBackground(dimension));
-			wordCloud.setColorPalette(new ColorPalette(Color.RED, Color.GREEN, Color.YELLOW, Color.BLUE));
-			wordCloud.setFontScalar(new LinearFontScalar(10, 40));
-			wordCloud.build(wordFrequencies);
-			wordCloud.writeToFile("kumo-core/output/wordcloud_rectangle.png");
+			List<String> reviewlist = reviewService.getCampAllReview(camp_id2);
+			System.out.println(reviewlist);
+			
+			//파일 입출력
+			String fileName = "wordtext_id="+ camp_id +".txt";
+			File myFile = new File(fileName);
+			FileOutputStream fos = new FileOutputStream(myFile);
+		    OutputStreamWriter osw = new OutputStreamWriter(fos);    
+		    Writer writer = new BufferedWriter(osw);
+		    System.out.println(reviewlist.size());
+		    if(reviewlist.size()>0) {
+		    	for(String s : reviewlist) {
+			    	writer.write(s+"\n");
+			    }writer.close();
+		    }else {
+		    	writer.write("등록된리뷰가없습니다.");
+			    writer.close();
+		    }
+		    
+			
+		    final FrequencyAnalyzer frequencyAnalyzer = new FrequencyAnalyzer();
+		    java.awt.Font font = new java.awt.Font("Serif", Font.BOLD+Font.ITALIC, 20);
+		    final List<WordFrequency> wordFrequencies = frequencyAnalyzer.load("wordtext_id="+ camp_id +".txt");
+		    final Dimension dimension = new Dimension(600, 600);
+		    final WordCloud wordCloud = new WordCloud(dimension, CollisionMode.PIXEL_PERFECT);
+		    wordCloud.setKumoFont(new KumoFont(font));
+		    wordCloud.setPadding(2);
+		    wordCloud.setBackground(new CircleBackground(300));
+		    wordCloud.setBackgroundColor(Color.WHITE);
+		    wordCloud.setColorPalette(new ColorPalette(new Color(0x4055F1), new Color(0x408DF1), new Color(0x40AAF1), new Color(0x40C5F1), new Color(0x40D3F1), new Color(0xFFFFFF)));
+		    wordCloud.setFontScalar(new SqrtFontScalar(10, 40));
+		    wordCloud.build(wordFrequencies);
+		    wordCloud.writeToFile("src/main/resources/static/Img/wordcloud/" + "wordcloud_id="+ camp_id +".png");
+			
+			
+		    
 		} catch (Exception e) {
+			System.out.println("error");
 			// TODO: handle exception
 		}
 
@@ -157,7 +196,7 @@ public class CampListController {
 			redirect.addFlashAttribute("mesage","로그인을 해주세요");
 			
 				
-			return "redirect:/cpl";
+			return "redirect:/index";
 		}else {
 			CampDBDto campDto = campListService.campDetail(camp_id);
 			model.addAttribute("camp", campDto);

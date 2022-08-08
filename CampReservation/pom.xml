@@ -97,11 +97,13 @@
          </dependency> ======= >>>>>>> 9e5b346f07a597b6776e8cb00165e5ad757e1193 https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5 
          <dependency> <groupId>org.thymeleaf.extras</groupId> <artifactId>thymeleaf-extras-springsecurity5</artifactId> 
          <version>3.0.4.RELEASE</version> </dependency> -->
-	<dependency>
-	    <groupId>com.kennycason</groupId>
-	    <artifactId>kumo-core</artifactId>
-    	<version>1.28</version>
-	</dependency>
+<!-- https://mvnrepository.com/artifact/com.kennycason/kumo-core -->
+<dependency>
+    <groupId>com.kennycason</groupId>
+    <artifactId>kumo-core</artifactId>
+    <version>1.28</version>
+</dependency>
+
    </dependencies>
 
    <build>

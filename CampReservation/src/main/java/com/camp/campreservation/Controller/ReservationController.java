@@ -51,7 +51,6 @@ public class ReservationController {
 			model.addAttribute("campresrv", reservationServiceImpl.insert(dto));
 			return cnt;
 		}else {
-			redirect.addFlashAttribute("mesage","예약일이 겹칩니다 예약일을 확인해주세요");
 			return cnt;
 		}
 	}
