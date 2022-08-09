@@ -45,7 +45,7 @@ public class CampListController {
 
 	@Autowired
 	private CampListService campListService;
-	
+
 	@Autowired
 	private ReviewService reviewService;
 
@@ -127,83 +127,106 @@ public class CampListController {
 
 	@GetMapping("/compare")
 	public String Compare(Model model, Model model2, int camp_id, int camp_id2) {
-		
+
 		CampDBDto campDto = campListService.campDetail(camp_id);
 		model.addAttribute("camp", campDto);
-		
+
 		CampDBDto campDto2 = campListService.campDetail(camp_id2);
 		model2.addAttribute("camp_2", campDto2);
 
 		List<CampImgDto> campImg = campListService.campImg(camp_id);
-		
-		
+
 		model.addAttribute("ci", campImg);
 
 		List<CampImgDto> campImg2 = campListService.campImg(camp_id2);
 		model2.addAttribute("ci_2", campImg2);
-		
+
 		try {
 			System.out.println("워드 클라우드 실행");
-			List<String> reviewlist = reviewService.getCampAllReview(camp_id2);
-			System.out.println(reviewlist);
-			
-			//파일 입출력
-			String fileName = "wordtext_id="+ camp_id +".txt";
+			List<String> reviewlist = reviewService.getCampAllReview(camp_id);
+			List<String> reviewlist2 = reviewService.getCampAllReview(camp_id2);
+
+			// 파일 입출력
+			String fileName = "wordtext_id=" + camp_id + ".txt";
+			String fileName2 = "wordtext_id=" + camp_id2 + ".txt";
 			File myFile = new File(fileName);
+			File myFile2 = new File(fileName2);
 			FileOutputStream fos = new FileOutputStream(myFile);
-		    OutputStreamWriter osw = new OutputStreamWriter(fos);    
-		    Writer writer = new BufferedWriter(osw);
-		    System.out.println(reviewlist.size());
-		    if(reviewlist.size()>0) {
-		    	for(String s : reviewlist) {
-			    	writer.write(s+"\n");
-			    }writer.close();
-		    }else {
-		    	writer.write("등록된리뷰가없습니다.");
-			    writer.close();
-		    }
-		    
+			FileOutputStream fos2 = new FileOutputStream(myFile2);
+			OutputStreamWriter osw = new OutputStreamWriter(fos);
+			OutputStreamWriter osw2 = new OutputStreamWriter(fos2);
+			Writer writer = new BufferedWriter(osw);
+			Writer writer2 = new BufferedWriter(osw2);
+
+			if (reviewlist.size() > 0) {
+				for (String s : reviewlist) {
+					writer.write(s + "\n");
+				}
+				writer.close();
+			} else {
+				writer.write("등록된리뷰가없습니다.");
+				writer.close();
+			}
+			if (reviewlist2.size() > 0) {
+				for (String s : reviewlist2) {
+					writer2.write(s + "\n");
+				}
+				writer2.close();
+			} else {
+				writer2.write("등록된리뷰가없습니다.");
+				writer2.close();
+			}
+
+			final FrequencyAnalyzer frequencyAnalyzer = new FrequencyAnalyzer();
+			java.awt.Font font = new java.awt.Font("Dialog", Font.BOLD, 35); // 워드클라우드 폰트지정
+			final List<WordFrequency> wordFrequencies = frequencyAnalyzer.load("wordtext_id=" + camp_id + ".txt");
+			final List<WordFrequency> wordFrequencies2 = frequencyAnalyzer.load("wordtext_id=" + camp_id2 + ".txt");
+			final Dimension dimension = new Dimension(600, 600);
+			final WordCloud wordCloud = new WordCloud(dimension, CollisionMode.PIXEL_PERFECT);
+			final WordCloud wordCloud2 = new WordCloud(dimension, CollisionMode.PIXEL_PERFECT);
+
+			wordCloud.setKumoFont(new KumoFont(font));
+			wordCloud.setPadding(5);
+			wordCloud.setBackground(new CircleBackground(300));
+			wordCloud.setBackgroundColor(Color.WHITE);
+			wordCloud.setColorPalette(new ColorPalette(new Color(0x4055F1), new Color(0x408DF1), new Color(0x40AAF1),
+					new Color(0x40C5F1), new Color(0x40D3F1), new Color(0xFFFFFF)));
+			wordCloud.setFontScalar(new SqrtFontScalar(10, 40));
+			wordCloud.build(wordFrequencies);
+			wordCloud.writeToFile("src/main/resources/static/Img/wordcloud/" + "wordcloud_id-" + camp_id + ".png");
+
+			wordCloud2.setKumoFont(new KumoFont(font));
+			wordCloud2.setPadding(5);
+			wordCloud2.setBackground(new CircleBackground(300));
+			wordCloud2.setBackgroundColor(Color.WHITE);
+			wordCloud2.setColorPalette(new ColorPalette(new Color(0x4055F1), new Color(0x408DF1), new Color(0x40AAF1),
+					new Color(0x40C5F1), new Color(0x40D3F1), new Color(0xFFFFFF)));
+			wordCloud2.setFontScalar(new SqrtFontScalar(10, 40));
+			wordCloud2.build(wordFrequencies2);
+			wordCloud2.writeToFile("src/main/resources/static/Img/wordcloud/" + "wordcloud_id-" + camp_id2 + ".png");
 			
-		    final FrequencyAnalyzer frequencyAnalyzer = new FrequencyAnalyzer();
-		    java.awt.Font font = new java.awt.Font("Serif", Font.BOLD+Font.ITALIC, 20);
-		    final List<WordFrequency> wordFrequencies = frequencyAnalyzer.load("wordtext_id="+ camp_id +".txt");
-		    final Dimension dimension = new Dimension(600, 600);
-		    final WordCloud wordCloud = new WordCloud(dimension, CollisionMode.PIXEL_PERFECT);
-		    wordCloud.setKumoFont(new KumoFont(font));
-		    wordCloud.setPadding(2);
-		    wordCloud.setBackground(new CircleBackground(300));
-		    wordCloud.setBackgroundColor(Color.WHITE);
-		    wordCloud.setColorPalette(new ColorPalette(new Color(0x4055F1), new Color(0x408DF1), new Color(0x40AAF1), new Color(0x40C5F1), new Color(0x40D3F1), new Color(0xFFFFFF)));
-		    wordCloud.setFontScalar(new SqrtFontScalar(10, 40));
-		    wordCloud.build(wordFrequencies);
-		    wordCloud.writeToFile("src/main/resources/static/Img/wordcloud/" + "wordcloud_id="+ camp_id +".png");
 			
-			
-		    
+			return "CampMoa/comparepage";
 		} catch (Exception e) {
-			System.out.println("error");
-			// TODO: handle exception
+			return "CampMoa/comparepage";
 		}
 
 		
-		
-		return "CampMoa/comparepage";
 	}
 
 	@GetMapping("/campreservation")
 	public String Campreservation(HttpSession session, RedirectAttributes redirect, Model model, int camp_id) {
-		if(session.getAttribute("memberid")==null) {
-			redirect.addFlashAttribute("mesage","로그인을 해주세요");
-			
-				
+		if (session.getAttribute("memberid") == null) {
+			redirect.addFlashAttribute("mesage", "로그인을 해주세요");
+
 			return "redirect:/index";
-		}else {
+		} else {
 			CampDBDto campDto = campListService.campDetail(camp_id);
 			model.addAttribute("camp", campDto);
 			List<CampImgDto> campImg = campListService.campImg(camp_id);
 			model.addAttribute("ci", campImg);
 			ReservationDto reservdto = new ReservationDto();
-			String memberid = (String)session.getAttribute("memberid");
+			String memberid = (String) session.getAttribute("memberid");
 			model.addAttribute("reservdto", reservdto);
 			return "CampMoa/campreservation";
 		}
