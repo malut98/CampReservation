@@ -127,7 +127,7 @@ function search() {
             <div class="camp-moa">
                <div class="menu_category">
                   <div class="category">
-						<a href=""> 베스트 모아</a>
+						<a href="/clist/best"> 베스트 모아</a>
 					</div>
 					<div class="category">
 						<a href=""> 새로움 모아</a>
@@ -142,7 +142,7 @@ function search() {
 						<a href="/clist/gl"> 글램핑 모아</a>
 					</div>
 					<div class="category">
-						<a href=""> 반려견 모아</a>
+						<a href="/clist/pet"> 반려견 모아</a>
 					</div>
                </div>
             </div>

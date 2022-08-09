@@ -12,10 +12,13 @@ public interface CampListService {
 	int selectCampCount();
 	int selectGlamCount();
 	int selectCaravanCount();
+	int selectPetCount();
 	List<CampDBDto> getAllList(Model model,String pagenum, String contentnum);
+	List<CampDBDto> getBestList(Model model,String pagenum, String contentnum);
 	List<CampDBDto> getCampList(Model model,String pagenum, String contentnum);
 	List<CampDBDto> getGlamList(Model model,String pagenum, String contentnum);
 	List<CampDBDto> getCaravanList(Model model,String pagenum, String contentnum);
+	List<CampDBDto> getPetList(Model model,String pagenum, String contentnum);
 	
 	CampDBDto campDetail(int camp_id);
 	List<CampDBDto> campRecommen(int camp_id, String camp_se);

@@ -185,7 +185,7 @@ function like(memberid, campid){
 							<a href="/clist/cvl"> 글램핑 모아</a>
 						</div>
 						<div class="category">
-							<a href=""> 반려견 모아</a>
+							<a href="/clist/pet"> 반려견 모아</a>
 						</div>
 					</div>
 				</div>

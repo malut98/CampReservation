@@ -23,8 +23,14 @@ public interface CampListMapper {
 	@Select(" SELECT count(*) FROM CAMP WHERE CAMP_SE LIKE '%카라반%'")
 	int selectCaravanCount();
 	
+	@Select(" SELECT count(*) FROM CAMP WHERE CAMP_INFO LIKE '%반려%'")
+	int selectPetCount();
+	
 	@Select("SELECT * FROM CAMP LIMIT #{pagenum}, #{contentnum} ")
 	List<CampDBDto> getAllList(int pagenum, int contentnum);
+	
+	@Select("SELECT * FROM CAMP ORDER BY CAMP_HEART_COUNT DESC LIMIT #{pagenum}, #{contentnum} ")
+	List<CampDBDto> getBestList(int pagenum, int contentnum);
 	
 	@Select("SELECT * FROM CAMP WHERE CAMP_SE LIKE '일반야영장%' LIMIT #{pagenum}, #{contentnum} ")
 	List<CampDBDto> getCampList(int pagenum, int contentnum);
@@ -34,6 +40,9 @@ public interface CampListMapper {
 	
 	@Select(" SELECT * FROM CAMP WHERE CAMP_SE LIKE '%카라반%' LIMIT #{pagenum}, #{contentnum}")
 	List<CampDBDto> getCaravanList(int pagenum, int contentnum);
+	
+	@Select(" SELECT * FROM CAMP WHERE CAMP_INFO LIKE '%반려%' LIMIT #{pagenum}, #{contentnum}")
+	List<CampDBDto> getPetList(int pagenum, int contentnum);
 	
 	@Select(" SELECT * FROM CAMP WHERE CAMP_ID = #{camp_id} ")
 	CampDBDto campDetail(int camp_id);

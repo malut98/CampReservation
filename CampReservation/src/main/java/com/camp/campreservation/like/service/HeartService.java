@@ -5,4 +5,5 @@ public interface HeartService {
 	int unheart(String memberid, int campid);
 	int count(int campid);
 	int check(String memberid, int campid);
+	int campDtoCount(int count, int campid);
 }

@@ -30,5 +30,10 @@ public class HeartServiceImple implements HeartService{
 	public int check(String memberid, int campid) {
 		return heartMapper.check(memberid, campid);
 	}
+
+	@Override
+	public int campDtoCount(int count, int campid) {
+		return heartMapper.campDtoCount(count, campid);
+	}
 	
 }

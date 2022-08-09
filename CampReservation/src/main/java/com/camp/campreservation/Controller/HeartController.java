@@ -2,7 +2,6 @@ package com.camp.campreservation.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +23,9 @@ public class HeartController {
 			return -1;
 		}else {
 			heartService.heart(memberid, campid);
-			return heartService.count(campid);
+			int count = heartService.count(campid);
+			heartService.campDtoCount(count, campid);
+			return count;
 		}
 		
 	}
@@ -36,7 +37,9 @@ public class HeartController {
 			return -1;
 		}else {
 			heartService.unheart(memberid, campid);
-			return heartService.count(campid);
+			int count = heartService.count(campid);
+			heartService.campDtoCount(count, campid);
+			return count;
 		}
 		
 	}

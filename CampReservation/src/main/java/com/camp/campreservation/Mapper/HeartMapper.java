@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface HeartMapper {
@@ -19,4 +20,7 @@ public interface HeartMapper {
 	
 	@Select(" SELECT COUNT(*) FROM HEART WHERE CAMP_ID=#{campid} AND MEMBER_ID=#{memberid} ")
 	int check(String memberid, int campid);
+	
+	@Update(" UPDATE CAMP SET CAMP_HEART_COUNT=#{count} WHERE CAMP_ID=#{campid} ")
+	int campDtoCount(int count, int campid);
 }

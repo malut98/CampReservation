@@ -21,6 +21,7 @@ public class CampDBDto extends LoginDto{
 	private int camp_price;
 	private float camp_lat;		//경도
 	private float camp_long;	//위도
+	private int camp_heart_count;
 	
 	public CampDBDto() {
 		super();
@@ -34,7 +35,7 @@ public class CampDBDto extends LoginDto{
 	public CampDBDto(int camp_id, String camp_name, String camp_one, String camp_info, String camp_open,
 			String camp_open_de, String camp_open_pd, String camp_char, String camp_se, String camp_loc,
 			String camp_addr, String camp_phone, String camp_web, String camp_around, String camp_img, int camp_price,
-			float camp_lat, float camp_long) {
+			float camp_lat, float camp_long, int camp_heart_count) {
 		super();
 		this.camp_id = camp_id;
 		this.camp_name = camp_name;
@@ -54,6 +55,7 @@ public class CampDBDto extends LoginDto{
 		this.camp_price = camp_price;
 		this.camp_lat = camp_lat;
 		this.camp_long = camp_long;
+		this.camp_heart_count = camp_heart_count;
 	}
 
 	public CampDBDto(String memberid, int camp_id) {
@@ -203,6 +205,14 @@ public class CampDBDto extends LoginDto{
 
 	public void setCamp_long(float camp_long) {
 		this.camp_long = camp_long;
+	}
+	
+	public float getCamp_heart_count() {
+		return camp_heart_count;
+	}
+
+	public void setCamp_heart_count(int camp_heart_count) {
+		this.camp_heart_count = camp_heart_count;
 	}
 
 }

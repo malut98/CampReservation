@@ -34,6 +34,15 @@ public class CampListController {
 		return "CampMoa/camplist";
 	}
 
+	@GetMapping("/best")
+	public String campBest(Model model, @RequestParam(defaultValue = "1") String pagenum,
+			@RequestParam(defaultValue = "6") String contentnum) {
+		List<CampDBDto> campDto = campListService.getBestList(model, pagenum, contentnum);
+		model.addAttribute("camp", campDto);
+		model.addAttribute("tag", "베스트");
+		return "CampMoa/camplist";
+	}
+	
 	@GetMapping("/cpl")
 	public String campList(Model model, @RequestParam(defaultValue = "1") String pagenum,
 			@RequestParam(defaultValue = "6") String contentnum) {
@@ -58,6 +67,15 @@ public class CampListController {
 		List<CampDBDto> campDto = campListService.getCaravanList(model, pagenum, contentnum);
 		model.addAttribute("camp", campDto);
 		model.addAttribute("tag", "카라반");
+		return "CampMoa/camplist";
+	}
+	
+	@GetMapping("/pet")
+	public String campPet(Model model, @RequestParam(defaultValue = "1") String pagenum,
+			@RequestParam(defaultValue = "6") String contentnum) {
+		List<CampDBDto> campDto = campListService.getPetList(model, pagenum, contentnum);
+		model.addAttribute("camp", campDto);
+		model.addAttribute("tag", "반려동물");
 		return "CampMoa/camplist";
 	}
 
@@ -86,6 +104,10 @@ public class CampListController {
 			List<CampDBDto> campDto = campListService.getAllList(model, pagenum, contentnum);
 			model.addAttribute("camp", campDto);
 
+		} else if (name.equals("베스트")) {
+			List<CampDBDto> campDto = campListService.getBestList(model, pagenum, contentnum);
+			model.addAttribute("camp", campDto);
+
 		} else if (name.equals("캠핑장")) {
 			List<CampDBDto> campDto = campListService.getCampList(model, pagenum, contentnum);
 			model.addAttribute("camp", campDto);
@@ -96,6 +118,9 @@ public class CampListController {
 
 		} else if (name.equals("카라반")) {
 			List<CampDBDto> campDto = campListService.getCaravanList(model, pagenum, contentnum);
+			model.addAttribute("camp", campDto);
+		} else if (name.equals("반려동물")) {
+			List<CampDBDto> campDto = campListService.getPetList(model, pagenum, contentnum);
 			model.addAttribute("camp", campDto);
 		}
 		return "CampMoa/paging_con";
@@ -109,7 +134,6 @@ public class CampListController {
 			model.addAttribute("camp", campDto);
 
 		} else {
-			System.out.println("cs");
 			List<CampDBDto> campDto = campListService.searchCamp(model, key, pagenum, contentnum, name);
 			model.addAttribute("camp", campDto);
 		}
