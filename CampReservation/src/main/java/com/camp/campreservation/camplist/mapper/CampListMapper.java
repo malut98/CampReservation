@@ -26,6 +26,7 @@ public interface CampListMapper {
 	@Select(" SELECT count(*) FROM CAMP WHERE CAMP_INFO LIKE '%반려%'")
 	int selectPetCount();
 	
+	
 	@Select("SELECT * FROM CAMP LIMIT #{pagenum}, #{contentnum} ")
 	List<CampDBDto> getAllList(int pagenum, int contentnum);
 	
@@ -44,23 +45,30 @@ public interface CampListMapper {
 	@Select(" SELECT * FROM CAMP WHERE CAMP_INFO LIKE '%반려%' LIMIT #{pagenum}, #{contentnum}")
 	List<CampDBDto> getPetList(int pagenum, int contentnum);
 	
+	
 	@Select(" SELECT * FROM CAMP WHERE CAMP_ID = #{camp_id} ")
 	CampDBDto campDetail(int camp_id);
+	
 	
 	@Select(" SELECT * FROM CAMP WHERE CAMP_SE LIKE '%${camp_se}%' AND NOT CAMP_ID = ${camp_id} ")
 	List<CampDBDto> campRecommen(int camp_id, String camp_se);
 	
+	
 	@Select(" SELECT * FROM CAMP_IMAGE WHERE CAMP_ID = #{camp_id} ")
 	List<CampImgDto> campImg(int camp_id);
+	
 	
 	@Select(" SELECT COUNT(*) FROM CAMP WHERE CAMP_NAME LIKE '%${key}%' ")
 	int searchAllCount(String key);
 	
+	
 	@Select(" SELECT * FROM CAMP WHERE CAMP_NAME LIKE '%${key}%' LIMIT #{pagenum}, #{contentnum} ")
 	List<CampDBDto> searchAll(String key, int pagenum, int contentnum);
 	
+	
 	@Select(" SELECT COUNT(*) FROM CAMP WHERE CAMP_SE LIKE '${name}%' AND CAMP_NAME LIKE '%${key}%' ")
 	int searchCampCount(String key, String name);
+	
 	
 	@Select(" SELECT * FROM CAMP WHERE CAMP_SE LIKE '%${name}%' AND CAMP_NAME LIKE '%${key}%' LIMIT #{pagenum}, #{contentnum} ")
 	List<CampDBDto> searchCamp(String key, int pagenum, int contentnum, String name);
