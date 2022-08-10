@@ -69,7 +69,7 @@ public class CampListController {
 		model.addAttribute("tag", "베스트");
 		return "CampMoa/camplist";
 	}
-	
+
 	@GetMapping("/cpl")
 	public String campList(Model model, @RequestParam(defaultValue = "1") String pagenum,
 			@RequestParam(defaultValue = "6") String contentnum) {
@@ -96,7 +96,7 @@ public class CampListController {
 		model.addAttribute("tag", "카라반");
 		return "CampMoa/camplist";
 	}
-	
+
 	@GetMapping("/pet")
 	public String campPet(Model model, @RequestParam(defaultValue = "1") String pagenum,
 			@RequestParam(defaultValue = "6") String contentnum) {
@@ -111,11 +111,10 @@ public class CampListController {
 		CampDBDto campDto = campListService.campDetail(camp_id);
 		model.addAttribute("camp", campDto);
 		List<CampDBDto> campReco = campListService.campRecommen(camp_id, camp_se);
-		model.addAttribute("CR",campReco);
+		model.addAttribute("CR", campReco);
 		List<CampImgDto> campImg = campListService.campImg(camp_id);
 		model.addAttribute("ci", campImg);
-		
-		
+
 		int count = heartService.count(camp_id);
 		model.addAttribute("count", count);
 		int check = heartService.check(memberid, camp_id);
@@ -152,7 +151,7 @@ public class CampListController {
 		}
 		return "CampMoa/paging_con";
 	}
-	
+
 	@PostMapping("/Campsearch")
 	public String search(Model model, @RequestParam("key") String key, @RequestParam(defaultValue = "1") String pagenum,
 			@RequestParam(defaultValue = "6") String contentnum, @RequestParam("name") String name) {
@@ -247,13 +246,22 @@ public class CampListController {
 			wordCloud2.build(wordFrequencies2);
 			wordCloud2.writeToFile("src/main/resources/static/Img/wordcloud/" + "wordcloud_id-" + camp_id2 + ".png");
 			
+			if( myFile.exists() && myFile2.exists()){
+	    		if(myFile.delete()){
+	    			if(myFile2.delete()){
+	    			}
+	    		}else{
+	    			System.out.println("파일삭제 실패");
+	    		}
+	    	}else{
+	    		System.out.println("파일이 존재하지 않습니다.");
+	    	}
 			
 			return "CampMoa/comparepage";
-		} catch (Exception e) {
+		}catch(Exception e)
+		{
 			return "CampMoa/comparepage";
 		}
-
-		
 	}
 
 	@GetMapping("/campreservation")

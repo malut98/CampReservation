@@ -99,7 +99,16 @@
 		function reloadDivArea() {
     		$('.review_wrap').load(location.href+' .review_wrap');
 		}
-	});
+
+		$(".wordcloud_img")
+    		.on('load', function() { console.log("image loaded correctly"); })
+    		.on('error', function() { 
+				$('.wordcloud_img').attr("src","/resources/img/world_cloud_error.png")
+				setTimeout(function(){      
+					$('.review_container').load(location.href+' .review_container');
+				}, 2000);	
+			});
+		});
 </script>
 
 </head>
@@ -315,10 +324,10 @@
 		<div class="review_container">
 			<div class="review_wrap">
 				<div class="review_content">
-					<img class="wordcloud_img" onError="$('.review_container').load(location.href+' .review_container');" src="/resources/img/wordcloud/wordcloud_id-${camp.camp_id}.png" style="width :350px; height:350px;">
+					<img class="wordcloud_img"  src="/resources/img/wordcloud/wordcloud_id-${camp.camp_id}.png" style="width :350px; height:350px;">
 				</div>
 				<div class="review_content">
-					<img class="wordcloud_img" alt="" onError="$('.review_container').load(location.href+' .review_container');" src="/resources/img/wordcloud/wordcloud_id-${camp_2.camp_id}.png" style="width :350px; height:350px;">
+					<img class="wordcloud_img" alt=""  src="/resources/img/wordcloud/wordcloud_id-${camp_2.camp_id}.png" style="width :350px; height:350px;">
 				</div>
 			</div>
 		</div>
