@@ -63,34 +63,24 @@
 		});
 	});
 	$(document).ready(function() {
-		$("#unlike").show();
-		$("#like").hide();
-		
-		$(".right_heart > #unlike").show();
-		$(".right_heart > #like").hide();
-		
-		/*img1을 클릭했을 때 img2를 보여줌*/
-		$("#unlike").click(function() {
-			$("#unlike").hide();
-			$("#like").show();
-		});
-		$(".right_heart > #unlike").click(function() {
-			$(".right_heart > #unlike").hide();
-			$(".right_heart > #like").show();
-		});
-		
-		/*img2를 클릭했을 때 img1을 보여줌*/
-		$("#like").click(function() {
-			$("#unlike").show();
-			$("#like").hide();
-		});
-		$(".right_heart > #like").click(function() {
-			$(".right_heart > #unlike").show();
-			$(".right_heart > #like").hide();
-		});
-		
+		var check1=${check1};
+		var check2=${check2};
+		if(check1==1){
+			$("#l_likeimg").attr("src", "/resources/img/like.png");
+			$("#l_likeimg").attr("onclick", "l_like('${sessionScope.memberid}', ${camp.camp_id})");
+		}else{
+			$("#l_likeimg").attr("src", "/resources/img/unlike.png");
+			$("#l_likeimg").attr("onclick", "l_unlike('${sessionScope.memberid}', ${camp.camp_id})");
+		}
+		if(check2==1){
+			$("#r_likeimg").attr("src", "/resources/img/like.png");
+			$("#r_likeimg").attr("onclick", "r_like('${sessionScope.memberid}', ${camp_2.camp_id})");
+		}else{
+			$("#r_likeimg").attr("src", "/resources/img/unlike.png");
+			$("#r_likeimg").attr("onclick", "r_unlike('${sessionScope.memberid}', ${camp_2.camp_id})");
+		}
 		function reloadDivArea() {
-    		// $('.review_container').load(location.href+' .review_container');
+    		//$('.review_container').load(location.href+' .review_container');
 			//$('#divReloadLayer').load(location.href+' #divReloadLayer');
 			$('.review_container').load(location.href+' .review_container');
 			console.log("rtestset");
@@ -109,6 +99,90 @@
 				}, 2000);	
 			});
 		});
+	
+	function l_unlike(memberid, campid){
+		$.ajax({
+			type: 'post',	
+	    	url: '/ht/unheart',
+	    	data: {"memberid":memberid, "campid":campid},
+	    	error: function (request, error) {
+	    		alert("fail");
+	    		console.log("code:"+request.status + "\n" + "message:"+request.responseText+ "\n" + "error:"+error);
+	    	},
+	    	success: function (count) {
+	    		if(count==-1){
+	    			alert("로그인 후 이용 가능합니다.");
+	    		}else{
+	    		$("#l_likeimg").attr("src", "/resources/img/like.png");
+	    		$("#l_likeimg").attr("onclick", "l_like('${sessionScope.memberid}', ${camp.camp_id})");
+//	    		$("label[for='count']").text(count);
+	    		}
+	    	}
+	    });
+	}
+
+	function l_like(memberid, campid){
+		$.ajax({
+			type: 'post',	
+	    	url: '/ht/heart',
+	    	data: {"memberid":memberid, "campid":campid},
+	    	error: function (request, error) {
+	    		alert("fail");
+	    		console.log("code:"+request.status + "\n" + "message:"+request.responseText+ "\n" + "error:"+error);
+	    	},
+	    	success: function (count) {
+	    		if(count==-1){
+	    			alert("로그인 후 이용 가능합니다.");
+	    		}else{
+	    		$("#l_likeimg").attr("src", "/resources/img/unlike.png");
+	    		$("#l_likeimg").attr("onclick", "l_unlike('${sessionScope.memberid}', ${camp.camp_id})");
+//	    		$("label[for='count']").text(count);
+	    		}
+	    	}
+	    });
+	}
+	
+	function r_unlike(memberid, campid){
+		$.ajax({
+			type: 'post',	
+	    	url: '/ht/unheart',
+	    	data: {"memberid":memberid, "campid":campid},
+	    	error: function (request, error) {
+	    		alert("fail");
+	    		console.log("code:"+request.status + "\n" + "message:"+request.responseText+ "\n" + "error:"+error);
+	    	},
+	    	success: function (count) {
+	    		if(count==-1){
+	    			alert("로그인 후 이용 가능합니다.");
+	    		}else{
+	    		$("#r_likeimg").attr("src", "/resources/img/like.png");
+	    		$("#r_likeimg").attr("onclick", "r_like('${sessionScope.memberid}', ${camp_2.camp_id})");
+//	    		$("label[for='count']").text(count);
+	    		}
+	    	}
+	    });
+	}
+
+	function r_like(memberid, campid){
+		$.ajax({
+			type: 'post',	
+	    	url: '/ht/heart',
+	    	data: {"memberid":memberid, "campid":campid},
+	    	error: function (request, error) {
+	    		alert("fail");
+	    		console.log("code:"+request.status + "\n" + "message:"+request.responseText+ "\n" + "error:"+error);
+	    	},
+	    	success: function (count) {
+	    		if(count==-1){
+	    			alert("로그인 후 이용 가능합니다.");
+	    		}else{
+	    		$("#r_likeimg").attr("src", "/resources/img/unlike.png");
+	    		$("#r_likeimg").attr("onclick", "r_unlike('${sessionScope.memberid}', ${camp_2.camp_id})");
+//	    		$("label[for='count']").text(count);
+	    		}
+	    	}
+	    });
+	}
 </script>
 
 </head>
@@ -201,8 +275,7 @@
 						<button style="width: 80px; height: 35px;" onclick="location.href='campreservation?camp_id=${camp.camp_id}'">예약하기</button>	
 					</div>				
 					<div class="heart">
-						<img id="unlike" style="width: 50px; height: 50px;" src="/resources/Img/unlike.png"> 
-						<img id="like" style="width: 50px; height: 50px;" src="/resources/Img/like.png">
+						<img id="l_likeimg" style="width: 50px; height: 50px;" src="/resources/Img/unlike.png" onclick="l_unlike('${sessionScope.memberid}', ${camp.camp_id});"> 
 					</div>
 				</div>
 				<div class="left_bottom">
@@ -272,8 +345,7 @@
 						<button style="width: 80px; height: 35px;" onclick="location.href='campreservation?camp_id=${camp_2.camp_id}'">예약하기</button>	
 					</div>
 					<div class="right_heart">
-						<img id="unlike" style="width: 50px; height: 50px;" src="/resources/Img/unlike.png"> 
-						<img id="like" style="width: 50px; height: 50px;" src="/resources/Img/like.png">
+						<img id="r_likeimg" style="width: 50px; height: 50px;" src="/resources/Img/unlike.png" onclick="r_unlike('${sessionScope.memberid}', ${camp_2.camp_id});">
 					</div>
 				</div>
 				<div class="right_bottom">

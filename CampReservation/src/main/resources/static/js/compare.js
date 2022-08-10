@@ -1,3 +1,4 @@
+
 	var cnt = 0;
     var arr1 = [];
     var arr2 = [];
@@ -54,22 +55,22 @@
 	        console.log(".right-compare > .compare-img > .close-btn 종료");
 			cnt =1;
 	});
-	
+
 	$(".cnt_compare_btn > span").click(function(){
 		if( (arr1.length == 0) || (arr2.length == 0)){ // 비교하기에 값이 들어가있는지 확인하고 페이지 이동
 			$(".modal-overlap").fadeIn(); 
 		}else if(arr1.length > 0 & arr2.length >0){
-			location.href ="compare?camp_id="+ arr1[0] +"&camp_id2="+ arr2[0]; 
+			location.href ="compare?camp_id="+ arr1[0] +"&camp_id2="+ arr2[0]+"&memberid="+arr1[4]; 
 		}
 	});
 	
    });
-   function compare(camp_id, camp_img, camp_name, camp_addr) {
+   function compare(camp_id, camp_img, camp_name, camp_addr, memberid) {
       // 받아야하는 값 dto.camp_id/dto.camp_img/dto.camp_name/dto.camp_addr
       // 1. 버튼을 누르면 비교 div를 display none;에서 block;으로 바꾼다
       if(cnt === 0){ // cnt가 0이면 leftcompare 에 값을 넣는다.
     	  console.log("compare if(cnt === 0)");
-          arr1 = [camp_id,camp_img,camp_name,camp_addr];
+          arr1 = [camp_id,camp_img,camp_name,camp_addr, memberid];
           $(".cnt_compare").html("비교하기("+(cnt+1)+")");
           $(".compaer-container").attr("style","display:flex");
           $(".left-compare > .compare-img > img").attr("src",arr1[1]);
@@ -77,9 +78,11 @@
           $(".left-compare > .compare-name-addr-wrap > .compare-addr > span").html(arr1[3]);
           $(".left-compare > .compare-img > .close-btn").attr("style","display:flex");
           console.log("compare if(cnt === 0) 종료");
+          console.log(arr1[4]);
+          
 
       }else if(cnt == 1){// cnt가 1이면 rightcompare 에 값을 넣는다.
-    	 arr2 = [camp_id,camp_img,camp_name,camp_addr];
+    	 arr2 = [camp_id,camp_img,camp_name,camp_addr, memberid];
     	 if(arr1[0] == arr2[0]){
     		 $(".modal-overlap").fadeIn(); 
     		 return;

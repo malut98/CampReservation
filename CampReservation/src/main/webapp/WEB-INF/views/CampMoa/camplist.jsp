@@ -88,6 +88,7 @@ function search() {
     	}
     });
 }
+
 </script>
 </head>
 <body>
@@ -195,7 +196,7 @@ function search() {
                      		<tr>
                         		<td class="table_addr">${dto.camp_addr}</td>
                         		<td style="text-align: center;"><button id="${dto.camp_id}"
-                              		onclick="compare('${dto.camp_id}' , '${dto.camp_img}' , '${dto.camp_name}' , '${dto.camp_addr}'); return false;">비교</button>
+                              		onclick="compare('${dto.camp_id}' , '${dto.camp_img}' , '${dto.camp_name}' , '${dto.camp_addr}','${sessionScope.memberid}'); return false;">비교</button>
                         		</td>
                      		</tr>
                      		<tr>

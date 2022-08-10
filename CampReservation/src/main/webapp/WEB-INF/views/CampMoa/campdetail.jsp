@@ -51,7 +51,7 @@ $(document).ready(function () {
 		$("#likeimg").attr("src", "/resources/img/unlike.png");
 		$("#likeimg").attr("onclick", "unlike('${sessionScope.memberid}', ${camp.camp_id})");
 	}
-	});
+});
 	
 function unlike(memberid, campid){
 	$.ajax({
@@ -94,7 +94,16 @@ function like(memberid, campid){
     	}
     });
 }
-
+$(document).ready(function () {
+$(".wordcloud_img")
+.on('load', function() { console.log("image loaded correctly"); })
+.on('error', function() { 
+	$('.wordcloud_img').attr("src","/resources/img/world_cloud_error.png")
+	setTimeout(function(){      
+		$('.review_container').load(location.href+' .review_container');
+	}, 2000);	
+});
+});
 </script>
 	<style>
 		h1{
@@ -261,10 +270,10 @@ function like(memberid, campid){
 		<div style="width: 100%">
 			<div class="heart">
 				<img id="likeimg" style="width: 50px; height: 50px;" src="/resources/Img/unlike.png" onclick="unlike('${sessionScope.memberid}', ${camp.camp_id});">
-				<label for="count">${count }</label>
+				<label for="count">${count}</label>
 			</div>
 			<div class="reservation">
-				<button style="width : 80px; height : 35px;">예약하기</button>
+				<button style="width : 80px; height : 35px;" onclick="location.href='campreservation?camp_id=${camp.camp_id}'">예약하기</button>
 			</div>
 		</div>
 		<div class="notice_container" style="height:300px;">
@@ -294,6 +303,16 @@ function like(memberid, campid){
 							<div class="notice_bottom"></div>
 						</div>
 					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="review" style="width: 100%; height: 400px">
+		<h1 style="margin-left: 20%;">후 기</h1>
+		<div class="review_container" style="text-align: center;">
+			<div class="review_wrap">
+				<div class="review_content">
+					<img class="wordcloud_img"  src="/resources/img/wordcloud/wordcloud_id-${camp.camp_id}.png" style="width :350px; height:350px;">
 				</div>
 			</div>
 		</div>
