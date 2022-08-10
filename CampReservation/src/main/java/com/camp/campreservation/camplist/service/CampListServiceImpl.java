@@ -220,7 +220,6 @@ public class CampListServiceImpl implements CampListService {
         //마지막 페이지를 마지막 페이지 블록과 현재 페이지 블록 번호로 정한다.
         
         model.addAttribute("page",pagemaker);
-		System.out.println("??");
 		return campListMapper.searchCamp(key,pagemaker.getPagenum()*6,pagemaker.getContentnum(), name);
 	}
 
