@@ -1,7 +1,6 @@
 $(function() {    
     $('.header_menu > li').mouseenter(function(){
         let menu_i = $(this).index();
-        console.log(menu_i);
         
         if(menu_i < 4) { 
             $('.menu_pan').css({
@@ -25,13 +24,11 @@ $(function() {
 
 
     $('.menu_pan').mouseenter(function(){
-        console.log("over");
         $('.menu_pan').css({
             display:'block'
         })
     })
     $('.menu_pan').mouseleave(function(){
-        console.log("leave");
         $('.menu_pan').css({
             display:'none'
         })

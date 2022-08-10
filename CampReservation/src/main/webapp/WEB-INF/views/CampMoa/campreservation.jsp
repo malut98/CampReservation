@@ -53,7 +53,7 @@
 		$( '.first_date' ).change( function() {
 			var first_date = $(".first_date").val();
 			var last_date = $(".last_date").val();
-			if($(".last_date").val() != "" &&first_date > last_date){
+			if($(".last_date").val() != "" && first_date > last_date && first_date = last_date){
 				alert("날짜를 다시 선택해주세요");
 				$(".first_date").val("");
 				$(".last_date").val("");

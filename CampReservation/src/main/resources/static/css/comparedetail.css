@@ -99,3 +99,9 @@ table {
 	justify-content: center;
 }
 
+@media screen and (max-width: 768px) {
+	.img_container{
+		flex-direction: column;
+		flex-direction: row;
+	}
+}
