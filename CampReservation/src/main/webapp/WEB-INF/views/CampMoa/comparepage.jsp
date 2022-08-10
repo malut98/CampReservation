@@ -21,7 +21,6 @@
 	type="text/css">
 <script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=lony5bkfmj"></script>
-<script type="text/javascript" src="/resources/js/star.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript"
@@ -89,11 +88,23 @@
 			$(".right_heart > #unlike").show();
 			$(".right_heart > #like").hide();
 		});
+		
+		function reloadDivArea() {
+    		// $('.review_container').load(location.href+' .review_container');
+			//$('#divReloadLayer').load(location.href+' #divReloadLayer');
+			$('.review_container').load(location.href+' .review_container');
+			console.log("rtestset");
+		}
+
+		function reloadDivArea() {
+    		$('.review_wrap').load(location.href+' .review_wrap');
+		}
 	});
 </script>
 
 </head>
 <body>
+<!-- 
 	<div class="header">
 		<div class="section">
 			<div class="logo">
@@ -147,7 +158,8 @@
 			</div>
 		</div>
 	</div>
-
+ -->	
+	<jsp:include page="../header.jsp" flush="true"/>
 	<div class="category_name">
 			<h1 style="margin-left: 20%;">비교하기</h1>
 	</div>
@@ -300,6 +312,16 @@
 	</div>
 	<div class="review" style="width: 100%; height: 400px">
 		<h1 style="margin-left: 20%;">후 기</h1>
+		<div class="review_container">
+			<div class="review_wrap">
+				<div class="review_content">
+					<img class="wordcloud_img" onError="$('.review_container').load(location.href+' .review_container');" src="/resources/img/wordcloud/wordcloud_id-${camp.camp_id}.png" style="width :350px; height:350px;">
+				</div>
+				<div class="review_content">
+					<img class="wordcloud_img" alt="" onError="$('.review_container').load(location.href+' .review_container');" src="/resources/img/wordcloud/wordcloud_id-${camp_2.camp_id}.png" style="width :350px; height:350px;">
+				</div>
+			</div>
+		</div>
 	</div>
 	
 	<div>
@@ -399,6 +421,7 @@
 		      naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i)); // 클릭한 마커 핸들러
 		  }
 		}
+	
 	</script>
 
 </body>
