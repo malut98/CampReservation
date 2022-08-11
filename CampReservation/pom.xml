@@ -110,7 +110,7 @@
 			<artifactId>javaSDK</artifactId>
 			<version>2.2</version>
 		</dependency>
-
+	
 	</dependencies>
 
 	<build>

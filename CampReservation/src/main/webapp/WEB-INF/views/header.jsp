@@ -8,8 +8,8 @@
 </head>
 <body>
 	<%
-	String id = (String) session.getAttribute("memberid");
-	%>
+	String id = (String)session.getAttribute("memberid");
+%>
 	<div class="header">
 		<div class="section">
 			<div class="logo">
@@ -17,24 +17,25 @@
 					style="height: 100px;"></a>
 			</div>
 			<div class="nav-item-search">
-				<form class="form-tag" action="" style="">
-					<img class="search-icon" style="width: 64px; height: 64px;"
-						src="/resources/img/search.svg"> <input class="search-form"
-						type="text" placeholder="통합검색"> <span class="underline"></span>
+				<form class="form-tag" action="/serch" style="">
+					<img class="search-icon" style="width: 64px; height: 64px;" 
+					src="/resources/img/search.svg"> 
+					<input class="search-form" id="keyword" name="keyword" type="text" value="${keyword }"placeholder="통합검색"> 
+					<span class="underline"></span>
 				</form>
 			</div>
 			<div class="nav_wrap">
 				<div class="nav">
 					<ul class="header_menu">
-						<li class="nav-item"><a href="/clist/cpl">캠핑모아</a></li>
+						<li class="nav-item"><a href="/clist/ca">캠핑모아</a></li>
 						<li class="nav-item"><a href="/usedtradelist">중고모아</a></li>
 						<li class="nav-item"><a href="/communitylist">커뮤모아</a></li>
 						<%
-						if (id != null) {
+							if(id!=null){
 						%>
 						<li class="nav-item"><a href="/mypage">마이페이지</a></li>
 						<%
-						}
+							}
 						%>
 					</ul>
 				</div>
@@ -43,39 +44,39 @@
 				<div class="camp-moa">
 					<div class="menu_category">
 						<div class="category">
-							<a href=""> 베스트 모아</a>
+							<a href="/clist/best"> 베스트 모아</a>
 						</div>
 						<div class="category">
 							<a href=""> 새로움 모아</a>
 						</div>
 						<div class="category">
-							<a href=""> 캠핑장 모아</a>
+							<a href="/clist/cpl"> 캠핑장 모아</a>
 						</div>
 						<div class="category">
-							<a href=""> 카라반 모아</a>
+							<a href="/clist/cvl"> 카라반 모아</a>
 						</div>
 						<div class="category">
-							<a href=""> 글램핑 모아</a>
+							<a href="/clist/gl"> 글램핑 모아</a>
 						</div>
 						<div class="category">
-							<a href=""> 반려견 모아</a>
+							<a href="/clist/pet"> 반려견 모아</a>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="profile">
 				<ul>
-					<%
-					if (id == null) {
-					%>
+				<%
+				if(id==null){
+				%>
 					<li><a id="login" href="/login">로그인</a></li>
-					<%
-					} else {
-					%>
+				<%			
+					}else{
+				%>		
 					<li><a id="logout" href="/logout">로그아웃</a></li>
-					<%
+				<%		
 					}
-					%>
+				%>
 				</ul>
 			</div>
 		</div>
