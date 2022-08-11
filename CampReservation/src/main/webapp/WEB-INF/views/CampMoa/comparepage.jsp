@@ -445,6 +445,7 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="../Footer2.jsp" flush="true"/>
 	<script>
 	$(document).ready(function (){
 		initMap();
