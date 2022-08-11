@@ -12,10 +12,10 @@ public interface IndexMapper {
 	@Select("SELECT *  FROM CAMP WHERE CAMP_IMG IS NOT NULL LIMIT 8;" )
 	public List<CampDBDto> campList();
 	
-	@Select("SELECT * FROM CAMP WHERE CAMP_NAME LIKE CONCAT('%',#{keyword},'%') LIMIT #{pagenum}, #{contentnum}")
+	@Select("SELECT * FROM CAMP WHERE CAMP_NAME LIKE '%${keyword}%' LIMIT #{pagenum}, #{contentnum}")
 	List<CampDBDto> serchList(String keyword,int pagenum, int contentnum);
 
-	@Select("SELECT COUNT(*) FROM CAMP WHERE CAMP_NAME LIKE CONCAT('%',#{keyword},'%') ")
+	@Select("SELECT COUNT(*) FROM CAMP WHERE CAMP_NAME LIKE '%${keyword}%' ")
 	public int countArticle(String keyword);
 	
 	

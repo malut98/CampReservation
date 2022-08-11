@@ -9,9 +9,7 @@ import com.camp.campreservation.campdb.dto.CampDBDto;
 public interface IndexService {
 	public List<CampDBDto> selectList();
 
-	
-	public List<CampDBDto> serchList(Model model,String keword,String
-	  pagenum,String contentnum);
-	 
+	public List<CampDBDto> serchList(Model model, String keword, String pagenum, String contentnum);
+
 	public int countArticle(String keyword);
 }

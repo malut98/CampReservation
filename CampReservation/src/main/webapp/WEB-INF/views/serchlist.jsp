@@ -26,34 +26,13 @@
 <script src="/resources/js/category.js"></script>
 <script type="text/javascript" src="/resources/js/compare.js"></script>
 <script type="text/javascript">
-function pag(a) {
-	var pagenum=a;
-    $.ajax({
-    	type: 'post',	
-    	url: 'pagin',
-    	data: {"pagenum":pagenum,"name":'${tag}'},
-    	error: function (request, error) {
-    		alert("fail");
-    		console.log("code:"+request.status + "\n" + "message:"+request.responseText+ "\n" + "error:"+error);
-    	},
-    	success: function (result) {
-    		var html = $('<div>').html(result);
-    		var contents = html.find("div#indexListAjax").html();
-    		$(".camplist_Top").html(contents);
-    		if(pagenum>=${page.getEndPage()+1} || ${page.getStartPage()-1}==0){
-        		var contents = html.find("div#indexListAjax2").html();
-    			$(".camplist_bottom").html(contents);
-    		}
-    	}
-    });
-}
 function spag(a) {
-	let key=$(".key").val();
+	let key='${keyword}';
 	var pagenum=a;
     $.ajax({
     	type: 'post',	
-    	url: 'Campsearch',
-    	data: {"key":key,"pagenum":pagenum,"name":'${tag}'},
+    	url: 'search',
+    	data: {"key":key,"pagenum":pagenum},
     	error: function (request, error) {
     		alert("fail");
     		console.log("code:"+request.status + "\n" + "message:"+request.responseText+ "\n" + "error:"+error);
@@ -66,25 +45,6 @@ function spag(a) {
         		var contents = html.find("div#searchAjax").html();
     			$(".camplist_bottom").html(contents);
     		}
-    	}
-    });
-}
-function search() {
-	let key=$(".key").val();
-    $.ajax({
-    	type: 'post',	
-    	url: 'Campsearch',
-    	data: {"key":key,"name":'${tag}'},
-    	error: function (request, error) {
-    		alert("fail");
-    		console.log("code:"+request.status + "\n" + "message:"+request.responseText+ "\n" + "error:"+error);
-    	},
-    	success: function (result) {
-    		var html = $('<div>').html(result);
-    		var contents = html.find("div#indexListAjax").html();
-    		$(".camplist_Top").html(contents);
-        	var contents = html.find("div#searchAjax").html();
-    		$(".camplist_bottom").html(contents);
     	}
     });
 }
@@ -213,23 +173,19 @@ function search() {
      	 </c:forEach>
       </div>
    </div>
-   		<div style="text-align: center;">
-			<input class="key" type="text" placeholder="검색어를 입력해주세요">
-			<input class="se" type="button" value="검색" onclick="search();">
-		</div>
         <div class="camplist_bottom">
       	<div class="pagingDiv">
          	<c:if test="${page.prev}">
-            	<div onclick="pag(${page.getStartPage()-1});">&laquo;</div>
+            	<div onclick="spag(${page.getStartPage()-1});">&laquo;</div>
          	</c:if>
          	<c:forEach begin="${page.getStartPage()}" end="${page.getEndPage()}" var="idx">
-            	<div onclick="pag(${idx});">${idx}</div>
+            	<div onclick="spag(${idx});">${idx}</div>
          	</c:forEach>
          	<c:if test="${page.next}">
-            	<div onclick="pag(${page.getEndPage()+1});">&raquo;</div>
+            	<div onclick="spag(${page.getEndPage()+1});">&raquo;</div>
          	</c:if>
-      </div>
-      </div>
+      	</div>
+      	</div>
 
      <div class="compaer-container" >
      	<div class="compare-inner">

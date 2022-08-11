@@ -184,6 +184,7 @@ public class CampListServiceImpl implements CampListService {
 		int cpagenum = Integer.parseInt(pagenum);
 		int ccontentnum = Integer.parseInt(contentnum);
 		pagemaker.setTotalcount(campListMapper.searchAllCount(key)); // mapper 전체 게시글 개수를 지정한다
+		System.out.println(campListMapper.searchAllCount(key));
         pagemaker.setPagenum(cpagenum-1);   // 현재 페이지를 페이지 객체에 지정한다 -1 을 해야 쿼리에서 사용할수 있다
         pagemaker.setContentnum(ccontentnum); // 한 페이지에 몇개씩 게시글을 보여줄지 지정한다.
         pagemaker.setCurrentblock(cpagenum); // 현재 페이지 블록이 몇번인지 현재 페이지 번호를 통해서 지정한다.
