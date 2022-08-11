@@ -19,16 +19,19 @@ public interface CommunityMapper {
 	
 	
 	
-	@Select("SELECT * FROM COMMUNITY ORDER BY COM_NUM DESC LIMIT #{pagenum}, #{contentnum}")
+	@Select("SELECT * FROM COMMUNITY ORDER BY COM_CATE ASC ,COM_NUM DESC LIMIT #{pagenum}, #{contentnum}")
 	public List<CommunityDto>testlist(int pagenum, int contentnum);
 	
-	@Select("SELECT *  FROM COMMUNITY ORDER BY COM_NUM DESC " )
-	public List<CommunityDto> communitylist();
+	@Select("SELECT *  FROM COMMUNITY WHERE COM_CATE LIKE #{dto.com_cate} ORDER BY COM_NUM DESC LIMIT #{pagenum}, #{contentnum} " )
+	public List<CommunityDto> communitylist(CommunityDto dto, int pagenum, int contentnum);
 	
 	@Select("SELECT COUNT(*) FROM COMMUNITY")
 	public int selectBoardCount();
 	
-	@Insert("INSERT INTO COMMUNITY VALUES(NULL, #{com_title}, NOW(), #{com_content}, DEFAULT,#{com_image}, #{member_id})")
+	@Select("SELECT COUNT(*) FROM COMMUNITY WHERE COM_CATE LIKE #{com_cate}")
+	public int selectmenuCount(CommunityDto dto);
+	
+	@Insert("INSERT INTO COMMUNITY VALUES(NULL,#{com_cate}, #{com_title}, NOW(), #{com_content}, DEFAULT,#{com_image}, #{member_id})")
 	public int communitywrite(CommunityDto dto);
 	
 	@Select("SELECT * FROM COMMUNITY WHERE COM_NUM = #{com_num}")

@@ -49,13 +49,12 @@ function imagePreview(event){
 			</div>
 		</div>
 	</div>
-     <form action="communitywriteres" method="post" enctype="multipart/form-data">
+     <form action="adminwriteres" method="post" enctype="multipart/form-data">
      <input type="button" id="menu" value="목록" onclick="location.href='communitylist'">
      <select class="selectboard" name="com_cate">
-     <option value="자유" class="selectedboard">자유게시판</option>
-     <option value="환불" class="selectedboard">환불게시판</option>
-     <option value="번개" class="selectedboard">번개게시판</option>
-     <option value="불편사항" class="selectedboard">불편사항게시판</option>
+     <option value="공지" class="selectedboard">공지사항</option>
+     <option value="이벤트" class="selectedboard">이벤트</option>
+   
      </select>
      <div class="writeform">
      <input type="text" name="com_title" id="title"><br>

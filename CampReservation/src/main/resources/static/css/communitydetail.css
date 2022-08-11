@@ -28,7 +28,7 @@ body{
 	height : 30px;
 	margin: 0px;
 	position : relative;
-	left : 30%;
+	left : 25%;
 }
 #update{
 	background-color: rgba(26, 188, 156);
@@ -56,9 +56,11 @@ body{
 	background-color : white;
 	color : black;
 	
-	position : relative;
-	top : 5px;
-	left :49.9%;
+	position :absolute;
+	top : 140px;
+	left :50%;
+	
+	
 }
 
 #memberID{
@@ -66,7 +68,7 @@ body{
 	color : black;
 	position : relative;
 	top : 40px;
-	left : 40.3%;
+	left : 50%;
 }
 
 #content{

@@ -26,11 +26,11 @@
 	href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 <script src="/resources/js/category.js"></script>
 <script>
-	window.onload=function(){
-		var mesage= "${mesage}";
-		if(!mesage){
+	window.onload = function() {
+		var mesage = "${mesage}";
+		if (!mesage) {
 			console.log(mesage);
-		}else{
+		} else {
 			alert(mesage);
 		}
 	}
@@ -54,18 +54,18 @@
 			]
 		});
 	});
-	function page(idx){
+	function page(idx) {
 		var pagenum = idx;
 		var contentnum = 10;
-		location.href="${pageContext.request.contextPath}/usedtradelist?pagenum="+pagenum+"&contentnum="+contentnum
+		location.href = "${pageContext.request.contextPath}/usedtradelist?pagenum="
+				+ pagenum + "&contentnum=" + contentnum
 	}
-
 </script>
 </head>
 <body>
-<%
-	String id = (String)session.getAttribute("memberid");
-%>
+	<%
+	String id = (String) session.getAttribute("memberid");
+	%>
 	<div class="header">
 		<div class="section">
 			<div class="logo">
@@ -86,13 +86,13 @@
 						<li class="nav-item"><a href="/usedtradelist">중고모아</a></li>
 						<li class="nav-item"><a href="/communitylist">커뮤모아</a></li>
 						<%
-							if(id!=null){
+						if (id != null) {
 						%>
 						<li class="nav-item"><a href="/mypage">마이페이지</a></li>
 						<%
-							}
+						}
 						%>
-						
+
 					</ul>
 				</div>
 			</div>
@@ -123,16 +123,16 @@
 			<div class="profile">
 				<ul>
 					<%
-				if(id==null){
-				%>
+					if (id == null) {
+					%>
 					<li><a id="login" href="/login">로그인</a></li>
-				<%			
-					}else{
-				%>		
+					<%
+					} else {
+					%>
 					<li><a id="logout" href="/logout">로그아웃</a></li>
-				<%		
+					<%
 					}
-				%>
+					%>
 				</ul>
 			</div>
 		</div>
@@ -141,7 +141,45 @@
 
 
 	<div class="body">
-		<p class="title">중고거래</p>
+		<div class="martitle">
+			<p class="title">중고거래</p>
+		</div>
+		<div class="marleft">
+			<div class="menu">
+				<div class="marcategory">
+					<div class="marmenu">
+						<a href="tentTarp?mar_cate=텐트·타프">텐트·타프</a>
+					</div>
+					<div class="marmenu">
+						<a href="mat?mar_cate=침낭·매트">침낭·매트</a>
+					</div>
+					<div class="marmenu">
+						<a href="stove?mar_cate=화로·BBQ">화로·BBQ</a>
+					</div>
+					<div class="marmenu">
+						<a href="sean?mar_cate=계절용품">계절용품</a>
+					</div>
+					<div class="marmenu">
+						<a href="cooking?mar_cate=요리도구">요리도구</a>
+					</div>
+					<div class="marmenu">
+						<a href="accessorie?mar_cate=액세서리">액세서리</a>
+					</div>
+					<div class="marmenu">
+						<a href="storage?mar_cate=스토리지">스토리지</a>
+					</div>
+					<div class="marmenu">
+						<a href="furniture?mar_cate=퍼니처">퍼니처</a>
+					</div>
+					<div class="marmenu">
+						<a href="lighting?mar_cate=라이팅">라이팅</a>
+					</div>
+					<div class="marmenu">
+						<a href="RV?mar_cate=RV용품">RV용품</a>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="usedtradeboard">
 			<c:choose>
 				<c:when test="${empty uList }">
@@ -152,7 +190,8 @@
 						<div class="usedtradelist" style="cursor: pointer;"
 							onclick="location.href='usedtradedetail?mar_num=${dto.mar_num}'">
 							<div class="tradeimage">
-								<img src="/resources/img/usedtrade/${dto.mar_image }" class= "Thumbnail">
+								<img src="/resources/img/usedtrade/${dto.mar_image }"
+									class="Thumbnail">
 							</div>
 							<div class="tradeboard">
 								<div class="tradetitle">제목:${dto.mar_title}</div>
@@ -169,15 +208,16 @@
 
 		</div>
 		<div class="usedtradesearch">
-		<input type="button" id="usedtradewrite" value="글 작성" onclick="location.href='usedtradewrite'">
+			<input type="button" id="usedtradewrite" value="글 작성"
+				onclick="location.href='usedtradewrite'">
 			<form method="post" action="usedtradesearch">
-			<select name="searchOption" id="searchoption">
-			<option value="mar_title" id="st" name="mar_title">제목</option>
-			<option value="member_id" id="sw" name="member_id" >작성자</option>
-			<option value="mar_content" id="sc" name="mar_content" >내용</option>
-			</select>
-			<input type="text" id="searchbox" name="keyword" placeholder="검색어를 입력해주세요">
-			<input type="submit" value="검색" id="searchbutton">
+				<select name="searchOption" id="searchoption">
+					<option value="mar_title" id="st" name="mar_title">제목</option>
+					<option value="member_id" id="sw" name="member_id">작성자</option>
+					<option value="mar_content" id="sc" name="mar_content">내용</option>
+				</select> <input type="text" id="searchbox" name="keyword"
+					placeholder="검색어를 입력해주세요"> <input type="submit" value="검색"
+					id="searchbutton">
 			</form>
 		</div>
 

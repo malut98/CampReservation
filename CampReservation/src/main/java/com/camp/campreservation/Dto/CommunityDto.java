@@ -5,6 +5,7 @@ import java.util.Date;
 public class CommunityDto  {
 
 	private int com_num;
+	private String com_cate;
 	private String com_title;
 	private Date com_date;
 	private String com_content;
@@ -14,10 +15,11 @@ public class CommunityDto  {
 	public CommunityDto() {
 		super();
 	}
-	public CommunityDto(int com_num, String com_title, Date com_date, String com_content, int com_hit,
+	public CommunityDto(int com_num, String com_cate, String com_title, Date com_date, String com_content, int com_hit,
 			String member_id, String com_image) {
 		super();
 		this.com_num = com_num;
+		this.com_cate = com_cate;
 		this.com_title = com_title;
 		this.com_date = com_date;
 		this.com_content = com_content;
@@ -30,6 +32,12 @@ public class CommunityDto  {
 	}
 	public void setCom_num(int com_num) {
 		this.com_num = com_num;
+	}
+	public String getCom_cate() {
+		return com_cate;
+	}
+	public void setCom_cate(String com_cate) {
+		this.com_cate = com_cate;
 	}
 	public String getCom_title() {
 		return com_title;
@@ -67,7 +75,7 @@ public class CommunityDto  {
 	public void setCom_image(String com_image) {
 		this.com_image = com_image;
 	}
-
+	
 
 	
 }

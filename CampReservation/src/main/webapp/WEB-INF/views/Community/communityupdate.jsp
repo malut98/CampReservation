@@ -9,7 +9,6 @@
 <link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<link rel="StyleSheet" href="/resources/css/star.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/banner.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/notice.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/Category.css"
@@ -136,8 +135,8 @@ function imagePreview(event){
 	</div>
 	<textarea id="content" name="com_content" cols="40" rows="60" >${dto.com_content}</textarea>
 	</div>
-	<input type="submit" value="저장">
-	<input type="button" value="취소" onclick="location.href='communitylist'">
+	<input type="submit" value="저장" class="save">
+	<input type="button" value="취소" onclick="location.href='communitylist'" class="cancel">
 	</form>
 	</div>
 	

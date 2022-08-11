@@ -51,7 +51,7 @@ body{
 	color: black;
 }
 .paging{
-	background-color: blue;
+	
 	
 	position: relative;
 	top : 40px;
@@ -85,6 +85,36 @@ body{
 }
 #contentnum{
 	position: relative;
-	top : -20px;
+	top : 15px;
+	left: 60%;
+}
+.adminwrite{
+	display: none;
+	background-color: skyblue;
+	position: relative;
 	left: 35%;
+	top: 10px;
+	border: 1px solid white;
+	border-radius : 6px;
+	cursor: pointer;
+	
+}
+.communitytop{
+	position: relative;
+	left: 45%;
+	top: -40px;
+	font-size: 30px;
+}
+.communityleft{
+	width: 15%;
+	heigth: 80%;
+	margin: 0px;
+	border: 1px solid white;
+	display: inline-block;
+}
+.communitycategory:hover{
+	text-decoration: underline;
+}
+.communitymenu{
+	text-align: center;
 }

@@ -135,7 +135,7 @@
 	 <div class="usedtradeboard">
 	 <div class="boardimage">
 	 <div id="image_container">
-	 <img src="/resources/Img/usedtrade/${dto.mar_image }">
+	 <img src="/resources/Img/usedtrade/${dto.mar_image }" class="boardimage">
 	 </div>
 	 <label class="inputfilebutton" for="uploadfile">
 	 사진등록

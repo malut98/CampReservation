@@ -12,12 +12,14 @@ public class UsedtradeDto {
 	private int mar_price;
 	private int mar_hit;
 	private String mar_image;
+	private String mar_cate;
 	private String member_id;
 	public UsedtradeDto() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
-	public UsedtradeDto(int mar_num, String mar_title, String mar_name, Date mar_date, String mar_content, int mar_price,
-			int mar_hit, String mar_image, String member_id) {
+	public UsedtradeDto(int mar_num, String mar_title, String mar_name, Date mar_date, String mar_content,
+			int mar_price, int mar_hit, String mar_image, String member_id, String mar_cate) {
 		super();
 		this.mar_num = mar_num;
 		this.mar_title = mar_title;
@@ -28,6 +30,7 @@ public class UsedtradeDto {
 		this.mar_hit = mar_hit;
 		this.mar_image = mar_image;
 		this.member_id = member_id;
+		this.mar_cate = mar_cate;
 	}
 	public int getMar_num() {
 		return mar_num;
@@ -83,5 +86,12 @@ public class UsedtradeDto {
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
+	public String getMar_cate() {
+		return mar_cate;
+	}
+	public void setMar_cate(String mar_cate) {
+		this.mar_cate = mar_cate;
+	}
+	
 	
 }

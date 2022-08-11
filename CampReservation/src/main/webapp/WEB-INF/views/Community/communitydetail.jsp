@@ -135,14 +135,17 @@ function page(idx){
 	</div>
 	
 	<div class="board">
+	<div class="boardcenter">
 	<div class="boardbutton">
 	<input type="button" id="list" value="목록" onclick="location.href='communitylist'">
 	<input type="button" id="update" value="수정" onclick="location.href='communityupdate?com_num=${dto.com_num}'">
 	<input type="button" id="delete" value="삭제" onclick="location.href='communitydelete?com_num=${dto.com_num}&com_image=${dto.com_image}'">
 	</div>
+	<div class="memberinfo">
+	
 	<input type="text" id="title" name="com_title" value="${dto.com_title}" readonly="readonly">
 	<input type="text" id="memberID" name="member_id" value="${dto.member_id}" readonly="readonly"><br>
-	
+	</div>
 	<div  id="content" >
 	<c:if test="${!empty dto.com_image}">
 	<c:forTokens var="token" items="${dto.com_image}" delims="." varStatus="status">   
@@ -164,7 +167,7 @@ function page(idx){
 	<input type="text" id="commentContent" name="cot_content">
 	<input type="submit" id="commentwrite" value="작성">
 	</form>
-	
+	</div>
 	<div class="commentListbox">
 	<c:choose>
 	<c:when test="${empty cot }">

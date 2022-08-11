@@ -19,8 +19,14 @@ public interface UsedtradeMapper {
 	
 	@Select("SELECT COUNT(*) FROM MARKET")
 	public int CountUsedTradelist();
+	
+	@Select("SELECT * FROM MARKET WHERE MAR_CATE LIKE #{dto.mar_cate} ORDER BY MAR_NUM DESC LIMIT #{pagenum}, #{contentnum}")
+	public List<UsedtradeDto>usedTradeboardlist(UsedtradeDto dto, int pagenum, int contentnum);
+	
+	@Select("SELECT COUNT(*) FROM MARKET WHERE MAR_CATE LIKE #{mar_cate}")
+	public int CountUsedTradeboard(UsedtradeDto dto);
 
-	@Insert("INSERT INTO MARKET VALUES(NULL, #{mar_title}, #{mar_name}, NOW(),#{mar_content},#{mar_price}, DEFAULT,#{mar_image},#{member_id})")
+	@Insert("INSERT INTO MARKET VALUES(NULL, #{mar_title}, #{mar_name}, NOW(),#{mar_content},#{mar_price}, DEFAULT,#{mar_image},#{mar_cate},#{member_id})")
 	public int usedtradewrite(UsedtradeDto dto);
 	
 	@Select("SELECT * FROM MARKET WHERE MAR_NUM = #{mar_num}")

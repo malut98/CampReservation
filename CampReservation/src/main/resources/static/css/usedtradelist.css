@@ -76,3 +76,26 @@ body{
 	flex-wrap: wrap;
 	
 }
+.menu{
+	width: 10%;
+	height: 30%;
+	padding: 0px;
+	position: relative;
+	left: -20%;
+	border: 1px solid white;
+	margin: 0px;
+	display: inline-block;
+	
+	
+}
+.marcategory{
+	text-align: center;
+}
+.marmenu:hover{
+	text-decoration: underline;
+}
+.marleft{
+	width: 60%;
+	margin: 0px;
+	display: inline-block;
+}

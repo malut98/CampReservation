@@ -39,3 +39,14 @@ body{
 #uc{
 	color: black;
 }
+
+.Object{
+	color: black;
+}
+.ObjectOption{
+	color: black;
+}
+#image_container{
+	width: 142px;
+	hieght: 158px;
+}

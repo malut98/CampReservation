@@ -124,6 +124,21 @@
 	 </div>
 	 </div>
 	 <div class="usedtradewrite">
+	 <div class="TradeOption">
+	 <select class="ObjectOption" name="mar_cate">
+	 <option value="텐트·타프" class="Object" >텐트·타프</option>
+	 <option value="침낭·매트" class="Object" >침낭·매트</option>
+	 <option value="화로·BBQ" class="Object" >화로·BBQ</option>
+	 <option value="계절용품" class="Object" >계절용품</option>
+	 <option value="요리도구" class="Object" >요리도구</option>
+	 <option value="액세서리" class="Object" >액세서리</option>
+	 <option value="스토리지" class="Object" >스토리지</option>
+	 <option value="퍼니처" class="Object" >퍼니처</option>
+	 <option value="라이팅" class="Object">라이팅</option>
+	 <option value="RV용품" class="Object">RV용품</option>
+	 </select>
+	 </div>
+	 
 	 	<span>제목</span> <input type="text" name="mar_title" id="ut"><br>
 	 	<span>작성자</span> <input type="text" name="member_id" readonly="readonly" id="member" value="<%=session.getAttribute("memberid")%>"><br>
 	 	<span>연락처</span> <input type="text" name="mar_name" id="un" readonly="readonly" value="${dto.memberphone }"><br>

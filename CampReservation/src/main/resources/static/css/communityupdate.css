@@ -126,6 +126,7 @@ body{
 	position:relative;
 	top: 10px;
 	left: 60%;
+	cursor: pointer;
 }
 
 #image{
@@ -137,8 +138,34 @@ body{
 	border: 1px solid white;
 	border-radius: 6px;
 	cursor: pointer;
+	position: relative;
+	top: 50px;
+	left: 45%;
 }
 #comimage{
 	width:142px;
 	height: 158px;
+	position: relative;
+	top: 55px;
+	left: 45%;
+}
+.save{
+	background-color: skyblue;
+	color: white;
+	border: 1px solid white;
+	border-radius: 6px;
+	cursor: pointer;
+	position: relative;
+	top: 60px;
+	left: 80%;
+}
+.cancel{
+	background-color: skyblue;
+	color: white;
+	border: 1px solid white;
+	border-radius: 6px;
+	cursor: pointer;
+	position: relative;
+	top: 60px;
+	left: 80%;
 }

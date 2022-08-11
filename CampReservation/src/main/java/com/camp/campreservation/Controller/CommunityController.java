@@ -47,6 +47,45 @@ public class CommunityController {
 		
 	}
 	
+	@GetMapping("/noticelist")
+	public String noticeList(Model model, @RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "5") String contentnum, CommunityDto dto) {
+		cs.boardlist(model, pagenum, contentnum, dto);
+		model.addAttribute("board","공지");
+		return "Community/communitylist";
+	}
+	
+	@GetMapping("/eventlist")
+	public String eventList(Model model, @RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "5") String contentnum, CommunityDto dto) {
+		cs.boardlist(model, pagenum, contentnum, dto);
+		model.addAttribute("board","이벤트");
+		return "Community/communitylist";
+	}
+	@GetMapping("/freelist")
+	public String freeList(Model model, @RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "5") String contentnum, CommunityDto dto) {
+		cs.boardlist(model, pagenum, contentnum, dto);
+		model.addAttribute("board", "잡담");
+		return "Community/communitylist";
+	}
+	@GetMapping("/refund")
+	public String refund(Model model, @RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "5") String contentnum, CommunityDto dto) {
+		cs.boardlist(model, pagenum, contentnum, dto);
+		model.addAttribute("board","환불");
+		return "Community/communitylist";
+	}
+	@GetMapping("/inconvenient")
+	public String inconvenient(Model model, @RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "5") String contentnum, CommunityDto dto) {
+		cs.boardlist(model, pagenum, contentnum, dto);
+		model.addAttribute("board","불편사항");
+		return "Community/communitylist";
+	}
+	
+	@GetMapping("/blinddate")
+	public String blinddate(Model model, @RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "5") String contentnum, CommunityDto dto) {
+		cs.boardlist(model, pagenum, contentnum, dto);
+		model.addAttribute("board","번개");
+		return "Community/communitylist";
+	}
+	
 	@GetMapping("/communitywrite")
 	public String communityWrite(HttpSession session, RedirectAttributes redirect, Model model,String keyword, String searchoption) {
 		
@@ -54,7 +93,7 @@ public class CommunityController {
 			redirect.addFlashAttribute("mesage","로그인을 해주세요");
 			
 				
-				return "redirect:Community/communitylist";
+				return "redirect:communitylist";
 		
 		
 		}else {
@@ -76,7 +115,7 @@ public class CommunityController {
 			dto.setCom_image(uuid+"_"+file.getOriginalFilename());
 			
 		}
-		String path = "C:\\Users\\tmdgh\\git\\CampReservation\\CampReservation\\src\\main\\resources\\static\\Img\\communityImg";
+		String path = "C:\\Users\\tmdgh\\git\\CampReservation\\CampReservation\\CampReservation\\src\\main\\resources\\static\\Img\\communityimg";
 		System.out.println(path);
 		String filePath = path +"\\"+uuid+"_"+file.getOriginalFilename();
 		File dest = new File(filePath);
@@ -85,20 +124,60 @@ public class CommunityController {
 		if(res>0) {
 			try {
 				if(filename.isEmpty()) {
-					return "redirect:Community/communitylist";
+					return "redirect:communitylist";
 				}
 				
 				file.transferTo(dest);
 			} catch (IllegalStateException | IOException e) {
 				e.printStackTrace();
 			}
-			return "redirect:Community/communitylist";
+			return "redirect:communitylist";
 		}else {
-			return "redirect:Community/communitywrite";
+			return "redirect:communitywrite";
 		}
+		
+		}
+	@GetMapping("adminwrite")
+	public String adminwrite(HttpSession session, Model model) {
+		String memberid = (String)session.getAttribute("memberid");
+		CommunityDto dto = new CommunityDto();
+		dto.setMember_id(memberid);
+		model.addAttribute("dto", dto);
+		return "Community/adminwrite";
 		
 		
 	}
+	
+	@PostMapping("adminwriteres")
+	public String adminWriteRes(@RequestParam("fileimage") MultipartFile file,CommunityDto dto) {
+		String filename= file.getOriginalFilename();
+		UUID uuid = UUID.randomUUID();
+		if(!filename.isEmpty()) {
+			dto.setCom_image(uuid+"_"+file.getOriginalFilename());
+			
+		}
+		String path = "C:\\Users\\tmdgh\\git\\CampReservation\\CampReservation\\CampReservation\\src\\main\\resources\\static\\Img\\communityimg";
+		System.out.println(path);
+		String filePath = path +"\\"+uuid+"_"+file.getOriginalFilename();
+		File dest = new File(filePath);
+		int res = cs.communitywrite(dto);
+		
+		if(res>0) {
+			try {
+				if(filename.isEmpty()) {
+					return "redirect:communitylist";
+				}
+				
+				file.transferTo(dest);
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}
+			return "redirect:communitylist";
+		}else {
+			return "redirect:adminwrite";
+		}
+		
+		}
 	
 	@GetMapping("/communitydetail")
 	public String communitydetail(CommunityDto dto, Model model,@RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "5") String contentnum, RedirectAttributes redirect,HttpSession session) {
@@ -119,13 +198,13 @@ public class CommunityController {
 				comments.commentList(model, dto, pagenum, contentnum);
 				model.addAttribute("mesage", "작성자");
 				
-				return "communitydetail";
+				return "Community/communitydetail";
 			}else if(session.getAttribute("memberid").equals("admin")) {
 				cs.communityhit(dto);
 				model.addAttribute("dto", cs.communitydetail(dto));
 				comments.commentList(model, dto, pagenum, contentnum);
 				model.addAttribute("mesage","관리자");
-				return "communitydetail";
+				return "Community/communitydetail";
 			}else if(session.getAttribute("memberid")==null) {
 				redirect.addFlashAttribute("mesage","로그인해주세요");
 				return "redirect:communitylist";
@@ -134,7 +213,7 @@ public class CommunityController {
 				cs.communityhit(dto);
 				model.addAttribute("dto", cs.communitydetail(dto));
 				comments.commentList(model, dto, pagenum, contentnum);
-				return "communitydetail";
+				return "Community/communitydetail";
 			}
 		} catch (Exception e) {
 			if(session.getAttribute("memberid")==null) {
@@ -161,16 +240,17 @@ public class CommunityController {
 		System.out.println(searchOption);
 		System.out.println(keyword);
 	
-		return "communitysearch";
+		return "Community/communitysearch";
 	}
 	
 	@GetMapping("communitydelete")
 	public String communitydelete(CommunityDto dto) {
 		System.out.println(dto.getCom_num());
+		
 		int res = cs.communitydelete(dto);
 		int res2 = comments.commentdelete(dto);
 		
-		String path = "C:\\Users\\tmdgh\\git\\CampReservation\\CampReservation\\src\\main\\resources\\static\\Img\\communityImg";
+		String path = "C:\\Users\\tmdgh\\git\\CampReservation\\CampReservation\\CampReservation\\src\\main\\resources\\static\\Img\\communityimg";
 		String filePath = path +"\\"+dto.getCom_image();
 		
 		File dest = new File(filePath);
@@ -186,7 +266,7 @@ public class CommunityController {
 	@GetMapping("communityupdate")
 	public String communityupdate(CommunityDto dto, Model model) {
 		model.addAttribute("dto", cs.communitydetail(dto));
-		return "communityupdate";
+		return "Community/communityupdate";
 	}
 	@PostMapping("communityupdateres")
 	public String communityupdateres(CommunityDto dto, Model model,@RequestParam("fileimage") MultipartFile file) throws IllegalStateException, IOException {
