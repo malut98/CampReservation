@@ -60,10 +60,10 @@
 					style="height: 100px;"></a>
 			</div>
 			<div class="nav-item-search">
-				<form class="form-tag" action="" style="">
+				<form class="form-tag" action="/serch" style="">
 					<img class="search-icon" style="width: 64px; height: 64px;" 
 					src="/resources/img/search.svg"> 
-					<input class="search-form" type="text" placeholder="통합검색"> 
+					<input class="search-form" id="keyword" name="keyword" type="text" value="${keyword }"placeholder="통합검색"> 
 					<span class="underline"></span>
 				</form>
 			</div>
