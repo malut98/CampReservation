@@ -24,10 +24,10 @@ public class CommentController {
 		int res = cs.commentwrite(comment);
 		
 		if(res>0) {
-			return "redirect:Community/communitydetail?com_num="+comment.getCom_num();
+			return "redirect:communitydetail?com_num="+comment.getCom_num();
 		}else {
 			
-			return "redirect:Community/communitydetail?com_num="+comment.getCom_num();
+			return "redirect:communitydetail?com_num="+comment.getCom_num();
 			
 		}
 		
@@ -39,9 +39,9 @@ public class CommentController {
 		
 		int res =cs.onlycommentdelete(comment);
 		if(res>0) {
-			return "redirect:Community/communitydetail?com_num="+comment.getCom_num();
+			return "redirect:communitydetail?com_num="+comment.getCom_num();
 		}else {
-		return "redirect:Community/communitydetail?com_num="+comment.getCom_num();
+		return "redirect:communitydetail?com_num="+comment.getCom_num();
 	}
 	}
 	

@@ -2,18 +2,29 @@
 
 #ut{
 	color: black;
+	position: relative;
+	left: 33%;
+	
 }
 #member{
 	color: black;
+	position: relative;
+	left: 32.1%;
 }
 #un{
 	color: black;
+	position: relative;
+	left: 32.1%;
 }
 #up{
 	color: black;
+	position: relative;
+	left: 33%;
 }
 #uc{
 	color: black;
+	position: relative;
+	left: 33%;
 }
 body{
 	background-color: black;
@@ -31,18 +42,28 @@ body{
 }
 .inputfilebutton{
 	cursor:pointer;
-	
 	background-color:skyblue;
 	border: 1px solid white;
 	border-radius: 6px;
+	position: relative;
+	position: relative;
+	left: 35%;
 }
 #boardok{
 	cursor: pointer;
 	background-color:skyblue;
 	border: 1px solid white;
 	border-radius: 6px;
+	position: relative;
+	left: 58%;
 }
 .boardimage{
 	width: 142px;
 	hieght: 158px;
+	position: relative;
+	left: 35%;
+}
+.detailcategory{
+	position: relative;
+	left: 37%;
 }

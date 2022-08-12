@@ -32,12 +32,20 @@ public class UsedtradeController {
 		us.usedtradelist(model, pagenum, contentnum);
 		return "Used_community/usedtradelist";
 	}
+	
+	@GetMapping("selectusedlist")
+	public String selectusedList(Model model, UsedtradeDto dto, @RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "10") String contentnum) {
+		us.usedtradeboardlist(dto, model, pagenum, contentnum);
+		model.addAttribute("board",dto.getMar_cate());
+		return "Used_community/usedtradelist";
+	}
 
 	@GetMapping("tentTarp")
 	public String tentTarp(Model model, UsedtradeDto dto, @RequestParam(defaultValue = "1") String pagenum,
 			@RequestParam(defaultValue = "10") String contentnum) {
-
+		
 		us.usedtradeboardlist(dto, model, pagenum, contentnum);
+		model.addAttribute("board",dto.getMar_cate());
 		return "Used_community/usedtradelist";
 	}
 
@@ -46,6 +54,7 @@ public class UsedtradeController {
 			@RequestParam(defaultValue = "10") String contentnum) {
 
 		us.usedtradeboardlist(dto, model, pagenum, contentnum);
+		model.addAttribute("board",dto.getMar_cate());
 		return "Used_community/usedtradelist";
 	}
 
@@ -54,6 +63,7 @@ public class UsedtradeController {
 			@RequestParam(defaultValue = "10") String contentnum) {
 
 		us.usedtradeboardlist(dto, model, pagenum, contentnum);
+		model.addAttribute("board",dto.getMar_cate());
 		return "Used_community/usedtradelist";
 	}
 
@@ -62,6 +72,7 @@ public class UsedtradeController {
 			@RequestParam(defaultValue = "10") String contentnum) {
 
 		us.usedtradeboardlist(dto, model, pagenum, contentnum);
+		model.addAttribute("board",dto.getMar_cate());
 		return "Used_community/usedtradelist";
 	}
 
@@ -70,6 +81,7 @@ public class UsedtradeController {
 			@RequestParam(defaultValue = "10") String contentnum) {
 
 		us.usedtradeboardlist(dto, model, pagenum, contentnum);
+		model.addAttribute("board",dto.getMar_cate());
 		return "Used_community/usedtradelist";
 	}
 
@@ -78,6 +90,7 @@ public class UsedtradeController {
 			@RequestParam(defaultValue = "10") String contentnum) {
 
 		us.usedtradeboardlist(dto, model, pagenum, contentnum);
+		model.addAttribute("board",dto.getMar_cate());
 		return "Used_community/usedtradelist";
 	}
 
@@ -86,6 +99,7 @@ public class UsedtradeController {
 			@RequestParam(defaultValue = "10") String contentnum) {
 
 		us.usedtradeboardlist(dto, model, pagenum, contentnum);
+		model.addAttribute("board",dto.getMar_cate());
 		return "Used_community/usedtradelist";
 	}
 	@GetMapping("furniture")
@@ -93,6 +107,7 @@ public class UsedtradeController {
 			@RequestParam(defaultValue = "10") String contentnum) {
 
 		us.usedtradeboardlist(dto, model, pagenum, contentnum);
+		model.addAttribute("board",dto.getMar_cate());
 		return "Used_community/usedtradelist";
 	}
 	
@@ -101,6 +116,7 @@ public class UsedtradeController {
 			@RequestParam(defaultValue = "10") String contentnum) {
 
 		us.usedtradeboardlist(dto, model, pagenum, contentnum);
+		model.addAttribute("board",dto.getMar_cate());
 		return "Used_community/usedtradelist";
 	}
 	
@@ -109,6 +125,7 @@ public class UsedtradeController {
 			@RequestParam(defaultValue = "10") String contentnum) {
 
 		us.usedtradeboardlist(dto, model, pagenum, contentnum);
+		model.addAttribute("board",dto.getMar_cate());
 		return "Used_community/usedtradelist";
 	}
 

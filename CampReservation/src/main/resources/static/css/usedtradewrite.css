@@ -14,6 +14,8 @@ body{
 	background-color:skyblue;
 	border: 1px solid white;
 	border-radius: 6px;
+	position:relative;
+	left: 40%;
 }
 
 #writebutton{
@@ -21,23 +23,37 @@ body{
 	border: 1px solid white;
 	border-radius: 6px;
 	cursor:pointer;
+	position:relative;
+	left: 37.6%;
+	top: 32px;
 	
 }
 
 #ut{
 	color: black;
+	position:relative;
+	left: 35.8%;
 }
 #member{
 	color: black;
+	position:relative;
+	left: 35%;
 }
 #un{
 	color: black;
+	position:relative;
+	left: 35%;
 }
 #up{
 	color: black;
+	position:relative;
+	left: 35.8%;
 }
 #uc{
 	color: black;
+	position:relative;
+	left: 35.8%;
+	top: 2px;
 }
 
 .Object{
@@ -45,8 +61,17 @@ body{
 }
 .ObjectOption{
 	color: black;
+	position: relative;
+	left: 40%;
 }
 #image_container{
 	width: 142px;
 	hieght: 158px;
+	position: relative;
+	left: 40%;
+}
+
+.category{
+	position: relative;
+	left: 40%;
 }

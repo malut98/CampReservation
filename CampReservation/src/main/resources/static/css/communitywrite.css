@@ -59,7 +59,11 @@ body{
 }
 .selectboard{
 	color: black;
+	position: relative;
+	left: 42%;
+	top : 40px;
 }
 .selectedboard{
 	color: black;
 }
+

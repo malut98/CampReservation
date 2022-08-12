@@ -57,59 +57,8 @@
 	}
 </script>
 <body>
-	<div class="header">
-		<div class="section">
-			<div class="logo">
-				<a href="/"><img alt="" src="/resources/img/logo/logo (2).png"
-					style="height: 100px;"></a>
-			</div>
-			<div class="nav-item-search">
-				<form class="form-tag" action="" style="">
-					<img class="search-icon" style="width: 64px; height: 64px;"
-						src="/resources/img/search.svg"> <input class="search-form"
-						type="text" placeholder="통합검색"> <span class="underline"></span>
-				</form>
-			</div>
-			<div class="nav_wrap">
-				<div class="nav">
-					<ul class="header_menu">
-						<li class="nav-item"><a href="/clist/cpl">캠핑모아</a></li>
-						<li class="nav-item"><a href="/usedtradelist">중고모아</a></li>
-						<li class="nav-item"><a href="/communitylist">커뮤모아</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="menu_pan">
-				<div class="camp-moa">
-					<div class="menu_category">
-						<div class="category">
-							<a href=""> 베스트 모아</a>
-						</div>
-						<div class="category">
-							<a href=""> 새로움 모아</a>
-						</div>
-						<div class="category">
-							<a href=""> 캠핑장 모아</a>
-						</div>
-						<div class="category">
-							<a href=""> 카라반 모아</a>
-						</div>
-						<div class="category">
-							<a href=""> 글램핑 모아</a>
-						</div>
-						<div class="category">
-							<a href=""> 반려견 모아</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="profile">
-				<ul>
-					<li><a href="/login">로그인</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+	<jsp:include page="../header.jsp" flush="true"/>
+	
 	<div class="body">
 	<form action="usedtradewriteres" method="post" enctype="multipart/form-data">
 	 <div class="uploadimage">
@@ -139,15 +88,17 @@
 	 </select>
 	 </div>
 	 
-	 	<span>제목</span> <input type="text" name="mar_title" id="ut"><br>
-	 	<span>작성자</span> <input type="text" name="member_id" readonly="readonly" id="member" value="<%=session.getAttribute("memberid")%>"><br>
-	 	<span>연락처</span> <input type="text" name="mar_name" id="un" readonly="readonly" value="${dto.memberphone }"><br>
-	 	<span>가격</span> <input type="number" name="mar_price" id="up"><br>
-	 	<span>설명</span> <textarea rows="10" cols="50" name="mar_content" id="uc"></textarea>
+	 	<span class="category">제목</span> <input type="text" name="mar_title" id="ut"><br>
+	 	<span class="category">작성자</span> <input type="text" name="member_id" readonly="readonly" id="member" value="<%=session.getAttribute("memberid")%>"><br>
+	 	<span class="category">연락처</span> <input type="text" name="mar_name" id="un" readonly="readonly" value="${dto.memberphone }"><br>
+	 	<span class="category">가격</span> <input type="number" name="mar_price" id="up"><br>
+	 	<span class="category">설명</span> <textarea rows="10" cols="50" name="mar_content" id="uc"></textarea>
 	 	<input type="submit" value="글쓰기" id="writebutton">
 	 
 	 </div>
 	</form>
 	</div>
+	<br><br><br><br><br><br><br>
+	<jsp:include page="../Footer2.jsp" flush="true"/>
 </body>
 </html>

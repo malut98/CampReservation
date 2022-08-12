@@ -21,34 +21,9 @@ function imagePreview(event){
 </script>
 </head>
 <body>
-     <div class="header">
-		<div class="section">
-			<div class="logo">
-				<a href="/"><img alt="" src="img/logo/logo (2).png" style=" height: 100px;"></a>
-			</div>
-			<div class="nav">
-				<ul style="padding-inline-start: 0px;">
-					<li class="nav-item-search">
-						<form action="" style="margin-left: 0px;">
-							<img class="search-icon" style="width: 64px; height: 64px;"
-								src="img/search.svg"> 
-								<input class="search-form" type="text" placeholder="통합검색"> <span class="underline"></span>
-						</form>
-					</li>
-					<li class="nav-item"><a href="/camplist">캠핑장</a></li>
-					<li class="nav-item"><a href="/glamlist">글램핑</a></li>
-					<li class="nav-item"><a href="/caravanlist">카라반</a></li>
-					<li class="nav-item"><a href="/usedtradelist">중고거래</a></li>
-					<li class="nav-item"><a href="/communitylist">커뮤니티</a></li>
-				</ul>
-			</div>
-			<div class="profile">
-				<ul>
-					<li><a href="/login">로그인</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+  <jsp:include page="../header.jsp" flush="true"/>
+  
+  	<div class="wrapper">
      <form action="communitywriteres" method="post" enctype="multipart/form-data">
      <input type="button" id="menu" value="목록" onclick="location.href='communitylist'">
      <select class="selectboard" name="com_cate">
@@ -66,5 +41,8 @@ function imagePreview(event){
      <input type="submit" id="writebutton" value="작성">
      </div>
      </form>
+  	</div>
+  	<br><br><br><br><br>
+  	<jsp:include page="../Footer2.jsp" flush="true"/>
 </body>
 </html>

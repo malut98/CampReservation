@@ -10,6 +10,8 @@
 	margin: auto;
 	background-color: black;
 	color: white;
+	position:relative;
+	left: 5%;
 }
 #boardwrite{
 	cursor: pointer;
@@ -29,7 +31,7 @@
 	background-color: white;
 	color: black;
 	position: relative;
-	left: 40%;
+	left: 50%;
 	top: 40px;
 	
 	width: 140px;
@@ -54,8 +56,8 @@ body{
 	
 	
 	position: relative;
-	top : 40px;
-	left : 35%;
+	top : 20px;
+	left : 50%;
 	width: 30%;
 	heigth: 30%;
 }
@@ -66,7 +68,7 @@ body{
 	heigth: 30px;
 	position: relative;
 	top : 40px;
-	left: 40%;
+	left: 50%;
 }
 #st{
 	color: black;
@@ -81,7 +83,7 @@ body{
 	color: black;
 	position: relative;
 	top : 40px;
-	left: 40%;
+	left: 50%;
 }
 #contentnum{
 	position: relative;
@@ -92,7 +94,7 @@ body{
 	display: none;
 	background-color: skyblue;
 	position: relative;
-	left: 35%;
+	left: 25%;
 	top: 10px;
 	border: 1px solid white;
 	border-radius : 6px;
@@ -106,15 +108,23 @@ body{
 	font-size: 30px;
 }
 .communityleft{
-	width: 15%;
+	width: 9%;
 	heigth: 80%;
 	margin: 0px;
 	border: 1px solid white;
 	display: inline-block;
+	float:left;
+	position: relative;
+	left: 15%;
 }
 .communitycategory:hover{
 	text-decoration: underline;
 }
 .communitymenu{
 	text-align: center;
+	width: 100%;
+}
+.communitycenter{
+	width: 80%;
+	
 }

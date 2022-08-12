@@ -2,18 +2,28 @@
 
 #ut{
 	color: black;
+	position: relative;
+	left: 41%;
 }
 #member{
 	color: black;
+	position: relative;
+	left: 40.2%;
 }
 #un{
 	color: black;
+	position: relative;
+	left: 40.2%;
 }
 #up{
 	color: black;
+	position: relative;
+	left: 41%;
 }
 #uc{
 	color: black;
+	position: relative;
+	left: 41%;
 }
 body{
 	background-color: black;
@@ -31,6 +41,8 @@ body{
 	border: 1px solid white;
 	border-radius: 6px;
 	display: none;
+	position: relative;
+	left: 58.3%;
 }
 #boarddelete{
 	background-color: skyblue;
@@ -38,9 +50,17 @@ body{
 	border: 1px solid white;
 	border-radius: 6px;
 	display: none;
+	position: relative;
+	left: 58.3%;
 }
 
 .Thumbnail{
 	width: 142px;
 	hieght: 158px;
+	position: relative;
+	left: 40%;
+}
+.detailcategory{
+	position: relative;
+	left: 40%;
 }

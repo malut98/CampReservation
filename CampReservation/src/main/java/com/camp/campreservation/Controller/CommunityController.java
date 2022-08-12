@@ -47,6 +47,14 @@ public class CommunityController {
 		
 	}
 	
+	@GetMapping("/communityselectlist")
+	public String communityselectList(Model model, @RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "5") String contentnum, CommunityDto dto) {
+		cs.boardlist(model, pagenum, contentnum, dto);
+		model.addAttribute("board",dto.getCom_cate());
+		return "Community/communitylist";
+		
+	}
+	
 	@GetMapping("/noticelist")
 	public String noticeList(Model model, @RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "5") String contentnum, CommunityDto dto) {
 		cs.boardlist(model, pagenum, contentnum, dto);
