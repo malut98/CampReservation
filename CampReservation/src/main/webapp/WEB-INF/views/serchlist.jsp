@@ -54,7 +54,7 @@ function spag(a) {
 <%
 	String id = (String)session.getAttribute("memberid");
 %>
-   <div class="header">
+   <<jsp:include page="../header.jsp" flush="true"/>
       <div class="section">
          <div class="logo">
             <a href="/"><img alt="" src="/resources/img/logo/logo (2).png"

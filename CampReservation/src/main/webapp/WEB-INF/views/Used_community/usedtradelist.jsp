@@ -62,7 +62,7 @@
 	}
 </script>
 </head>
-<body>
+<body style="margin-left: 50px;">
 	<%
 	String id = (String) session.getAttribute("memberid");
 	%>
@@ -138,12 +138,7 @@
 		</div>
 	</div>
 
-
-
-	<div class="body">
-		<div class="martitle">
-			<p class="title">중고거래</p>
-		</div>
+	<div>
 		<div class="marleft">
 			<div class="menu">
 				<div class="marcategory">
@@ -180,10 +175,15 @@
 				</div>
 			</div>
 		</div>
+	<div class="body">
+		<div class="martitle" style="text-align: center;">
+			<p class="title" >중고거래</p>
+		</div>
+		
 		<div class="usedtradeboard">
 			<c:choose>
 				<c:when test="${empty uList }">
-					<p>------글이 없습니다-----</p>
+					<p style="margin-left: 450px;">-----글이 없습니다-----</p>
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${uList }" var="dto">
@@ -209,8 +209,9 @@
 		</div>
 		<div class="usedtradesearch">
 			<input type="button" id="usedtradewrite" value="글 작성"
-				onclick="location.href='usedtradewrite'">
+				onclick="location.href='usedtradewrite'" style="float: right; margin-right: 60px;">
 			<form method="post" action="usedtradesearch">
+			<div style="margin-left: 100px;">
 				<select name="searchOption" id="searchoption">
 					<option value="mar_title" id="st" name="mar_title">제목</option>
 					<option value="member_id" id="sw" name="member_id">작성자</option>
@@ -218,6 +219,7 @@
 				</select> <input type="text" id="searchbox" name="keyword"
 					placeholder="검색어를 입력해주세요"> <input type="submit" value="검색"
 					id="searchbutton">
+			</div>
 			</form>
 		</div>
 
@@ -233,7 +235,7 @@
 		<c:if test="${page.next}">
 			<a href="javascript:page(${page.getEndPage()+1});">&raquo;</a>
 		</c:if>
-
 	</div>
+</div>
 </body>
 </html>

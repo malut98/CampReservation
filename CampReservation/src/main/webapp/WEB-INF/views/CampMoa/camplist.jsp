@@ -93,8 +93,7 @@ function search() {
 </head>
 <body>
 	<jsp:include page="../header.jsp" flush="true"/>
-
-   <div class="container">
+   	<div class="container">
       <div class="camplist_inner">
          <div class="whatever">
          	<h1>${tag}</h1>
@@ -142,7 +141,7 @@ function search() {
       </div>
    </div>
    		<div style="text-align: center;">
-			<input class="key" type="text" placeholder="검색어를 입력해주세요">
+			<input class="key" type="text" style="color:black;" placeholder="검색어를 입력해주세요">
 			<input class="se" type="button" value="검색" onclick="search();">
 		</div>
         <div class="camplist_bottom">
@@ -222,6 +221,7 @@ function search() {
      		 </div>
      	</div>
      </div>
+     <br><br>
      <jsp:include page="../Footer2.jsp" flush="true"/>
 </body>
 </html>
