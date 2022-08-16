@@ -6,6 +6,22 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/banner.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/notice.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/Category.css"
+	type="text/css">
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript"
+	src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<link rel="stylesheet"
+	href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<link rel="stylesheet" type="text/css"
+	href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<script src="/resources/js/category.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $( document ).ready( function() {
@@ -13,6 +29,13 @@ $( document ).ready( function() {
 	      $("#checkeid").attr("value","N");//키가 감지됐을경우 다시 중복체크를 한 value값을 다시 N으로 돌려버림
 	      var val = $("#checkeid").val();
 	      console.log("checkid value ="+val);
+	   });
+	});
+$( document ).ready( function() {
+	   $("#memberphone").keyup(function(){
+	      $("checkphone").attr("value","N");//키가 감지됐을경우 다시 중복체크를 한 value값을 다시 N으로 돌려버림
+	      var val = $("checkphone").val();
+	      console.log("checkphone value ="+val);
 	   });
 	});
 	function checkId(){
@@ -55,9 +78,6 @@ $( document ).ready( function() {
 	      alert("이름을 입력해주세요");
 	     $("#membername").focus();
 	      return;
-	   }else if($("[name='gender']:checked").length ==0){
-	      alert("성별을 체크해주세요");
-	      return;
 	   }else if($("#memberphone").val()==""||$("#memberphone").val()==null){
 	      alert("휴대폰 번호를 입력해주세요");
 	     $("#memberphone").focus();
@@ -71,7 +91,36 @@ $( document ).ready( function() {
 	      }
 	   }
 	   return false;
-	}
+	};
+$(document).ready(function(){
+	$("#phonecheck").click(function(){
+		let phonenumber = $("#memberphone").val();
+		alert("인증번호 전송 완료!");		
+		$.ajax({
+			type:"GET",
+			url:"/phonecheck",
+			data:{
+				"phonenumber" : phonenumber
+			},
+			success:function(res){
+				$("#checknumber").click(function(){
+					if($.trim(res) == $("#phonenumber").val()){
+						alert("휴대폰 인증이 정상적으로 완료되었습니다.!"),						
+						$.ajax({
+							type:"get",
+							url:"/phone",
+							data:{
+								"phonenumber" : $("#memberphone").val()
+							}
+						})
+					}else{
+						alert("인증번호가 올바르지 않습니다!");
+					}
+				})
+			}
+		})
+	});
+});		
 
 </script>
 <style>
@@ -80,20 +129,36 @@ body{
 }
 .signup{
    color: white;
-   width: 500px;
-   height: 450px;
+   width: 550px;
+   height: 400px;
    background-color:gray;
    font-size: 10pt;
-   transform: translate(600px, 100px);
+   transform: translate(100%, 20%);
 }
 
 table{
    margin-left:auto;
    margin-right:auto;
    border-spacing: 10px;
-   border-collapse: separate;
 }
-
+#idcheck{
+	cursor : pointer;
+	background-color: skyblue;
+	border-radius: 10px;
+	border-color: skyblue;
+}
+#phonecheck{
+	cursor : pointer;
+	background-color: skyblue;
+	border-radius: 10px;
+	border-color: skyblue;
+}
+#checknumber{
+	cursor : pointer;
+	background-color: skyblue;
+	border-radius: 10px;
+	border-color: skyblue;
+}
 #sbt{
    color: white;
    background-color: skyblue;
@@ -106,41 +171,15 @@ table{
 <link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
 </head>
 <body>
-	<div class="header">
-		<div class="section">
-			<div class="logo">
-				<a href="/"><img alt="" src="/resources/img/logo/logo (2).png" style=" height: 100px;"></a>
-			</div>
-			<div class="nav">
-				<ul style="padding-inline-start: 0px;">
-					<li class="nav-item-search">
-						<form action="" style="margin-left: 0px;">
-							<img class="search-icon" style="width: 64px; height: 64px;"
-								src="/resources/img/search.svg"> 
-								<input class="search-form" type="text" placeholder="통합검색"> <span class="underline"></span>
-						</form>
-					</li>
-					<li class="nav-item"><a href="/camplist">캠핑장</a></li>
-					<li class="nav-item"><a href="/glamlist">글램핑</a></li>
-					<li class="nav-item"><a href="/caravanlist">카라반</a></li>
-					<li class="nav-item"><a href="/usedtradelist">중고거래</a></li>
-					<li class="nav-item"><a href="/communitylist">커뮤니티</a></li>
-				</ul>
-			</div>
-			<div class="profile">
-				<ul>
-					<li><a href="/login">로그인</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+	<jsp:include page="../header.jsp" flush="true"/>
 	 <form id="signup" name="signup" action="/signup" method="post">
    <div class="signup">
       <table><input type="text" value="N" id="checkeid" hidden style="display: none;">
+      		<input type="text" value="N" id="checkphone" hidden style="display: none;">	
          <tr>
             <th>ID</th>
             <td><input type="text" placeholder="ID" id="id" name="memberid" style="width:300px;height:50px; color:black;"></td>
-            <td><input type="button" value="중복확인" onclick="checkId();"></td>
+            <td><input type="button" id="idcheck" value="중복확인" onclick="checkId();"></td>
          </tr>
          <tr>
             <th>PW</th>
@@ -153,19 +192,16 @@ table{
          <tr>
             <th>휴대폰</th>
             <td><input type="text" placeholder="휴대폰 -없이" id="memberphone" name="memberphone" style="width:300px;height:50px; color:black;"></td>
+        	<td><input type="button" id="phonecheck" value="인증번호전송"></td>
          </tr>
          <tr>
-            <th>성별</th>
-            <td>남<input type="radio" name="gender" value="M">
-            여<input type="radio" name="gender" value="W">
-            </td>
-         </tr>
-         <tr>
-            <th>주소</th>
-            <td><input type="text" placeholder="주소" id="adress" name="adress" style="width:300px;height:50px; color:black;"></td>
+         	<th>인증번호</th>
+         	<td><input type="text" placeholder="휴대폰 -없이" id="phonenumber" name="phonenumber" style="width:300px;height:50px; color:black;"></td>
+         	<td><input type="button" id="checknumber" value="인증번호확인"></td>
          </tr>
       </table>
       </div>
       </form>
          <input type="button" value="회원가입" id="sbt" onclick="sign(); return false;" style="width:150px; height:50px; ">
+         <jsp:include page="../Footer2.jsp" flush="true"/>
 </body>

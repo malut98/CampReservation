@@ -42,9 +42,16 @@ public class LoginController {
 		System.out.println(memberid);
 		LoginDto dto = loginservice.mypage(memberid);
 		model.addAttribute("dto", dto);
-		List<CampDBDto> camp = loginservice.selectlist(memberid);
-		System.out.println(camp);
-		model.addAttribute("camp", camp);
+		
+		
+		CampDBDto camplike = loginservice.camplike(memberid);
+		model.addAttribute("camp", camplike);
+		
+		int count = loginservice.count(memberid);
+		model.addAttribute("count", count);
+		
+		CampDBDto campres = loginservice.campres(memberid);
+		model.addAttribute("res", campres);
 		
 		return "Login/mypage";
 	}
@@ -85,22 +92,12 @@ public class LoginController {
 	public ModelAndView logout(HttpSession session) {
 		loginservice.logout(session);
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("login");
+		mav.setViewName("Login/login");
 		mav.addObject("msg", "logout");
 		
 		return mav;
 	}
 	
-	/*
-	 * @RequestMapping(value="/signup",method=RequestMethod.POST) public String
-	 * membersign(LoginDto dto) {
-	 * 
-	 * int res = loginservice.insert(dto); System.out.println("res="+ res);
-	 * 
-	 * if(res > 0) { return "redirect:/login"; }else { return "redirect:/sign"; }
-	 * 
-	 * }
-	 */
 	
 	@PostMapping("/idcheck")
 	@ResponseBody
@@ -135,5 +132,10 @@ public class LoginController {
 		System.out.println("인증번호 : " + num);
 		loginservice.SMS(memberphone, num);
 		return num;
+	}
+	
+	@GetMapping("/mypagewtype")
+	public String wtype() {
+		return "Login/mypagewtype";
 	}
 }

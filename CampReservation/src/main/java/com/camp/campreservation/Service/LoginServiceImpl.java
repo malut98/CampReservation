@@ -26,20 +26,8 @@ public class LoginServiceImpl implements LoginService{
 	private LoginMapper loginmapper;
 
 	@Override
-	public List<LoginDto> selectList() {
-		return loginmapper.selectList();
-	}
-
-
-	@Override
 	public int insert(LoginDto dto) {
 		return loginmapper.insert(dto);
-	}
-
-
-	@Override
-	public int updateMP(LoginDto dto) {
-		return loginmapper.updateMP(dto);
 	}
 
 	@Override
@@ -95,12 +83,26 @@ public class LoginServiceImpl implements LoginService{
 	}
 
 
+	@Override
+	public CampDBDto camplike(String memberid) {
+		return loginmapper.camplike(memberid);
+	}
 
 
 	@Override
-	public List<CampDBDto> selectlist(String memberid) {
-		return loginmapper.camplist(memberid);
+	public int count(String memberid) {
+		return loginmapper.count(memberid);
 	}
+
+
+	@Override
+	public CampDBDto campres(String memberid) {
+		return loginmapper.campres(memberid);
+	}
+
+
+
+
 
 
 

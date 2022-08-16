@@ -6,10 +6,26 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
+<link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/banner.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/notice.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/Category.css"
+	type="text/css">
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript"
+	src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<link rel="stylesheet"
+	href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<link rel="stylesheet" type="text/css"
+	href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<script src="/resources/js/category.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(e){
-	$("#login").click(function(){
+	$(".login").click(function(){
 		if($.trim($("#memberid").val()) == ""){
 			alert("ID를 입력해주세요");
 			$("#memberid").focus();
@@ -27,6 +43,7 @@ $(document).ready(function(e){
 		location.href="/sign";
 	});
 });
+
 </script>
 <style>
 body{
@@ -45,19 +62,28 @@ h1{
 	color: white;
 	font-size: 30pt;
 	text-align: center;
+	padding-top:15px;
+}
+.loginblock{
+ 	color: white;
+   width: 450px;
+   height: 300px;
+   background-color:gray;
+   font-size: 10pt;
+   transform: translate(130%, 20%);
 }
 
-#login{
+
+.login{
 	width: 100px;
 	height:40px;
-	margin: auto;
-	display:block;
 	cursor: pointer;
 	background-color: blue;
 	border: solid 1px blue;
 	border-radius: 10px;
 }
-#btnsign{
+
+#sign{
 	background-color: green;
 	border: solid 1px green;
 	border-radius: 50px;
@@ -66,42 +92,17 @@ h1{
 	display:block;
 	cursor: pointer;
 }
+
+.box{
+	margin-top:100px;
+}
 </style>
 <link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
 </head>
 <body>
-	<div class="header">
-		<div class="section">
-			<div class="logo">
-				<a href="/"><img alt="" src="/resources/img/logo/logo (2).png" style=" height: 100px;"></a>
-			</div>
-			<div class="nav">
-				<ul style="padding-inline-start: 0px;">
-					<li class="nav-item-search">
-						<form action="" style="margin-left: 0px;">
-							<img class="search-icon" style="width: 64px; height: 64px;"
-								src="/resources/img/search.svg"> 
-								<input class="search-form" type="text" placeholder="통합검색"> <span class="underline"></span>
-						</form>
-					</li>
-					<li class="nav-item"><a href="/camplist">캠핑장</a></li>
-					<li class="nav-item"><a href="/glamlist">글램핑</a></li>
-					<li class="nav-item"><a href="/caravanlist">카라반</a></li>
-					<li class="nav-item"><a href="/usedtradelist">중고거래</a></li>
-					<li class="nav-item"><a href="/communitylist">커뮤니티</a></li>
-				</ul>
-			</div>
-			<div class="profile">
-				<ul>
-					<li><a href="/login">로그인</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-		<h1>캠모아</h1>
-		<hr />
-			<c:choose>
-				<c:when test="${empty sessionScope.memberid }">
+		<jsp:include page="../header.jsp" flush="true"/>
+				<div class="loginblock">
+					<h1>캠모아</h1>
 					<form id="loginfrm" name="loginfrm" action="/logincheck" method="post">
 						<table>
 							<tr>
@@ -112,24 +113,17 @@ h1{
 								<td>PW</td>
 								<td><input type="password" name="memberpw" id="memberpw" placeholder="****" maxlength="15" style="color:black;"></td>
 							</tr>
-							<c:if test="${msg == '실패' }">
-								<tr>
-									<td colspan=2>
-										아이디 또는 패스워드가 틀렸습니다.
-									</td>
-								</tr>
-							</c:if>
 							<tr>
-								<td><input type="button" id="login" value="로그인"></td>
+								<td><input type="button" class="login" value="로그인"></td>
+							</tr>
+							<tr>
 								<td><input type="button" id="sign" value="회원가입"></td>
 							</tr>
 						</table>
 					</form>
-				</c:when>
-				<c:otherwise>
-					<h3>${sessionScope.memberid}님 환영합니다.</h3>
-					<a href="/logout">로그아웃</a>
-				</c:otherwise>
-			</c:choose>
-			<hr />	
+				</div>
+				<div class="box">
+					<input type="hidden">
+				</div>
+			<jsp:include page="../Footer2.jsp" flush="true"/>
 </body>

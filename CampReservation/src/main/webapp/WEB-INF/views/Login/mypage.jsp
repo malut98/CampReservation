@@ -2,7 +2,7 @@
 <%@page import="com.camp.campreservation.Dto.LoginDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,8 +45,49 @@
 			]
 		});
 	});
-function wtype(){
+/* 	function unlike(memberid, campid){
+		$.ajax({
+			type: 'post',	
+	    	url: '/ht/unheart',
+	    	data: {"memberid":memberid, "campid":campid},
+	    	error: function (request, error) {
+	    		alert("fail");
+	    		console.log("code:"+request.status + "\n" + "message:"+request.responseText+ "\n" + "error:"+error);
+	    	},
+	    	success: function (count) {
+	    		if(count==-1){
+	    			alert("로그인 후 이용 가능합니다.");
+	    		}else{
+	    		$("#likeimg").attr("src", "/resources/img/like.png");
+	    		$("#likeimg").attr("onclick", "like('${sessionScope.memberid}', ${camp.camp_id})");
+	    		$("label[for='count']").text(count);
+	    		}
+	    	}
+	    }); */
 	
+
+/* 	function like(memberid, campid){
+		$.ajax({
+			type: 'post',	
+	    	url: '/ht/heart',
+	    	data: {"memberid":memberid, "campid":campid},
+	    	error: function (request, error) {
+	    		alert("fail");
+	    		console.log("code:"+request.status + "\n" + "message:"+request.responseText+ "\n" + "error:"+error);
+	    	},
+	    	success: function (count) {
+	    		if(count==-1){
+	    			alert("로그인 후 이용 가능합니다.");
+	    		}else{
+	    		$("#likeimg").attr("src", "/resources/img/unlike.png");
+	    		$("#likeimg").attr("onclick", "unlike('${sessionScope.memberid}', ${camp.camp_id})");
+	    		$("label[for='count']").text(count);
+	    		}
+	    	}
+	    });
+	} */
+function wtype(){
+	window.open("/mypagewtype","_blank","width=700px,height=700px");
 }
 </script>
 <style>
@@ -69,21 +110,19 @@ body{
 	text-align:center;
 }
 .camplike{
+	width:40%;
+	height:130px;
 	float:right;
+	margin-right:200px;
 }
 .camplike > table{
 	width: 75%; 
 	height:150px;
 	border: 1px solid white;
-	margin-right:665px;
-	border: 1px solid white;
+	margin-left:700px;
 }
 .scroll{
 	overflow: scroll;
-}
-.scroll>tr>td{
-	padding-left: 30px;
-	width: 300px;
 }
 .reviewlist{
 	padding-top : 300px;
@@ -93,6 +132,15 @@ body{
 	width: 1030px;
 	height: 50px;
 	background-color:lightgray;
+	border-top: 1px solid #444444;
+}
+.review_list>th{
+	border-bottom:1px solid #444444;
+	padding: 10px;
+}
+.review_list>td{
+	border-bottom:1px solid #444444;
+	padding: 10px;
 }
 h2{	
 	color: white;
@@ -111,80 +159,7 @@ input{
 <link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
 </head>
 <body>
-<%
-	String id = (String)session.getAttribute("memberid");
-%>
-	<div class="header">
-		<div class="section">
-			<div class="logo">
-				<a href="/"><img alt="" src="/resources/img/logo/logo (2).png"
-					style="height: 100px;"></a>
-			</div>
-			<div class="nav-item-search">
-				<form class="form-tag" action="" style="">
-					<img class="search-icon" style="width: 64px; height: 64px;" 
-					src="/resources/img/search.svg"> 
-					<input class="search-form" type="text" placeholder="통합검색"> 
-					<span class="underline"></span>
-				</form>
-			</div>
-			<div class="nav_wrap">
-				<div class="nav">
-					<ul class="header_menu">
-						<li class="nav-item"><a href="/clist/ca?${sessionScope.memberid}">캠핑모아</a></li>
-						<li class="nav-item"><a href="/usedtradelist">중고모아</a></li>
-						<li class="nav-item"><a href="/communitylist">커뮤모아</a></li>
-						<%
-							if(id!=null){
-						%>
-						<li class="nav-item"><a href="/mypage">마이페이지</a></li>
-						<%
-							}
-						%>
-					</ul>
-				</div>
-			</div>
-			<div class="menu_pan">
-				<div class="camp-moa">
-					<div class="menu_category">
-						<div class="category">
-							<a href=""> 베스트 모아</a>
-						</div>
-						<div class="category">
-							<a href=""> 새로움 모아</a>
-						</div>
-						<div class="category">
-							<a href="/clist/cpl?${sessionScope.memberid}"> 캠핑장 모아</a>
-						</div>
-						<div class="category">
-							<a href="/clist/cvl?${sessionScope.memberid}"> 카라반 모아</a>
-						</div>
-						<div class="category">
-							<a href="/clist/gl?${sessionScope.memberid}"> 글램핑 모아</a>
-						</div>
-						<div class="category">
-							<a href=""> 반려견 모아</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="profile">
-				<ul>
-				<%
-				if(id==null){
-				%>
-					<li><a id="login" href="/login">로그인</a></li>
-				<%			
-					}else{
-				%>		
-					<li><a id="logout" href="/logout">로그아웃</a></li>
-				<%		
-					}
-				%>
-				</ul>
-			</div>
-		</div>
-	</div>
+<jsp:include page="../header.jsp" flush="true"/>
 		
 	<div class="mypagemain">
 		<h2>마이페이지</h2>
@@ -220,14 +195,22 @@ input{
 			<div class="likelist">
 				<h3>좋아요 리스트</h3>
 			</div>
-			<div class="camplike">
-				<table class="scroll" style="">
-					<tr>
-						<td>캠핑장</td>
-						<td>주소</td>
-						<td>좋아요</td>
-					</tr>
-				</table>
+			<div class="camplike" style="overflow:scroll">
+					<c:choose>
+						<c:when test="${empty camp }">
+							<tr>
+								<td colspan="3">"좋아요 누른 항목이 없습니다."</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<tr>
+								<td>${camp.camp_name }</td>
+								<td>${camp.camp_addr }</td>
+								<%-- <td><img id="likeimg" style="width: 50px; height: 50px;" src="/resources/Img/unlike.png" onclick="unlike('${sessionScope.memberid}', ${camp.camp_id});"></td> --%>
+								<td>${count }</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
 			</div>
 		</div>	
 		<div class="reviewlist" style="line-height:50%;">
@@ -235,10 +218,27 @@ input{
 				<tr>
 					<th>예약완료</th>
 					<th>이용완료</th>
-					<th>후기작성</th>
+					<th>한줄후기</th>
 				</tr>
 			</table>
-			
+			<div class="review">
+				<c:choose>
+				<c:when test="${empty res }">
+							<tr>
+								<td colspan="3">"조회된 이력이 없습니다.!"</td>
+							</tr>
+				</c:when>
+				<c:otherwise>
+					<tr>
+						<td>${res.camp_name }</td>
+						<td>${res.camp_name }</td>
+						<td><input type="button" name="review" id="review" value="후기작성하기" onclick=""></td>
+					</tr>
+				</c:otherwise>
+				</c:choose>
+			</div>				
 		</div>		
 	</div>
+	<jsp:include page="../Footer2.jsp" flush="true"/>
 </body>
+</html>

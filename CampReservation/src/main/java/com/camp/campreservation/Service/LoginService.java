@@ -8,9 +8,7 @@ import com.camp.campreservation.Dto.LoginDto;
 import com.camp.campreservation.campdb.dto.CampDBDto;
 
 public interface LoginService {
-	public List<LoginDto> selectList();
 	public int insert(LoginDto dto);
-	public int updateMP(LoginDto dto);
 	public int idCheck(String id);
 	public String logincheck(String memberid, String memberpw);
 	public void logout(HttpSession session);
@@ -19,5 +17,7 @@ public interface LoginService {
 
 	/* public CampDBDto mypagelike(int camp_id); */
 	public void SMS(String memberphone,String num);
-	List<CampDBDto> selectlist(String memberid);
+	CampDBDto camplike(String memberid);
+	int count(String memberid);
+	CampDBDto campres(String memberid);
 }
