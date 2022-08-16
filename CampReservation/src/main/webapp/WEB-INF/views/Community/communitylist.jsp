@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>community</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 <link rel="StyleSheet" href="/resources/css/community.css"
 	type="text/css">
 <link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
@@ -34,8 +35,9 @@ window.onload=function(){
 		var board = '${board}';
 	var clist = "${clist}";
 	if(clist == "[]"){
-		$(".paging").hide();
+		$(".pagination").hide();
 	}
+	
 	
 		if (!mesage) {
 			console.log(mesage);
@@ -149,7 +151,7 @@ window.onload=function(){
 		</div>
 		<div class="communitycenter">
 			<div class="communitycontent">
-			<table border="1" class="board">
+			<table border="1" class="table   text-center">
 				<tr>
 					<th>글번호</th>
 					<th>제목</th>
@@ -197,14 +199,16 @@ window.onload=function(){
 			</div>
 		</div>
 		<br> <br>
-		<div class="paging">
+		<div class="pagination justify-content-center">
 			<c:if test="${page.prev}">
 				<a href="javascript:page(${page.getStartPage()-1});">&laquo;</a>
 			</c:if>
+			<div class="pagenumber">
 			<c:forEach begin="${page.getStartPage()}" end="${page.getEndPage()}"
 				var="idx">
 				<a href="javascript:page(${idx});">${idx}</a>
 			</c:forEach>
+			</div>
 			<c:if test="${page.next}">
 				<a href="javascript:page(${page.getEndPage()+1});">&raquo;</a>
 			</c:if>

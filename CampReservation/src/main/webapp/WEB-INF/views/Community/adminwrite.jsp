@@ -9,6 +9,8 @@
 <link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/banner.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/star.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/Category.css"
+	type="text/css">
 <script type="text/javascript">
 function imagePreview(event){
 	var reader = new FileReader();

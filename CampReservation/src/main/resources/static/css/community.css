@@ -23,7 +23,7 @@
 	height: 40px;
 	
 	position: relative;
-	left:65%;
+	left:110%;
 	top: 20px;
 	border: solid 2px ;
 	border-radius: 12px;
@@ -32,9 +32,9 @@
 	background-color: white;
 	color: black;
 	position: relative;
-	left: 50%;
-	top: 40px;
-	width: 140px;
+	left: 45%;
+	top: 36px;
+	width: 240px;
 	height: 30px;
 	
 	
@@ -67,28 +67,33 @@ body{
 	heigth: 30%;
 }
 #searchoption{
-	background-color : white;
-	color: black;
+	background-color :skyblue;
+	color: white;
 	width: 60px;
 	heigth: 30px;
 	position: relative;
 	top : 35px;
-	left: 50%;
+	left: 44%;
+	border: 1px solid white;
+	border-radius: 6px;
 }
 #st{
-	color: black;
+	color: white;
 }
 #sc{
-	color: black;
+	color: white;
 }
 #sw{
-	color: black;
+	color: white;
 }
 #searchbutton{
-	color: black;
+	color: white;
+	background-color:skyblue;
 	position: relative;
-	top : 40px;
-	left: 50%;
+	top : 34px;
+	left: 46%;
+	border: 1px solid white;
+	border-radius: 6px;
 }
 #contentnum{
 	position: relative;
@@ -99,7 +104,7 @@ body{
 	display: none;
 	background-color: skyblue;
 	position: relative;
-	left: 2%;
+	left: -35%;
 	top: 15px;
 	border: 1px solid white;
 	border-radius : 6px;
@@ -120,7 +125,7 @@ body{
 	display: inline-block;
 	float:left;
 	position: relative;
-	left: 25%;
+	left: 20%;
 	top: 45px;
 }
 .communitycategory:hover{
@@ -137,6 +142,7 @@ body{
 .boardsearch{
 	position: relative;
 	left: -4%;
+	top: 1px;
 }
 
 .boardadd{
@@ -147,6 +153,22 @@ body{
 
 .selectcontentnum{
 	position: relative;
-	left: 6%;
+	left: 29%;
 	top: 9px;
+}
+.table{
+	position: relative;
+	left: 20%;
+}
+.btn{
+	position: relative;
+	left: 110%;
+	top: 15px;
+}
+a{
+	text-decoration: none;
+	color: white;
+}
+.pagenumber{
+	margin: auto;
 }
