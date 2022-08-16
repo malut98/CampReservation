@@ -3,27 +3,29 @@
 #ut{
 	color: black;
 	position: relative;
-	left: 41%;
+	
 }
 #member{
 	color: black;
 	position: relative;
-	left: 40.2%;
+	left: -0.9%;
+	
 }
 #un{
 	color: black;
 	position: relative;
-	left: 40.2%;
+	left: -0.9%;
+	
 }
 #up{
 	color: black;
 	position: relative;
-	left: 41%;
+	
 }
 #uc{
 	color: black;
 	position: relative;
-	left: 41%;
+	
 }
 body{
 	background-color: black;
@@ -58,9 +60,18 @@ body{
 	width: 142px;
 	hieght: 158px;
 	position: relative;
-	left: 40%;
+	left: 35%;
 }
 .detailcategory{
 	position: relative;
-	left: 40%;
+	left: -1%;
+	
+}
+.boardmain{
+	position: relative;
+	left: 32%;
+}
+.boardbutton{
+	position: relative;
+	left: -9%;
 }

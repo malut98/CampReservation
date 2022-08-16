@@ -11,6 +11,8 @@
 <link rel="StyleSheet" href="/resources/css/notice.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/Category.css"
 	type="text/css">
+	<link rel="StyleSheet" href="/resources/css/banner.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/star.css" type="text/css">
 <link rel="stylesheet" type="text/css" href="/resources/css/usedtradeupdate.css"/>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

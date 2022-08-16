@@ -11,6 +11,8 @@
 <link rel="StyleSheet" href="/resources/css/notice.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/Category.css"
 	type="text/css">
+	<link rel="StyleSheet" href="/resources/css/banner.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/star.css" type="text/css">
 <link rel="stylesheet" type="text/css" href="/resources/css/usedtradedetail.css"/>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -68,12 +70,13 @@
 	 <div class="boardimage">
 	 <img src="/resources/Img/usedtrade/${dto.mar_image }" class="Thumbnail">
 	 </div>
+	 <div class="boardmain">
 	 	<span class="detailcategory">제목</span> <input type="text" name="mar_title" id="ut" readonly="readonly" value="${dto.mar_title }"><br>
 	 	<span class="detailcategory">작성자</span> <input type="text" name="member_id" readonly="readonly" id="member" value="${dto.member_id }"><br>
 	 	<span class="detailcategory">연락처</span> <input type="text" name="mar_name" id="un" readonly="readonly" value="${dto.mar_name }"><br>
 	 	<span class="detailcategory">가격</span> <input type="number" name="mar_price" id="up" readonly="readonly" value="${dto.mar_price }"><br>
 	 	<span class="detailcategory">설명</span> <textarea rows="10" cols="50" name="mar_content" id="uc" readonly="readonly" >${dto.mar_content }</textarea>
-	 
+	 </div>
 	 </div>
 	 <div class="boardbutton">
 	 <input type="button" value="수정" id="boardupdate" onclick="location.href='usedtradeupdate?mar_num=${dto.mar_num}'">

@@ -50,6 +50,7 @@ public class CommunityController {
 	@GetMapping("/communityselectlist")
 	public String communityselectList(Model model, @RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "5") String contentnum, CommunityDto dto) {
 		cs.boardlist(model, pagenum, contentnum, dto);
+		System.out.println("입력:"+dto.getCom_cate());
 		model.addAttribute("board",dto.getCom_cate());
 		return "Community/communitylist";
 		
@@ -71,7 +72,7 @@ public class CommunityController {
 	@GetMapping("/freelist")
 	public String freeList(Model model, @RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "5") String contentnum, CommunityDto dto) {
 		cs.boardlist(model, pagenum, contentnum, dto);
-		model.addAttribute("board", "잡담");
+		model.addAttribute("board", "자유");
 		return "Community/communitylist";
 	}
 	@GetMapping("/refund")
@@ -200,6 +201,7 @@ public class CommunityController {
 			}
 		}
 		try {
+			
 			if(session.getAttribute("memberid").equals(dto1.getMember_id())) {
 				cs.communityhit(dto);
 				model.addAttribute("dto", cs.communitydetail(dto));
@@ -223,6 +225,7 @@ public class CommunityController {
 				comments.commentList(model, dto, pagenum, contentnum);
 				return "Community/communitydetail";
 			}
+			
 		} catch (Exception e) {
 			if(session.getAttribute("memberid")==null) {
 				redirect.addFlashAttribute("mesage","로그인해주세요");

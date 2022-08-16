@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 <link rel="StyleSheet" href="/resources/css/communitywrite.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/banner.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/star.css" type="text/css">
 <script type="text/javascript">
 function imagePreview(event){
 	var reader = new FileReader();

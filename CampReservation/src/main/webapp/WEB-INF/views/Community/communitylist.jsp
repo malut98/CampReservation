@@ -12,6 +12,8 @@
 	type="text/css">
 <link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/notice.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/banner.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/star.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/Category.css"
 	type="text/css">
 <script
@@ -48,8 +50,8 @@ window.onload=function(){
 		} else if (board == "이벤트") {
 			$(".comtitle").text("이벤트");
 		} else if (board == "환불") {
-			$(".comtitle").text("환불");
-		} else if (board == "잡담") {
+			$(".comtitle").text("환불 게시판");
+		} else if (board == "자유") {
 			$(".comtitle").text("자유 게시판");
 		} else if (board == "불편사항") {
 			$(".comtitle").text("불편사항");
@@ -105,21 +107,6 @@ window.onload=function(){
 	<br>
 	<br>
 	<br>
-	<div class="communityboard">
-		<select name="contentnum" id="contentnum" onchange="page(1)">
-			<option value="5" id="cn1"
-				<c:if test="${page.getContentnum() == 5 }">selected="selected"</c:if>>5
-				개</option>
-			<option value="10" id="cn2"
-				<c:if test="${page.getContentnum() == 10 }">selected="selected"</c:if>>10
-				개</option>
-			<option value="20" id="cn3"
-				<c:if test="${page.getContentnum() == 20 }">selected="selected"</c:if>>20
-				개</option>
-		</select>
-		<div class="communitytop">
-			<span class="comtitle">전체 게시판</span>
-		</div>
 		<div class="communityleft">
 			<div class="communitymenu">
 				<div class="communitycategory">
@@ -143,7 +130,25 @@ window.onload=function(){
 			</div>
 
 		</div>
+	<div class="communityboard">
+	<div class="selectcontentnum">
+		<select name="contentnum" id="contentnum" onchange="page(1)">
+			<option value="5" id="cn1"
+				<c:if test="${page.getContentnum() == 5 }">selected="selected"</c:if>>5
+				개</option>
+			<option value="10" id="cn2"
+				<c:if test="${page.getContentnum() == 10 }">selected="selected"</c:if>>10
+				개</option>
+			<option value="20" id="cn3"
+				<c:if test="${page.getContentnum() == 20 }">selected="selected"</c:if>>20
+				개</option>
+		</select>
+		</div>
+		<div class="communitytop">
+			<span class="comtitle">전체 게시판</span>
+		</div>
 		<div class="communitycenter">
+			<div class="communitycontent">
 			<table border="1" class="board">
 				<tr>
 					<th>글번호</th>
@@ -155,14 +160,14 @@ window.onload=function(){
 				<c:choose>
 					<c:when test="${empty clist }">
 						<tr>
-							<td colspan="4" align="center">--------작성된 글이 없습니다---------</td>
+							<td colspan="4" align="center">--------작성된 글이 없습니다-------</td>
 						</tr>
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${clist }" var="dto">
 							<tr>
 								<td>${dto.com_num}</td>
-								<td><a href="communitydetail?com_num=${dto.com_num}">${dto.com_title}</a></td>
+								<td><a href="communitydetail?com_num=${dto.com_num}&com_cate=${dto.com_cate}">${dto.com_title}</a></td>
 								<td>${dto.member_id}</td>
 								<td><fmt:formatDate value="${dto.com_date}"
 										pattern="yyyy.MM.dd" /></td>
@@ -172,10 +177,14 @@ window.onload=function(){
 					</c:otherwise>
 				</c:choose>
 			</table>
+			</div>
+			<div class="boardadd">
 			<input type="button" id="boardwrite" value="글 작성"
 				onclick="location.href='communitywrite'"> <input
 				type="button" class="adminwrite" value="공지 아벤트 작성"
 				onclick="location.href='adminwrite'">
+				</div>
+				<div class="boardsearch">
 			<form method="post" action="communitysearch">
 				<select name="searchOption" id="searchoption">
 					<option value="com_title" id="st" name="com_title">제목</option>
@@ -185,6 +194,7 @@ window.onload=function(){
 					placeholder="검색어를 입력해주세요"> <input type="submit" value="검색"
 					id="searchbutton">
 			</form>
+			</div>
 		</div>
 		<br> <br>
 		<div class="paging">
@@ -203,7 +213,7 @@ window.onload=function(){
 
 	</div>
 
-
+<br><br><br><br><br><br><br><br><br><br><br>
 <jsp:include page="../Footer2.jsp" flush="true"/>
 
 

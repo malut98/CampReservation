@@ -14,7 +14,7 @@ body{
 	
 	position : relative;
 	top : 30px;
-	left : 40%;
+	left : 20%;
 	width : 80px;
 	height : 40px;
 	
@@ -29,7 +29,7 @@ body{
 	
 	position : relative;
 	top : 20px;
-	left : 40.5%;
+	left : 23%;
 }
 
 #memberID{
@@ -37,7 +37,7 @@ body{
 	color : black;
 	position : relative;
 	top : 50px;
-	left : 31%;
+	left : 13.5%;
 }
 
 #content{
@@ -45,89 +45,13 @@ body{
 	color: black;
 	position : relative;
 	top : 60px;
-	left : 45%;
+	left : 28%;
 	width: 40%;
 	height: 350px;
 	margin-right: 0px;
 }
 
-#commentContent{
-	background-color : white;
-	color : black;
-	border: solid 2px white;
-	border-radius: 6px;
-	position : relative;
-	top: 130px;
-	left: 50%;
-	width: 300px; 
-	height: 40px;
-}
-#commentwrite{
-	background-color : gray;
-	color : white;
-	border: solid 2px white;
-	border-radius: 6px;
-	position : relative;
-	top: 130px;
-	left: 50%;
-	
-	width : 60px;
-	height: 30px;
-	
-	cursor : pointer;
-}
 
-
-
-#nullcomment{
-	background-color : white;
-	color: black;
-	position: relative;
-	top: 210px;
-	left: 50%;
-	width : 60px;
-	height: 40px;
-}
-.ccontent{
-	color: black;
-}
-.commentListbox{
-	position: relative;
-	top: 170px;
-	left: 50%;
-	width: 250px;
-	height: 70px;
-}
-.commentlist{
-	background-color: darkblue;
-	color: black;
-	border: solid 1px white;
-	
-}
-
-.commentId{
-	color: black;
-	border-bottom: solid 1px white;
-}
-.commentContent{
-	color: black;
-}
-.commentDate{
-	color: black;
-}
-#commentdelete{
-	color: black;
-	position:relative;
-	top: 10px;
-	left: 60%;
-}
-#commentupdate{
-	color: black;
-	position:relative;
-	top: 10px;
-	left: 60%;
-	cursor: pointer;
-}
 
 #image{
 	display: none;
@@ -140,14 +64,14 @@ body{
 	cursor: pointer;
 	position: relative;
 	top: 50px;
-	left: 45%;
+	left: 28%;
 }
 #comimage{
-	width:142px;
-	height: 158px;
+	max-width:200px;
+	max-height: 180px;
 	position: relative;
 	top: 55px;
-	left: 45%;
+	left: 35%;
 }
 .save{
 	background-color: skyblue;
@@ -157,7 +81,7 @@ body{
 	cursor: pointer;
 	position: relative;
 	top: 60px;
-	left: 80%;
+	left: 64%;
 }
 .cancel{
 	background-color: skyblue;
@@ -167,5 +91,5 @@ body{
 	cursor: pointer;
 	position: relative;
 	top: 60px;
-	left: 80%;
+	left: 64%;
 }

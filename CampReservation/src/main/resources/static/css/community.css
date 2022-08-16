@@ -4,14 +4,15 @@
 	
 	padding: 0;
 	margin: auto;
-	width: 80%;
+	width: 50%;
+	heigth: 40%;
 }
 .board{
 	margin: auto;
 	background-color: black;
 	color: white;
 	position:relative;
-	left: 5%;
+	left: 13%;
 }
 #boardwrite{
 	cursor: pointer;
@@ -22,7 +23,7 @@
 	height: 40px;
 	
 	position: relative;
-	left: 58%;
+	left:65%;
 	top: 20px;
 	border: solid 2px ;
 	border-radius: 12px;
@@ -33,15 +34,19 @@
 	position: relative;
 	left: 50%;
 	top: 40px;
-	
 	width: 140px;
 	height: 30px;
+	
+	
 }
 body{
 	background-color: black;
+	
+	
 }
 #contentnum{
 	color: black;
+	
 }
 #cn1{
 	color: black;
@@ -67,7 +72,7 @@ body{
 	width: 60px;
 	heigth: 30px;
 	position: relative;
-	top : 40px;
+	top : 35px;
 	left: 50%;
 }
 #st{
@@ -94,8 +99,8 @@ body{
 	display: none;
 	background-color: skyblue;
 	position: relative;
-	left: 25%;
-	top: 10px;
+	left: 2%;
+	top: 15px;
 	border: 1px solid white;
 	border-radius : 6px;
 	cursor: pointer;
@@ -110,12 +115,13 @@ body{
 .communityleft{
 	width: 9%;
 	heigth: 80%;
-	margin: 0px;
+	margin: auto;
 	border: 1px solid white;
 	display: inline-block;
 	float:left;
 	position: relative;
-	left: 15%;
+	left: 25%;
+	top: 45px;
 }
 .communitycategory:hover{
 	text-decoration: underline;
@@ -127,4 +133,20 @@ body{
 .communitycenter{
 	width: 80%;
 	
+}
+.boardsearch{
+	position: relative;
+	left: -4%;
+}
+
+.boardadd{
+	position: relative;
+	left: 30%;
+	width: 70%;
+}
+
+.selectcontentnum{
+	position: relative;
+	left: 6%;
+	top: 9px;
 }
