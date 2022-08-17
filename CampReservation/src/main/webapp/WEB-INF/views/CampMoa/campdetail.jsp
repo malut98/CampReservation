@@ -40,6 +40,12 @@ $(function() {
 	});
 });
 $(document).ready(function () {
+	$(".wordcloud_img").on('error', function() { 
+		$('.wordcloud_img').attr("src","/resources/img/world_cloud_error.png");
+		setTimeout(function(){      
+			$('.review_container').load(location.href+' .review_container');
+		}, 2000);	
+	});
 	var like_count=${count};
 	var check=${check};
 	
@@ -50,15 +56,6 @@ $(document).ready(function () {
 		$("#likeimg").attr("src", "/resources/img/unlike.png");
 		$("#likeimg").attr("onclick", "unlike('${sessionScope.memberid}', ${camp.camp_id})");
 	}
-	
-	$(".wordcloud_img")
-	.on('load', function() { console.log("image loaded correctly"); })
-	.on('error', function() { 
-		$('.wordcloud_img').attr("src","/resources/img/world_cloud_error.png")
-		setTimeout(function(){      
-			$('.review_container').load(location.href+' .review_container');
-		}, 2000);	
-	});
 });
 	
 function unlike(memberid, campid){
@@ -273,7 +270,7 @@ function like(memberid, campid){
 		<div class="review_container" style="text-align: center;">
 			<div class="review_wrap">
 				<div class="review_content">
-					<img class="wordcloud_img"  src="/resources/img/wordcloud/wordcloud_id-${camp.camp_id}.png" style="width :350px; height:350px;">
+					<img class="wordcloud_img" onerror="/resources/img/world_cloud_error.png" src="/resources/img/wordcloud/wordcloud_id-${camp.camp_id}.png" style="width :350px; height:350px;">
 				</div>
 			</div>
 		</div>
