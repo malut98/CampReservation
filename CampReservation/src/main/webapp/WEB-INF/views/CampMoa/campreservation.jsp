@@ -202,6 +202,7 @@
     $(function () {
 		var camp_id = '${camp.camp_id}';
 		var member_id = '${reservdto.member_id}';
+		var camp_name = '${camp.camp_name}';
 		//인풋태그 확인
 		function check_input()  {
 			var first_date = $(".first_date").val();
@@ -278,6 +279,7 @@
                         			"info_need"  : info_need, // 요청사항
 									"number_p"   : number_p_test, //인원수
 									"camp_id"	 : camp_id, // 캠핑장 아이디
+									"camp_name"	 : camp_name, //캠핑장 이름
                                 },success : function(cnt) {
 									var msg = ' ';
                                 	if(cnt ==0){

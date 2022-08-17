@@ -16,8 +16,12 @@ public class ReviewserviceImpl implements ReviewService {
 
 	@Override
 	public List<String> getCampAllReview(int camp_id) {
-		// TODO Auto-generated method stub
 		return reviewMapper.Reviewlist(camp_id);
+	}
+
+	@Override
+	public int insert(ReviewDto dto) {
+		return reviewMapper.insert(dto);
 	}
 
 

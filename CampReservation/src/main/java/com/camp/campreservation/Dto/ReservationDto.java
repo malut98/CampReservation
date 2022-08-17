@@ -3,7 +3,7 @@ package com.camp.campreservation.Dto;
 import java.util.Date;
 
 public class ReservationDto {
-	private String reserv_id; // 예약번호 ( 자동 생성 ) 
+	private String reser_id; // 예약번호 ( 자동 생성 ) 
 	private String info_name; // 예약자 명
 	private String first_date; // 예약 시작일
 	private String last_date; // 예약 종료일
@@ -12,16 +12,17 @@ public class ReservationDto {
 	private int number_p; //예약 인원수
 	private String member_id; // 로그인 한 유저의 아이디
 	private int  camp_id; // 캠핑장 ID
+	private String camp_name;
 
 	public ReservationDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public ReservationDto(String reserv_id, String info_name, String first_date, String last_date, String info_tel,
-			String info_need, int number_p, String member_id, int camp_id) {
+	public ReservationDto(String reser_id, String info_name, String first_date, String last_date, String info_tel,
+			String info_need, int number_p, String member_id, int camp_id, String camp_name) {
 		super();
-		this.reserv_id = reserv_id;
+		this.reser_id = reser_id;
 		this.info_name = info_name;
 		this.first_date = first_date;
 		this.last_date = last_date;
@@ -30,14 +31,15 @@ public class ReservationDto {
 		this.number_p = number_p;
 		this.member_id = member_id;
 		this.camp_id = camp_id;
+		this.camp_name = camp_name;
 	}
 
-	public String getReserv_id() {
-		return reserv_id;
+	public String getReser_id() {
+		return reser_id;
 	}
 
-	public void setReserv_id(String reserv_id) {
-		this.reserv_id = reserv_id;
+	public void setReser_id(String reser_id) {
+		this.reser_id = reser_id;
 	}
 
 	public String getInfo_name() {
@@ -104,9 +106,17 @@ public class ReservationDto {
 		this.camp_id = camp_id;
 	}
 
+	public String getCamp_name() {
+		return camp_name;
+	}
+
+	public void setCamp_name(String camp_name) {
+		this.camp_name = camp_name;
+	}
+
 	@Override
 	public String toString() {
-		return "ReservationDto [reserv_id=" + reserv_id + ", info_name=" + info_name + ", first_date=" + first_date
+		return "ReservationDto [reser_id=" + reser_id + ", info_name=" + info_name + ", first_date=" + first_date
 				+ ", last_date=" + last_date + ", info_tel=" + info_tel + ", info_need=" + info_need + ", number_p="
 				+ number_p + ", member_id=" + member_id + ", camp_id=" + camp_id + "]";
 	}

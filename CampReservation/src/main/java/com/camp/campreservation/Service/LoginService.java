@@ -20,6 +20,7 @@ public interface LoginService {
 	public void SMS(String memberphone,String num);
 	List<CampDBDto> camplike(String memberid);
 	int count(String memberid);
-	List<CampDBDto> campres(String memberid);
-	List<ReservationDto> date(String memberid);
+	List<ReservationDto> campres(String memberid);
+	ReservationDto res(String reser_id);
+	String date(String reser_id);
 }

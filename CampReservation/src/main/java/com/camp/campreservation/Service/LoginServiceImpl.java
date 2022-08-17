@@ -97,13 +97,18 @@ public class LoginServiceImpl implements LoginService{
 
 
 	@Override
-	public List<CampDBDto> campres(String memberid) {
+	public List<ReservationDto> campres(String memberid) {
 		return loginmapper.campres(memberid);
 	}
 
 	@Override
-	public List<ReservationDto> date(String memberid) {
-		return loginmapper.date(memberid);
+	public String date(String reser_id) {
+		return loginmapper.date(reser_id);
+	}
+
+	@Override
+	public ReservationDto res(String reser_id) {
+		return loginmapper.res(reser_id);
 	}
 
 

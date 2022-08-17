@@ -28,6 +28,24 @@
 function wtype(){
 	window.open("/mypagewtype","_blank","width=700px,height=700px");
 }
+function rev(reser_id){
+	$.ajax({
+    	type: 'post',	
+    	url: 're',
+    	data: {"reser_id":reser_id},
+    	error: function (request, error) {
+    		alert("fail");
+    		console.log("code:"+request.status + "\n" + "message:"+request.responseText+ "\n" + "error:"+error);
+    	},
+    	success: function (result) {
+    		if(result==1){
+    			window.open('/write?reser_id='+reser_id, '', 'width=700, height=500, location=no, status=no, scrollbars=yes');
+    		}else if(result==-1){
+    			alert("여행이 아직 끝나지 않았습니다.");
+    		}
+    	}
+    });
+}
 </script>
 <style>
 body{
@@ -146,7 +164,7 @@ input{
 						</c:when>
 						<c:otherwise>
 						<c:forEach items="${camp}" var="dto" varStatus="status">
-						<a href="">${dto.camp_name}</a><br><br>
+						<a href="/clist/cdetail?camp_id=${dto.camp_id}&camp_se=${dto.camp_se}&memberid=${sessionScope.memberid}">${dto.camp_name}</a><br><br>
 						</c:forEach>
 						</c:otherwise>
 					</c:choose>
@@ -156,22 +174,20 @@ input{
 			<table class="review_list" style="text-align: center;">			
 				<tr>
 					<th>예약완료</th>
-					<th>이용완료</th>
 					<th>한줄후기</th>
 				</tr>
 			<div class="review">
 				<c:choose>
 				<c:when test="${empty res }">
 							<tr>
-								<td colspan="3">"조회된 이력이 없습니다.!"</td>
+								<td colspan="2">"조회된 이력이 없습니다.!"</td>
 							</tr>
 				</c:when>
 				<c:otherwise>
 				<c:forEach items="${res}" var="dt" varStatus="status">
 					<tr>
 						<td>${dt.camp_name}</td>
-						<td>${dt.last_date}</td>
-						<td><input type="button" name="review" id="review" value="후기작성하기" style="color: black;" onclick=""></td>
+						<td><input type="button" name="review" id="review" value="후기작성하기" style="color: black;" onclick="rev(${dt.reser_id});"></td>
 					</tr>
 				</c:forEach>
 				</c:otherwise>

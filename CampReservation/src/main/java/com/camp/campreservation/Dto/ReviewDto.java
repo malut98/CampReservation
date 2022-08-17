@@ -3,58 +3,58 @@ package com.camp.campreservation.Dto;
 import java.util.Date;
 
 public class ReviewDto {
-	private int renum;
-	private int campid;
-	private Date redate;
-	private String recontent;
-	private String memberid;
+	private int re_num;
+	private int camp_id;
+	private Date re_date;
+	private String re_content;
+	private String member_id;
 	
 	public ReviewDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ReviewDto(int renum, int campid, Date redate, String recontent, String memberid) {
+	public ReviewDto(int re_num, int camp_id, Date re_date, String re_content, String member_id) {
 		super();
-		this.renum = renum;
-		this.campid = campid;
-		this.redate = redate;
-		this.recontent = recontent;
-		this.memberid = memberid;
+		this.re_num = re_num;
+		this.camp_id = camp_id;
+		this.re_date = re_date;
+		this.re_content = re_content;
+		this.member_id = member_id;
 	}
-	public int getRenum() {
-		return renum;
+	public int getRe_num() {
+		return re_num;
 	}
-	public void setRenum(int renum) {
-		this.renum = renum;
+	public void setRenum(int re_num) {
+		this.re_num = re_num;
 	}
-	public int getCampid() {
-		return campid;
+	public int getCamp_id() {
+		return camp_id;
 	}
-	public void setCampid(int campid) {
-		this.campid = campid;
+	public void setCamp_id(int camp_id) {
+		this.camp_id = camp_id;
 	}
-	public Date getRedate() {
-		return redate;
+	public Date getRe_date() {
+		return re_date;
 	}
-	public void setRedate(Date redate) {
-		this.redate = redate;
+	public void setRe_date(Date re_date) {
+		this.re_date = re_date;
 	}
-	public String getRecontent() {
-		return recontent;
+	public String getRe_content() {
+		return re_content;
 	}
-	public void setRecontent(String recontent) {
-		this.recontent = recontent;
+	public void setRe_content(String re_content) {
+		this.re_content = re_content;
 	}
-	public String getMemberid() {
-		return memberid;
+	public String getMember_id() {
+		return member_id;
 	}
-	public void setMemberid(String memberid) {
-		this.memberid = memberid;
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
 	@Override
 	public String toString() {
-		return "ReviewDto [renum=" + renum + ", campid=" + campid + ", redate=" + redate + ", recontent=" + recontent
-				+ ", memberid=" + memberid + "]";
+		return "ReviewDto [re_num=" + re_num + ", camp_id=" + camp_id + ", re_date=" + re_date + ", re_content=" + re_content
+				+ ", member_id=" + member_id + "]";
 	}
 	
 	

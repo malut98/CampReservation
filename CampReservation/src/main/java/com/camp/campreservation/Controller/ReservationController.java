@@ -31,7 +31,7 @@ public class ReservationController {
 	public int CampRserv(@RequestParam("first_date") String first_date, @RequestParam("last_date") String last_date,
 			@RequestParam("info_name") String info_name, @RequestParam("info_tel") String info_tel,
 			@RequestParam("info_need") String info_need, @RequestParam("number_p") int number_p,
-			@RequestParam("camp_id") int camp_id, HttpSession session, Model model,
+			@RequestParam("camp_id") int camp_id, @RequestParam("camp_name") String camp_name, HttpSession session, Model model,
 			RedirectAttributes redirect) {
 		String member_id = (String) session.getAttribute("memberid");
 		ReservationDto dto = new ReservationDto();
@@ -43,6 +43,7 @@ public class ReservationController {
 		dto.setNumber_p(number_p);// 인원수
 		dto.setMember_id(member_id);// 유저의 아이디
 		dto.setCamp_id(camp_id);// 캠프아이디
+		dto.setCamp_name(camp_name);
 		System.out.println(dto);
 		
 		int cnt = reservationServiceImpl.reservcnt(dto);

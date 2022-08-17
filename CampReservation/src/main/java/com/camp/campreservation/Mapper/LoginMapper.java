@@ -31,18 +31,21 @@ public interface LoginMapper {
 	@Select(" SELECT CAMP_ID FROM HEART WHERE MEMBER_ID = #{memberid}")
 	List<CampDBDto> camplist(String memberid);
 	
-	@Select("SELECT CAMP_NAME,CAMP_ADDR FROM CAMP WHERE CAMP_ID = any(SELECT CAMP_ID FROM HEART WHERE MEMBER_ID=#{memberid}) ORDER BY CAMP_ID")
+	@Select("SELECT * FROM CAMP WHERE CAMP_ID = any(SELECT CAMP_ID FROM HEART WHERE MEMBER_ID=#{memberid}) ORDER BY CAMP_ID")
 	List<CampDBDto> camplike(String memberid);
 	
 	@Select(" SELECT COUNT(*) FROM HEART WHERE MEMBER_ID=#{memberid} ")
 	int count(String memberid);
 	
-	@Select("SELECT A.CAMP_ID, B.RESER_LAST_DATE FROM CAMP AS A JOIN RESERVATION AS B USING(CAMP_ID) WHERE MEMBER_ID=#{memberid};")
-	List<CampDBDto> campres(String memberid);
+	@Select("SELECT * FROM RESERVATION WHERE MEMBER_ID=#{memberid} ORDER BY CAMP_ID ")
+	List<ReservationDto> campres(String memberid);
 	
-	@Select(" SELECT RESER_LAST_DATE FROM RESERVATION WHERE MEMBER_ID=#{memberid} ORDER BY CAMP_ID ")
-	List<ReservationDto> date(String memberid);
+	@Select(" SELECT RESER_LAST_DATE FROM RESERVATION WHERE RESER_ID=#{reser_id} ")
+	String date(String reser_id);
 	
 	@Select("SELECT MEMBER_ID AS MEMBERID, MEMBER_NAME AS MEMBERNAME, MEMBER_PHONE AS MEMBERPHONE ,MEMBER_WTYPE AS WTYPE,MEMBER_POINT AS POINTER FROM MEMBER WHERE MEMBER_ID=#{memberid}")
 	LoginDto mypage(String memberid);
+
+	@Select( "SELECT * FROM RESERVATION WHERE RESER_ID=#{reser_id}" )
+	ReservationDto res(String reser_id);
 }

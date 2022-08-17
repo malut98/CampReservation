@@ -21,6 +21,6 @@ public interface ReservationMapper {
 			+ "AND MEMBER_ID = #{member_id}")
 	public int Rservcnt(ReservationDto dto);
 	
-	@Insert("INSERT INTO RESERVATION VALUES(NULL, #{info_name}, #{first_date}, #{last_date}, #{info_tel},#{info_need},#{number_p},#{member_id},#{camp_id})")
+	@Insert("INSERT INTO RESERVATION VALUES(NULL, #{info_name}, #{first_date}, #{last_date}, #{info_tel},#{info_need},#{number_p},#{member_id},#{camp_id},#{camp_name})")
 	public int ReservationInsert(ReservationDto dto);
 }
