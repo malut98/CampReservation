@@ -102,59 +102,6 @@
 </head>
 <body>
 	<jsp:include page="../header.jsp" flush="true"/>
-		<div class="section">
-			<div class="logo">
-				<a href="/"><img alt="" src="/resources/img/logo/logo (2).png"
-					style="height: 100px;"></a>
-			</div>
-			<div class="nav-item-search">
-				<form class="form-tag" action="" style="">
-					<img class="search-icon" style="width: 64px; height: 64px;"
-						src="/resources/img/search.svg"> <input class="search-form"
-						type="text" placeholder="통합검색"> <span class="underline"></span>
-				</form>
-			</div>
-			<div class="nav_wrap">
-				<div class="nav">
-					<ul class="header_menu">
-						<li class="nav-item"><a href="/clist/ca">캠핑모아</a></li>
-						<li class="nav-item"><a href="/usedtradelist">중고모아</a></li>
-						<li class="nav-item"><a href="/communitylist">커뮤모아</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="menu_pan">
-				<div class="camp-moa">
-					<div class="menu_category">
-						<div class="category">
-							<a href=""> 베스트 모아</a>
-						</div>
-						<div class="category">
-							<a href=""> 새로움 모아</a>
-						</div>
-						<div class="category">
-							<a href="/clist/cpl"> 캠핑장 모아</a>
-						</div>
-						<div class="category">
-							<a href="/clist/cvl"> 카라반 모아</a>
-						</div>
-						<div class="category">
-							<a href="/clist/gl"> 글램핑 모아</a>
-						</div>
-						<div class="category">
-							<a href=""> 반려견 모아</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="profile">
-				<ul>
-					<li><a href="/resources/login">로그인</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-
 	<div class="category_name" style="width: 100%;">
 		<div style="width: 58%; display: flex; justify-content: center;">
 			<h1>${camp.camp_name}</h1>
@@ -321,7 +268,7 @@
                             msg += '카드 승인번호 : ' + rsp.apply_num;
                             */
                             $.ajax({
-                                type: "post", 
+                                type: "Post", 
                                 url: "/campreservation", //충전 금액값을 보낼 url 설정
                                 data: {
                         			"first_date" : first_date, //첫날

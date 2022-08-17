@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.camp.campreservation.Dto.LoginDto;
+import com.camp.campreservation.Dto.ReservationDto;
 import com.camp.campreservation.Mapper.LoginMapper;
 import com.camp.campreservation.campdb.dto.CampDBDto;
 
@@ -84,7 +85,7 @@ public class LoginServiceImpl implements LoginService{
 
 
 	@Override
-	public CampDBDto camplike(String memberid) {
+	public List<CampDBDto> camplike(String memberid) {
 		return loginmapper.camplike(memberid);
 	}
 
@@ -96,11 +97,14 @@ public class LoginServiceImpl implements LoginService{
 
 
 	@Override
-	public CampDBDto campres(String memberid) {
+	public List<CampDBDto> campres(String memberid) {
 		return loginmapper.campres(memberid);
 	}
 
-
+	@Override
+	public List<ReservationDto> date(String memberid) {
+		return loginmapper.date(memberid);
+	}
 
 
 
