@@ -28,14 +28,12 @@ $( document ).ready( function() {
 	   $("#id").keyup(function(){
 	      $("#checkeid").attr("value","N");//키가 감지됐을경우 다시 중복체크를 한 value값을 다시 N으로 돌려버림
 	      var val = $("#checkeid").val();
-	      console.log("checkid value ="+val);
 	   });
 	});
 $( document ).ready( function() {
 	   $("#memberphone").keyup(function(){
 	      $("checkphone").attr("value","N");//키가 감지됐을경우 다시 중복체크를 한 value값을 다시 N으로 돌려버림
 	      var val = $("checkphone").val();
-	      console.log("checkphone value ="+val);
 	   });
 	});
 	function checkId(){
@@ -145,7 +143,6 @@ table{
 	cursor : pointer;
 	background-color: skyblue;
 	border-radius: 10px;
-	border-color: skyblue;
 }
 #phonecheck{
 	cursor : pointer;

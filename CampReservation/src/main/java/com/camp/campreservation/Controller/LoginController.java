@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.camp.campreservation.Dto.LoginDto;
 import com.camp.campreservation.Dto.ReservationDto;
+import com.camp.campreservation.Service.IndexService;
 import com.camp.campreservation.Service.LoginService;
 import com.camp.campreservation.campdb.dto.CampDBDto;
 import com.camp.campreservation.camplist.service.CampListService;
@@ -30,6 +31,15 @@ public class LoginController {
 	
 	@Autowired
 	private LoginService loginservice;
+	
+	@Autowired
+	private CampListService camplistservice;
+	
+	@Autowired
+	private HeartService heartService;
+	
+	@Autowired
+	private IndexService indexService;
 	
 	@GetMapping("/mypage")
 	public String mypage(HttpSession session,Model model) {
@@ -61,28 +71,22 @@ public class LoginController {
 		return "Login/login";
 	}
 	
-	@GetMapping("/index")
-	public String main() {
-		return "Login/index";
-	}
 	
 	@GetMapping("/sign")
 	public String signForm() {
 		return "Login/sign";
 	}
-	@PostMapping("/login")
-	public String login() {
-		return "Login/login";
-	}
 	
-	@RequestMapping(value="/logincheck",method=RequestMethod.POST)
+	@PostMapping("/logincheck")
 	public String logincheck(HttpSession session,HttpServletRequest request,Model model,String memberid,String memberpw) {
 		if(loginservice.logincheck(memberid, memberpw) != null) {
 			model.addAttribute("memberid", memberid);
 			model.addAttribute("memberpw", memberpw);
 			request.getSession().setAttribute("memberid", memberid);
 			request.getSession().setAttribute("memberpw", memberpw);
-			return "index";
+			List<CampDBDto> list = indexService.selectList();
+			model.addAttribute("list",list);
+			return "/index";
 		}else {
 			return "Login/login";
 		}

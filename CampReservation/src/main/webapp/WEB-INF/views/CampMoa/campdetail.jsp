@@ -16,7 +16,6 @@
 <link rel="StyleSheet" href="/resources/css/Category.css"
 	type="text/css">
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=lony5bkfmj"></script>
-<script type="text/javascript" src="/resources/js/star.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
@@ -51,6 +50,15 @@ $(document).ready(function () {
 		$("#likeimg").attr("src", "/resources/img/unlike.png");
 		$("#likeimg").attr("onclick", "unlike('${sessionScope.memberid}', ${camp.camp_id})");
 	}
+	
+	$(".wordcloud_img")
+	.on('load', function() { console.log("image loaded correctly"); })
+	.on('error', function() { 
+		$('.wordcloud_img').attr("src","/resources/img/world_cloud_error.png")
+		setTimeout(function(){      
+			$('.review_container').load(location.href+' .review_container');
+		}, 2000);	
+	});
 });
 	
 function unlike(memberid, campid){
@@ -94,16 +102,7 @@ function like(memberid, campid){
     	}
     });
 }
-$(document).ready(function () {
-$(".wordcloud_img")
-.on('load', function() { console.log("image loaded correctly"); })
-.on('error', function() { 
-	$('.wordcloud_img').attr("src","/resources/img/world_cloud_error.png")
-	setTimeout(function(){      
-		$('.review_container').load(location.href+' .review_container');
-	}, 2000);	
-});
-});
+
 </script>
 	<style>
 	@media(max-width: 1024px){
