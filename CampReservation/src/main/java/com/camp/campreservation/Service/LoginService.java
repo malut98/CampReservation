@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import com.camp.campreservation.Dto.LoginDto;
+import com.camp.campreservation.Dto.ReservationDto;
 import com.camp.campreservation.campdb.dto.CampDBDto;
 
 public interface LoginService {
@@ -17,7 +18,8 @@ public interface LoginService {
 
 	/* public CampDBDto mypagelike(int camp_id); */
 	public void SMS(String memberphone,String num);
-	CampDBDto camplike(String memberid);
+	List<CampDBDto> camplike(String memberid);
 	int count(String memberid);
-	CampDBDto campres(String memberid);
+	List<CampDBDto> campres(String memberid);
+	List<ReservationDto> date(String memberid);
 }

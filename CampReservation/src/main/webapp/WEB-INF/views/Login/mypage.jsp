@@ -25,67 +25,6 @@
 	href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 <script src="/resources/js/category.js"></script>
 <script>
-	$(function() {
-		$('.item-wrapper').slick({
-			dots : false,
-			infinite : true,
-			speed : 300,
-			slidesToShow : 4,
-			slidesToScroll : 2,
-			responsive : [ {
-				breakpoint : 1024,
-				settings : {
-					slidesToShow : 3,
-					slidesToScroll : 3
-				}
-			}
-			// You can unslick at a given breakpoint now by adding:
-			// settings: "unslick"
-			// instead of a settings object
-			]
-		});
-	});
-/* 	function unlike(memberid, campid){
-		$.ajax({
-			type: 'post',	
-	    	url: '/ht/unheart',
-	    	data: {"memberid":memberid, "campid":campid},
-	    	error: function (request, error) {
-	    		alert("fail");
-	    		console.log("code:"+request.status + "\n" + "message:"+request.responseText+ "\n" + "error:"+error);
-	    	},
-	    	success: function (count) {
-	    		if(count==-1){
-	    			alert("로그인 후 이용 가능합니다.");
-	    		}else{
-	    		$("#likeimg").attr("src", "/resources/img/like.png");
-	    		$("#likeimg").attr("onclick", "like('${sessionScope.memberid}', ${camp.camp_id})");
-	    		$("label[for='count']").text(count);
-	    		}
-	    	}
-	    }); */
-	
-
-/* 	function like(memberid, campid){
-		$.ajax({
-			type: 'post',	
-	    	url: '/ht/heart',
-	    	data: {"memberid":memberid, "campid":campid},
-	    	error: function (request, error) {
-	    		alert("fail");
-	    		console.log("code:"+request.status + "\n" + "message:"+request.responseText+ "\n" + "error:"+error);
-	    	},
-	    	success: function (count) {
-	    		if(count==-1){
-	    			alert("로그인 후 이용 가능합니다.");
-	    		}else{
-	    		$("#likeimg").attr("src", "/resources/img/unlike.png");
-	    		$("#likeimg").attr("onclick", "unlike('${sessionScope.memberid}', ${camp.camp_id})");
-	    		$("label[for='count']").text(count);
-	    		}
-	    	}
-	    });
-	} */
 function wtype(){
 	window.open("/mypagewtype","_blank","width=700px,height=700px");
 }
@@ -128,10 +67,13 @@ body{
 	padding-top : 300px;
 	padding-left: 300px;
 }
+.reviewlist>table{
+	margin-left:100px;;
+}
 .review_list{
-	width: 1030px;
+	border-spacing: 0 25px;
+	width: 1000px;
 	height: 50px;
-	background-color:lightgray;
 	border-top: 1px solid #444444;
 }
 .review_list>th{
@@ -195,7 +137,7 @@ input{
 			<div class="likelist">
 				<h3>좋아요 리스트</h3>
 			</div>
-			<div class="camplike" style="overflow:scroll">
+			<div class="camplike" style="overflow:scroll; text-align: center;">
 					<c:choose>
 						<c:when test="${empty camp }">
 							<tr>
@@ -203,24 +145,20 @@ input{
 							</tr>
 						</c:when>
 						<c:otherwise>
-							<tr>
-								<td>${camp.camp_name }</td>
-								<td>${camp.camp_addr }</td>
-								<%-- <td><img id="likeimg" style="width: 50px; height: 50px;" src="/resources/Img/unlike.png" onclick="unlike('${sessionScope.memberid}', ${camp.camp_id});"></td> --%>
-								<td>${count }</td>
-							</tr>
+						<c:forEach items="${camp}" var="dto" varStatus="status">
+						<a href="">${dto.camp_name}</a><br><br>
+						</c:forEach>
 						</c:otherwise>
 					</c:choose>
 			</div>
 		</div>	
 		<div class="reviewlist" style="line-height:50%;">
-			<table class="review_list">			
+			<table class="review_list" style="text-align: center;">			
 				<tr>
 					<th>예약완료</th>
 					<th>이용완료</th>
 					<th>한줄후기</th>
 				</tr>
-			</table>
 			<div class="review">
 				<c:choose>
 				<c:when test="${empty res }">
@@ -229,14 +167,17 @@ input{
 							</tr>
 				</c:when>
 				<c:otherwise>
+				<c:forEach items="${res}" var="dt" varStatus="status">
 					<tr>
-						<td>${res.camp_name }</td>
-						<td>${res.camp_name }</td>
-						<td><input type="button" name="review" id="review" value="후기작성하기" onclick=""></td>
+						<td>${dt.camp_name}</td>
+						<td>${dt.last_date}</td>
+						<td><input type="button" name="review" id="review" value="후기작성하기" style="color: black;" onclick=""></td>
 					</tr>
+				</c:forEach>
 				</c:otherwise>
 				</c:choose>
-			</div>				
+			</div>
+			</table>				
 		</div>		
 	</div>
 	<jsp:include page="../Footer2.jsp" flush="true"/>

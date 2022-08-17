@@ -102,9 +102,32 @@ function like(memberid, campid){
 
 </script>
 	<style>
-		h1{
-			margin-top: 4%;
-			margin-left: 7%;
+	@media(max-width: 1024px){
+		.c_table{
+			width:100%;
+		}
+		.img{
+			width:100%;
+			margin-left: 0%;
+		}
+		.cont{
+			text-align:center;
+			width: 100%;
+			height:2850px;
+		}
+		#map{
+			width:600px;
+			height:500px;
+			margin: auto;
+		}
+		table{
+			margin:auto;
+		}
+	}
+	@media(min-width: 1024px){
+		.c_table{
+			width:45%;
+			float: right;
 		}
 		.img{
 			width:45%;
@@ -116,11 +139,19 @@ function like(memberid, campid){
 			width: 100%;
 			height:2500px;
 		}
-		.c_table{
-			width:45%;
-			float: right;
+		#map{
+			width:1000px;
+			height:500px;
+			margin: auto;
 		}
-		
+		.ti{
+			margin-top: 4%;
+			margin-left: 7%;
+		}
+		.na{
+			margin-left: 20%;
+		}
+	}
 		.title{
 			width:40%;
 		}
@@ -128,7 +159,6 @@ function like(memberid, campid){
 			height: 48px;
 		}
 		.heart{
-			margin-left: 7%;
 			float:left;
 			width: 605px;
 		}
@@ -145,7 +175,7 @@ function like(memberid, campid){
 
 	<div class="cont">
 		<div class="name">
-			<h1>${camp.camp_name}</h1>
+			<h1 class="ti">${camp.camp_name}</h1>
 		</div>
 		<div class="img">
 			<c:if test="${camp.camp_img eq 'x'}">
@@ -153,6 +183,15 @@ function like(memberid, campid){
 					src="https://pbs.twimg.com/media/Et8y5ArVcAYlA28.jpg:large"></c:if>		
 			<c:if test="${camp.camp_img ne 'x'}">
 				<img style="width: 700px; height: 440px;" src="${camp.camp_img}"></c:if>
+		<div style="width: 100%">
+			<div class="heart">
+				<img id="likeimg" style="width: 50px; height: 50px;" src="/resources/Img/unlike.png" onclick="unlike('${sessionScope.memberid}', ${camp.camp_id});">
+				<label for="count">${count}</label>
+			</div>
+			<div class="reservation">
+				<button style="width : 80px; height : 35px;" onclick="location.href='campreservation?camp_id=${camp.camp_id}'">예약하기</button>
+			</div>
+		</div>
 		</div>
 		<div class="c_table">
 			<table>
@@ -194,15 +233,7 @@ function like(memberid, campid){
 				</tr>
 			</table>
 		</div>
-		<div style="width: 100%">
-			<div class="heart">
-				<img id="likeimg" style="width: 50px; height: 50px;" src="/resources/Img/unlike.png" onclick="unlike('${sessionScope.memberid}', ${camp.camp_id});">
-				<label for="count">${count}</label>
-			</div>
-			<div class="reservation">
-				<button style="width : 80px; height : 35px;" onclick="location.href='campreservation?camp_id=${camp.camp_id}'">예약하기</button>
-			</div>
-		</div>
+		
 		<div class="notice_container" style="height:300px;">
 		<div class="notice_inner" style="width: 90%; height:300px;">
 			<div class="notice_wrap" style="height:300px;">
@@ -235,7 +266,7 @@ function like(memberid, campid){
 		</div>
 	</div>
 	<div class="review" style="width: 100%; height: 400px">
-		<h1 style="margin-left: 20%;">후 기</h1>
+		<h1 style="text-align: center;">후 기</h1>
 		<div class="review_container" style="text-align: center;">
 			<div class="review_wrap">
 				<div class="review_content">
@@ -244,13 +275,13 @@ function like(memberid, campid){
 			</div>
 		</div>
 	</div>
-	<h1 style="margin-left: 20%;">오시는 길</h1>
-	<div id="map" style="width:1000px;height:500px; margin: auto;"></div>
+	<h1 class="na">오시는 길</h1>
+	<div id="map"></div>
 	<div class="notice_container">
 		<div class="notice_inner" 	style="width: 72%;">
 			<div class="notice_wrap">
 				<div class="notice_top">
-					<h1>이 캠핑장과 비슷한 캠핑장</h1>
+					<h1 style="text-align: center;">이 캠핑장과 비슷한 캠핑장</h1>
 					<div class="slider	">
 						<div class="item-wrapper">
 							<c:choose>

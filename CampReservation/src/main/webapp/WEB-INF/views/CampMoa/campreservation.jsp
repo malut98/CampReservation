@@ -102,7 +102,6 @@
 </head>
 <body>
 	<jsp:include page="../header.jsp" flush="true"/>
-
 	<div class="category_name" style="width: 100%;">
 		<div style="width: 58%; display: flex; justify-content: center;">
 			<h1>${camp.camp_name}</h1>
@@ -269,7 +268,7 @@
                             msg += '카드 승인번호 : ' + rsp.apply_num;
                             */
                             $.ajax({
-                                type: "post", 
+                                type: "Post", 
                                 url: "/campreservation", //충전 금액값을 보낼 url 설정
                                 data: {
                         			"first_date" : first_date, //첫날

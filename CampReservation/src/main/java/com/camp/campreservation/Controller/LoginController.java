@@ -2,6 +2,7 @@ package com.camp.campreservation.Controller;
 
 import java.util.List;
 import java.util.Random;
+import java.time.LocalDate;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.camp.campreservation.Dto.LoginDto;
+import com.camp.campreservation.Dto.ReservationDto;
 import com.camp.campreservation.Service.IndexService;
 import com.camp.campreservation.Service.LoginService;
 import com.camp.campreservation.campdb.dto.CampDBDto;
@@ -48,14 +49,19 @@ public class LoginController {
 		model.addAttribute("dto", dto);
 		
 		
-		CampDBDto camplike = loginservice.camplike(memberid);
+		List<CampDBDto> camplike = loginservice.camplike(memberid);
 		model.addAttribute("camp", camplike);
 		
 		int count = loginservice.count(memberid);
 		model.addAttribute("count", count);
 		
-		CampDBDto campres = loginservice.campres(memberid);
+		List<CampDBDto> campres = loginservice.campres(memberid);
 		model.addAttribute("res", campres);
+		
+		List<ReservationDto> date = loginservice.date(memberid);
+		model.addAttribute("da", date);
+		LocalDate now = LocalDate.now();
+		model.addAttribute("now", now );
 		
 		return "Login/mypage";
 	}
