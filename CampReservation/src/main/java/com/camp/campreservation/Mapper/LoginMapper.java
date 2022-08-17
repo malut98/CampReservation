@@ -14,7 +14,7 @@ import com.camp.campreservation.campdb.dto.CampDBDto;
 public interface LoginMapper {
 	
 	
-	@Insert("INSERT INTO MEMBER VALUES(#{memberid},#{memberpw},#{membername},#{memberphone},#{gender},#{adress},NULL,DEFAULT,DEFAULT)")
+	@Insert("INSERT INTO MEMBER VALUES(#{memberid},#{memberpw},#{membername},#{memberphone},'M','서울시',NULL,DEFAULT,DEFAULT)")
 	int insert(LoginDto dto);
 	
 	@Select("SELECT COUNT(MEMBER_ID) FROM MEMBER WHERE MEMBER_ID=#{ID}")
@@ -23,7 +23,7 @@ public interface LoginMapper {
 	@Select("SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberid} AND MEMBER_PW=#{memberpw}")
 	String logincheck(String memberid,String memberpw);
 	
-	@Insert("INSERT INTO MEMBER VALUES(#{memberid},#{memberpw},#{membername},#{memberphone},NULL,DEFAULT,DEFAULT)")
+	@Insert("INSERT INTO MEMBER VALUES(#{memberid},#{memberpw},#{membername},#{memberphone},'M',NULL,DEFAULT,DEFAULT)")
 	void signup(LoginDto dto);
 	
 	

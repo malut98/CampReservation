@@ -112,7 +112,7 @@ public class LoginController {
 		
 		model.addAttribute("login",loginservice.insert(dto));
 		
-		return "/login";
+		return "Login/login";
 	}
 	
 	@GetMapping("/phonecheck")
