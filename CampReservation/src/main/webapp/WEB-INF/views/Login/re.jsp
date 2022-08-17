@@ -16,6 +16,7 @@
 	   }else{
 	      if(confirm("리뷰를 등록하시겠습니까?")){
 	         $(".rev").submit();
+	         
 	      }
 	   }
 	};
