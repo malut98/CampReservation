@@ -47,9 +47,6 @@
 							<a href="/clist/best"> 베스트 모아</a>
 						</div>
 						<div class="category">
-							<a href=""> 새로움 모아</a>
-						</div>
-						<div class="category">
 							<a href="/clist/cpl"> 캠핑장 모아</a>
 						</div>
 						<div class="category">

@@ -80,8 +80,6 @@
 			$("#r_likeimg").attr("onclick", "r_unlike('${sessionScope.memberid}', ${camp_2.camp_id})");
 		}
 		function reloadDivArea() {
-    		//$('.review_container').load(location.href+' .review_container');
-			//$('#divReloadLayer').load(location.href+' #divReloadLayer');
 			$('.review_container').load(location.href+' .review_container');
 			console.log("rtestset");
 		}

@@ -119,8 +119,49 @@ public class CampListController {
 		model.addAttribute("count", count);
 		int check = heartService.check(memberid, camp_id);
 		model.addAttribute("check", check);
+		
+		try {
+			System.out.println("워드 클라우드 실행");
+			List<String> reviewlist = reviewService.getCampAllReview(camp_id);
 
-		return "CampMoa/campdetail";
+			// 파일 입출력
+			String fileName = "wordtext_id=" + camp_id + ".txt";
+			File myFile = new File(fileName);
+			FileOutputStream fos = new FileOutputStream(myFile);
+			OutputStreamWriter osw = new OutputStreamWriter(fos);
+			Writer writer = new BufferedWriter(osw);
+
+			if (reviewlist.size() > 0) {
+				for (String s : reviewlist) {
+					writer.write(s + "\n");
+				}
+				writer.close();
+			} else {
+				writer.write("등록된리뷰가없습니다.");
+				writer.close();
+			}
+
+			final FrequencyAnalyzer frequencyAnalyzer = new FrequencyAnalyzer();
+			java.awt.Font font = new java.awt.Font("Dialog", Font.BOLD, 35); // 워드클라우드 폰트지정
+			final List<WordFrequency> wordFrequencies = frequencyAnalyzer.load("wordtext_id=" + camp_id + ".txt");
+			final Dimension dimension = new Dimension(600, 600);
+			final WordCloud wordCloud = new WordCloud(dimension, CollisionMode.PIXEL_PERFECT);
+
+			wordCloud.setKumoFont(new KumoFont(font));
+			wordCloud.setPadding(5);
+			wordCloud.setBackground(new CircleBackground(300));
+			wordCloud.setBackgroundColor(Color.WHITE);
+			wordCloud.setColorPalette(new ColorPalette(new Color(0x4055F1), new Color(0x408DF1), new Color(0x40AAF1),
+					new Color(0x40C5F1), new Color(0x40D3F1), new Color(0xFFFFFF)));
+			wordCloud.setFontScalar(new SqrtFontScalar(10, 40));
+			wordCloud.build(wordFrequencies);
+			wordCloud.writeToFile("src/main/resources/static/Img/wordcloud/" + "wordcloud_id-" + camp_id + ".png");
+
+			return "CampMoa/campdetail";
+		}catch(Exception e)
+		{
+			return "CampMoa/campdetail";
+		}
 	}
 
 	@PostMapping("/pagin")

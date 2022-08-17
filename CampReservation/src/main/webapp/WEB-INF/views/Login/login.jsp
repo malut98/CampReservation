@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,86 +22,37 @@
 <link rel="stylesheet" type="text/css"
 	href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 <script src="/resources/js/category.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function(e){
-	$(".login").click(function(){
-		if($.trim($("#memberid").val()) == ""){
-			alert("ID를 입력해주세요");
-			$("#memberid").focus();
-			return;
-		}else if($.trim($("#memberpw").val()) == ""){
-			alert("PW를 입력해주세요");
-			$("#memberpw").focus();
-			return;
-		}
-		
-		$("#loginfrm").submit();
-	});
-	
-	$("#sign").click(function(){
-		location.href="/sign";
-	});
-});
+	$(document).ready(function(e) {
+		$(".login").click(function() {
+			if ($.trim($("#memberid").val()) == "") {
+				alert("ID를 입력해주세요");
+				$("#memberid").focus();
+				return;
+			} else if ($.trim($("#memberpw").val()) == "") {
+				alert("PW를 입력해주세요");
+				$("#memberpw").focus();
+				return;
+			}
 
+			$("#loginfrm").submit();
+		});
+
+		$("#sign").click(function() {
+			location.href = "/sign";
+		});
+	});
 </script>
-<style>
-body{
-	background-color:black;
-}
-
-table{
-	margin-top: auto;
-	margin-left:auto;
-	margin-right:auto;
-	border-spacing: 10px;
-	border-collapse: separate;
-}
-
-h1{	
-	color: white;
-	font-size: 30pt;
-	text-align: center;
-	padding-top:15px;
-}
-.loginblock{
- 	color: white;
-   width: 450px;
-   height: 300px;
-   background-color:gray;
-   font-size: 10pt;
-   transform: translate(130%, 20%);
-}
-
-
-.login{
-	width: 100px;
-	height:40px;
-	cursor: pointer;
-	background-color: blue;
-	border: solid 1px blue;
-	border-radius: 10px;
-}
-
-#sign{
-	background-color: green;
-	border: solid 1px green;
-	border-radius: 50px;
-	width:100px;
-	margin:auto;
-	display:block;
-	cursor: pointer;
-}
-
-.box{
-	margin-top:100px;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="/resources/css/login_reward.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/util_reward.css">
 <link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/sta1r.css" type="text/css">
 </head>
 <body>
-		<jsp:include page="../header.jsp" flush="true"/>
-				<div class="loginblock">
+	<jsp:include page="../header.jsp" flush="true" />
+	<!-- <div class="loginblock">
 					<h1>캠모아</h1>
 					<form id="loginfrm" name="loginfrm" action="/logincheck" method="post">
 						<table>
@@ -124,6 +75,48 @@ h1{
 				</div>
 				<div class="box">
 					<input type="hidden">
+				</div>-->
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="/resources/img/logo/logo (2).png" alt="IMG">
 				</div>
-			<jsp:include page="../Footer2.jsp" flush="true"/>
+				
+				<form id="loginfrm" name="loginfrm" action="/logincheck" method="post">
+					<span class="login100-form-title"> </span>
+
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" id="memberid" name="memberid" placeholder="ID"> <span class="focus-input100"></span>
+						<span class="symbol-input100"> <i class="fa fa-envelope"
+							aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="password" name="memberpw"
+							id="memberpw" placeholder="Password"> <span
+							class="symbol-input100"> <i class="fa fa-lock"
+							aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">Login</button>
+					</div>
+
+					<div class="text-center p-t-136">
+						<a class="txt2" href="/sign" style="color: white;"> 캠프모아는 처음이신가요?
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<!--===============================================================================================-->
+	<!--===============================================================================================-->
+	<jsp:include page="../Footer2.jsp" flush="true" />
 </body>
