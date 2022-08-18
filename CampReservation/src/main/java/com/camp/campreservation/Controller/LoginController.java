@@ -52,6 +52,7 @@ public class LoginController {
 		
 		List<ReservationDto> campres = loginservice.campres(memberid);
 		model.addAttribute("res", campres);
+		
 		return "Login/mypage";
 	}
 	
@@ -147,13 +148,16 @@ public class LoginController {
 	}
 	
 	@GetMapping("write")
-	public String write(String reser_id, Model model) {
+	public String write(String reser_id, int camp_id, String member_id, Model model) {
 		ReservationDto res=loginservice.res(reser_id);
 		model.addAttribute("res",res);
+		ReviewDto rev = reviewserivce.check(camp_id, member_id);
+		model.addAttribute("rev",rev);
+
 		return "Login/re";
 	}
 	
-	@PostMapping("/review")
+	@PostMapping("/reviewI")
 	public String reviewWrite(HttpServletRequest request, Model model) {
 		String content = request.getParameter("content");
 		String cid = request.getParameter("campid");
@@ -165,9 +169,22 @@ public class LoginController {
 		rd.setRe_content(content);
 		int cnt = reviewserivce.insert(rd);
 		if (cnt > 0) {
-			return "redirect:/mypage";
+			return "Login/re_check";
 		}else {
-			return "/";
+			return "Login/re_check";
+		}
+	}
+	@PostMapping("/reviewU")
+	public String reviewUpdate(HttpServletRequest request, Model model) {
+		String content = request.getParameter("content");
+		String cid = request.getParameter("campid");
+		String memberid = request.getParameter("memberid");
+		int campid=Integer.parseInt(cid);
+		int cnt = reviewserivce.update(campid,content,memberid);
+		if (cnt > 0) {
+			return "Login/re_check";
+		}else {
+			return "Login/re_check";
 		}
 	}
 }

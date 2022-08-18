@@ -28,7 +28,7 @@
 function wtype(){
 	window.open("/mypagewtype","_blank","width=700px,height=700px");
 }
-function rev(reser_id){
+function rev(reser_id,camp_id,member_id){
 	$.ajax({
     	type: 'post',	
     	url: 're',
@@ -39,7 +39,7 @@ function rev(reser_id){
     	},
     	success: function (result) {
     		if(result==1){
-    			window.open('/write?reser_id='+reser_id, '', 'width=700, height=500, location=no, status=no, scrollbars=yes');
+    			window.open('/write?reser_id='+reser_id+'&camp_id='+camp_id+'&member_id='+member_id, '', 'width=700, height=500, location=no, status=no, scrollbars=yes');
     		}else if(result==-1){
     			alert("여행이 아직 끝나지 않았습니다.");
     		}
@@ -60,7 +60,7 @@ body{
 }
 .likelist{
 	width:40%;
-	height:130px;
+	height:100px;
 	float:right;
 	margin-right:200px;
 	background-color: lightgray;	
@@ -138,12 +138,6 @@ input{
 				<td><input type="text" id="memberphone" name="memberphone" readonly="readonly" value="${dto.memberphone }" style="width:250px;height:40px; color:black;"></td>
 			</tr>
 			<tr>
-				<td>선호날씨</td>
-			</tr>
-			<tr>	
-				<td><input type="button" id="Wtype" name="Wtype"  value="맑음,흐림,비,눈" style="width:250px;height:40px; color:black;" onclick="wtype();"></td>
-			</tr>
-			<tr>
 				<td>보유 포인트</td>
 			</tr>
 			<tr>	
@@ -187,7 +181,8 @@ input{
 				<c:forEach items="${res}" var="dt" varStatus="status">
 					<tr>
 						<td>${dt.camp_name}</td>
-						<td><input type="button" name="review" id="review" value="후기작성하기" style="color: black;" onclick="rev(${dt.reser_id});"></td>
+						
+						<td><input type="button" name="review" id="review" value="후기작성하기" style="color: black;" onclick="rev(${dt.reser_id},${dt.camp_id},'${dt.member_id}');"></td>
 					</tr>
 				</c:forEach>
 				</c:otherwise>
