@@ -29,31 +29,17 @@
 <script src="/resources/js/category.js"></script>
 <script>
 	$(function() {
-		$('.item-wrapper').slick({
-			dots : false,
-			infinite : true,
-			speed : 300,
-			slidesToShow : 4,
-			slidesToScroll : 2,
-			responsive : [ {
-				breakpoint : 1024,
-				settings : {
-					slidesToShow : 3,
-					slidesToScroll : 3
-				}
-			}
-			// You can unslick at a given breakpoint now by adding:
-			// settings: "unslick"
-			// instead of a settings object
-			]
-		});
+		
+		if('${ulist}'=='[]'){
+			$(".paging").hide();
+		}
 	});
 	function page(idx){
 		var pagenum = idx;
 		var contentnum = 10;
 		var searchOption = '${searchOption}';
 		var keyword = '${keyword}';
-		location.href="${pageContext.request.contextPath}/usedtradelist?pagenum="+pagenum+"&contentnum="+contentnum+"&searchOption="+searchOption+"&keyword="+keyword
+		location.href="${pageContext.request.contextPath}/usedtradesearch?pagenum="+pagenum+"&contentnum="+contentnum+"&searchOption="+searchOption+"&keyword="+keyword
 	}
 	
 </script>

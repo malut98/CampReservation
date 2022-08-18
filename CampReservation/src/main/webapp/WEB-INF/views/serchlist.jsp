@@ -26,6 +26,8 @@
 <script src="/resources/js/category.js"></script>
 <script type="text/javascript" src="/resources/js/compare.js"></script>
 <script type="text/javascript">
+
+
 function spag(a) {
 	let key='${keyword}';
 	var pagenum=a;
@@ -44,7 +46,8 @@ function spag(a) {
     		if(pagenum>=${page.getEndPage()+1} || ${page.getStartPage()-1}==0){
         		var contents = html.find("div#searchAjax").html();
     			$(".camplist_bottom").html(contents);
-    		}
+    			}
+
     	}
     });
 }
@@ -55,7 +58,12 @@ function spag(a) {
    <div class="container">
       <div class="camplist_inner">
          <div class="whatever">
+         <c:if test="${camp eq '[]' }" >
+          <p><strong>"${keyword}</strong>검색 결과가 없습니다</p>
+         </c:if>
+         <c:if test="${camp ne '[]' }">
 				<p><strong>"${keyword}"</strong>통합 검색 결과</p>
+				</c:if>
          </div>
          <div class="camplist">
          	<div class="camplist_Top">
@@ -101,6 +109,7 @@ function spag(a) {
    </div>
         <div class="camplist_bottom">
       	<div class="pagingDiv">
+      		<c:if test="${camp ne '[]' }">
          	<c:if test="${page.prev}">
             	<div onclick="spag(${page.getStartPage()-1});">&laquo;</div>
          	</c:if>
@@ -109,6 +118,7 @@ function spag(a) {
          	</c:forEach>
          	<c:if test="${page.next}">
             	<div onclick="spag(${page.getEndPage()+1});">&raquo;</div>
+         	</c:if>
          	</c:if>
       	</div>
       	</div>

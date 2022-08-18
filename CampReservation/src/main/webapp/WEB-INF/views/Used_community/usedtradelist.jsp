@@ -182,13 +182,13 @@
 			</c:if>
 		</div>
 	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	<br><br><br><br>
+	<br><br><br>
+	<br><br>
+	<br><br>
+	<br><br>
+	<br><br>
+	<br><br>
 	<jsp:include page="../Footer2.jsp" flush="true" />
 </body>
 </html>

@@ -49,6 +49,12 @@ public interface CommunityMapper {
 	@Select("SELECT COUNT(*) FROM COMMUNITY WHERE ${searchOption} LIKE CONCAT('%',#{keyword},'%') ")
 	public int countArticle(String searchOption, String keyword);
 	
+	@Select("SELECT * FROM COMMUNITY WHERE ${searchOption} LIKE CONCAT('%',#{keyword},'%') AND COM_CATE LIKE #{dto.com_cate} LIMIT #{pagenum}, #{contentnum} ")
+	public List<CommunityDto> searchlist(CommunityDto dto,String searchOption, String keyword, int pagenum, int contentnum);
+	
+	@Select("SELECT COUNT(*) FROM COMMUNITY WHERE ${searchOption} LIKE CONCAT('%',#{keyword},'%') AND COM_CATE LIKE #{dto.com_cate}")
+	public int selectsearchmenucount(CommunityDto dto, String searchOption, String keyword);
+	
 	@Delete("DELETE FROM COMMUNITY WHERE COM_NUM=#{com_num}")
 	public int communitydelete(CommunityDto dto);
 	

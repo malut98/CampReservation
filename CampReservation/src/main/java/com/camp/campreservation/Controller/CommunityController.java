@@ -56,6 +56,16 @@ public class CommunityController {
 		
 	}
 	
+	@GetMapping("/communityselectsearch")
+	public String communityselectsearch(Model model, @RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "5") String contentnum, CommunityDto dto, String searchOption, @RequestParam(defaultValue="") String keyword) {
+		System.out.println(searchOption);
+		System.out.println(keyword);
+		cs.searchboardlist(model,pagenum, contentnum, dto, searchOption, keyword);
+		System.out.println("값:"+dto.getCom_cate());
+		
+		return "Community/communitysearch";
+	}
+	
 	@GetMapping("/noticelist")
 	public String noticeList(Model model, @RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "5") String contentnum, CommunityDto dto) {
 		cs.boardlist(model, pagenum, contentnum, dto);
@@ -240,14 +250,14 @@ public class CommunityController {
 	
 	
 	@RequestMapping("communitysearch")
-	public String communitysearch(@RequestParam(defaultValue="com_title") String searchOption, @RequestParam(defaultValue="") String keyword, Model model, @RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "5") String contentnum) {
+	public String communitysearch(@RequestParam(defaultValue="com_title") String searchOption, @RequestParam(defaultValue="") String keyword, Model model, @RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "5") String contentnum, String board) {
 		List<CommunityDto> list = cs.listAll(model,searchOption, keyword, pagenum, contentnum);
-		
+		System.out.println(board);
 		model.addAttribute("list",list);
 		
 		model.addAttribute("searchOption",searchOption);
 		model.addAttribute("keyword",keyword);
-		
+		model.addAttribute("board",board);
 		System.out.println(searchOption);
 		System.out.println(keyword);
 	
