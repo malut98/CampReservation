@@ -1,0 +1,154 @@
+@charset "UTF-8";
+
+#container {
+	padding-top: 50px;
+	z-index: 1;
+	width: 100%;
+}
+
+.container {
+	width: 1400px;
+	padding: 0px;
+	margin: 0 auto;
+	/* background-color: grey; */
+}
+
+.title-box {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.title-text {
+	color: white;
+	font-size: 24pt;
+	font-weight: 700;
+	padding-left: 200px;
+	padding-bottom: 50px;
+}
+
+.content01 {
+	display: flex;
+	justify-content: center;
+	padding: 0px 200px 0px 200px;
+}
+
+.content-userinfo {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 300px;
+	padding: 20px;
+}
+
+.content-likelist {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding: 20px;
+}
+
+.content-whitebox {
+	width: 250px;
+	height: 40px;
+	color: black;
+	margin-bottom: 10px;
+}
+
+.content-text {
+	font-size: 18px;
+	padding: 10px 0px;
+}
+
+.content-likelistfont {
+	font-size: 20px;
+	text-align: center;
+	font-weight: 600;
+	background-color: lightgray;
+	padding: 5px 0px;
+}
+
+.content-likes {
+	width: 100%;
+	height: 252px;
+	float: right;
+	overflow: scroll;
+	text-align: center;
+}
+
+.content02 {
+	display: flex;
+	justify-content: center;
+	padding: 0px 200px 0px 200px;
+}
+
+.reservation-box {
+	padding: 20px;
+	justify-content: center;
+	max-width: 1200px;
+}
+
+.reservation-title {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.reservation-title>div {
+	width: 300px;
+	font-size: 18px;
+	text-align: center;
+	padding: 5px;
+	border-bottom: solid 1px white;
+}
+
+.reservation-review {
+	height: auto;
+	background-color: none;
+}
+
+@media ( max-width : 1200px) {
+	.container {
+		width: unset;
+	}
+	.title-box {
+		width: 100%;
+		justify-content: center;
+		padding: 20px;
+	}
+	.title-text {
+		padding-left: 0px;
+		padding-bottom: 0px;
+	}
+	.title-text>div {
+		width: 100%;
+		margin: 0 auto;
+		justify-content: center;
+		align-content: center;
+	}
+	.content01 {
+		flex-direction: column;
+		padding: 0px 50px 0px 50px;
+	}
+	.content-userinfo {
+		justify-content: center;
+		align-items: center;
+		max-width: 100%;
+	}
+	.reservation-title>div {
+		width: 100%;
+		font-size: 18px;
+		text-align: center;
+		padding: 5px;
+	}
+	.content02 {
+		flex-direction: column;
+		padding: 0px 10px 0px 50px;
+		margin: 0;
+	}
+	.reservation-box {
+		justify-content: center;
+		align-items: center;
+		max-width: 100%;
+	}
+}

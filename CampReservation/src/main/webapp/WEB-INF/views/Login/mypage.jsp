@@ -48,142 +48,96 @@ function rev(reser_id,camp_id,member_id){
     });
 }
 </script>
-<style>
-body{
-}
-.likelist{
-	width:40%;
-	height:100px;
-	float:right;
-	margin-right:200px;
-	background-color: lightgray;	
-	text-align:center;
-}***
-.camplike{
-	width:40%;
-	height:130px;
-	float:right;
-	margin-right:200px;
-}
-.camplike > table{
-	width: 75%; 
-	height:150px;
-	border: 1px solid white;
-	margin-left:700px;
-}
-.scroll{
-	overflow: scroll;
-}
-.reviewlist{
-	padding-top : 300px;
-	padding-left: 300px;
-}
-.reviewlist>table{
-	margin-left:100px;;
-}
-.review_list{
-	border-spacing: 0 25px;
-	width: 1000px;
-	height: 50px;
-	border-top: 1px solid #444444;
-}
-.review_list>th{
-	border-bottom:1px solid #444444;
-	padding: 10px;
-}
-.review_list>td{
-	border-bottom:1px solid #444444;
-	padding: 10px;
-}
-h2{	
-	color: white;
-	padding-right:800px;
-	font-size: 25pt;
-	text-align: center;
-}
+ <style>
 
-myinfomation > input{
-	border: solid 1px white;
-	border-radius: 10px;
-
-}
-
-</style>
+ </style>
 <link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/mypage.css" type="text/css">
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"/>
 		
-	<div class="mypagemain" style="width: 70%;">
-		<h2>마이페이지</h2>
-		<div class="myinfomation">
-		<table>
-			<tr>
-				<td>이름</td>
-			</tr>
-			<tr>
-				<td><input type="text" id="memberphone" name="memberphone" readonly="readonly" value="${dto.membername }" style="width:250px;height:40px; color:black;"></td>
-			</tr>
-			<tr>
-				<td>휴대폰번호</td>
-			</tr>
-			<tr>
-				<td><input type="text" id="memberphone" name="memberphone" readonly="readonly" value="${dto.memberphone }" style="width:250px;height:40px; color:black;"></td>
-			</tr>
-			<tr>
-				<td>보유 포인트</td>
-			</tr>
-			<tr>	
-				<td><input type="text" id="pointer" name="pointer" readonly="readonly" value="${dto.pointer }" style="width:250px;height:40px; color:black;"></td>
-			</tr>
-		</table>
-		</div>
-		<div class="like" style="display: flex; flex-direction: column;">
-			<div class="likelist">
-				<h3>좋아요 리스트</h3>
-			</div>
-			<div class="camplike" style="overflow:scroll; text-align: center;">
-					<c:choose>
-						<c:when test="${empty camp }">
-							<tr>
-								<td colspan="3">"좋아요 누른 항목이 없습니다."</td>
-							</tr>
-						</c:when>
-						<c:otherwise>
-						<c:forEach items="${camp}" var="dto" varStatus="status">
-						<a href="/clist/cdetail?camp_id=${dto.camp_id}&camp_se=${dto.camp_se}&memberid=${sessionScope.memberid}">${dto.camp_name}</a><br><br>
-						</c:forEach>
-						</c:otherwise>
-					</c:choose>
-			</div>
-		</div>	
-		<div class="reviewlist" style="line-height:50%;">
-			<table class="review_list" style="text-align: center;">			
-				<tr>
-					<th>예약완료</th>
-					<th>한줄후기</th>
-				</tr>
-			<div class="review">
-				<c:choose>
-				<c:when test="${empty res }">
-							<tr>
-								<td colspan="2">"조회된 이력이 없습니다.!"</td>
-							</tr>
-				</c:when>
-				<c:otherwise>
-				<c:forEach items="${res}" var="dt" varStatus="status">
-					<tr>
-						<td>${dt.camp_name}</td>
-						
-						<td><input type="button" name="review" id="review" value="후기작성하기" style="color: black;" onclick="rev(${dt.reser_id},${dt.camp_id},'${dt.member_id}');"></td>
-					</tr>
-				</c:forEach>
-				</c:otherwise>
-				</c:choose>
-			</div>
-			</table>				
-		</div>		
-	</div>
+    <div id="container">
+
+        <article>
+            <div class="container">
+
+                <div class="title-box">
+                    <div class="title-text">
+                        <div>마이페이지</div>
+                    </div>
+                </div>
+
+                <div class="content">
+
+                    <div class="content01">
+                        <div class="content-userinfo">
+                            <div class="content-text">이름</div>
+                            <input class="content-whitebox" type="text" id="membername" name="membername"
+                                readonly="readonly" value="${dto.membername }" >
+                            <div class="content-text">휴대폰</div>
+                            <input class="content-whitebox" type="text" id="memberphone" name="memberphone"
+                                readonly="readonly" value="${dto.memberphone }">
+                            <div class="content-text">보유포인트</div>
+                            <input class="content-whitebox" type="text" id="memberpoint" name="memberpoint"
+                                readonly="readonly" value="${dto.pointer }">
+                        </div>
+
+                        <div class="content-likelist">
+                            <div class="content-likelistfont">좋아요 리스트</div>
+                            <div class="content-likes">
+
+                                <c:choose>
+                                    <c:when test="${empty camp }">
+                                        <tr>
+                                            <td colspan="3">"좋아요 누른 항목이 없습니다."</td>
+                                        </tr>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:forEach items="${camp}" var="dto" varStatus="status">
+                                            <a href="/clist/cdetail?camp_id=${dto.camp_id}&camp_se=${dto.camp_se}&memberid=${sessionScope.memberid}">${dto.camp_name}</a><br><br>
+                                        </c:forEach>
+                                    </c:otherwise>
+                                </c:choose>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content02">
+                        <div class="reservation-box">
+                            <div class="reservation-title">
+                                <div>예약완료</div>
+                                <div>한줄후기</div>
+                                <br><br><br><br>
+                            </div>
+                            <div class="reservation-review">
+                                <c:choose>
+                                <c:when test="${empty res }">
+                                    <tr>
+                                        <td colspan="2">"조회된 이력이 없습니다.!"</td>
+                                    </tr>
+                                </c:when>
+                                <c:otherwise>
+                                <c:forEach items="${res}" var="dt" varStatus="status">
+                                <div  style="display: flex; text-align: center; justify-content: center; align-items: center;">
+                                        <div style="width: 50%;height: 40px;">${dt.camp_name}</div>
+                                        <div style="width: 50%; height: 40px;"><input type="button" name="review" id="review" value="후기작성하기" style="color: black;" onclick="rev(${dt.reser_id},${dt.camp_id},'${dt.member_id}');"></div>
+                                		<br>
+                                </div>
+                                </c:forEach>
+                                </c:otherwise>
+                                </c:choose>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </article>
+
+    </div>
 	<jsp:include page="../Footer2.jsp" flush="true"/>
 </body>
 </html>
