@@ -11,6 +11,7 @@
 <link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/banner.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/notice.css" type="text/css">
+<link rel="StyleSheet" href="/resources/css/star.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/Category.css"
 	type="text/css">
 <script type="text/javascript"
@@ -49,14 +50,6 @@ function rev(reser_id,camp_id,member_id){
 </script>
 <style>
 body{
-	background-color:black;
-}
-.myinfomation{
-   width:20%;
-   float:left;
-   margin-left:20%;
-   text-align:left;
-   font-weight: bold;
 }
 .likelist{
 	width:40%;
@@ -65,7 +58,7 @@ body{
 	margin-right:200px;
 	background-color: lightgray;	
 	text-align:center;
-}
+}***
 .camplike{
 	width:40%;
 	height:130px;
@@ -109,7 +102,7 @@ h2{
 	text-align: center;
 }
 
-input{
+myinfomation > input{
 	border: solid 1px white;
 	border-radius: 10px;
 
@@ -121,7 +114,7 @@ input{
 <body>
 <jsp:include page="../header.jsp" flush="true"/>
 		
-	<div class="mypagemain">
+	<div class="mypagemain" style="width: 70%;">
 		<h2>마이페이지</h2>
 		<div class="myinfomation">
 		<table>
@@ -145,7 +138,7 @@ input{
 			</tr>
 		</table>
 		</div>
-		<div class="like">
+		<div class="like" style="display: flex; flex-direction: column;">
 			<div class="likelist">
 				<h3>좋아요 리스트</h3>
 			</div>

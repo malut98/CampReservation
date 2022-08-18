@@ -63,6 +63,16 @@
 		});
 	});
 	$(document).ready(function() {
+		
+		$(".wordcloud_img")
+		.on('load', function() { console.log("image loaded correctly"); })
+		.on('error', function() { 
+			$('.wordcloud_img').attr("src","/resources/img/world_cloud_error.png")
+			setTimeout(function(){      
+				$('.review_container').load(location.href+' .review_container');
+			}, 2000);	
+		});
+		
 		var check1=${check1};
 		var check2=${check2};
 		if(check1==1){
@@ -88,14 +98,7 @@
     		$('.review_wrap').load(location.href+' .review_wrap');
 		}
 
-		$(".wordcloud_img")
-    		.on('load', function() { console.log("image loaded correctly"); })
-    		.on('error', function() { 
-				$('.wordcloud_img').attr("src","/resources/img/world_cloud_error.png")
-				setTimeout(function(){      
-					$('.review_container').load(location.href+' .review_container');
-				}, 2000);	
-			});
+
 		});
 	
 	function l_unlike(memberid, campid){
