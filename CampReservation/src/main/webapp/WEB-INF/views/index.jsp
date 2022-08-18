@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>CampMoa</title>
 <link rel="StyleSheet" href="/resources/css/Main.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/star.css" type="text/css">
 <link rel="StyleSheet" href="/resources/css/banner.css" type="text/css">

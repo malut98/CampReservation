@@ -212,7 +212,10 @@ public class CampListController {
 
 		CampDBDto campDto = campListService.campDetail(camp_id);
 		model.addAttribute("camp", campDto);
-
+		
+		List<CampDBDto> campReco = campListService.campRecommen(camp_id, campDto.getCamp_se());
+		model.addAttribute("CR", campReco);
+		
 		CampDBDto campDto2 = campListService.campDetail(camp_id2);
 		model2.addAttribute("camp_2", campDto2);
 

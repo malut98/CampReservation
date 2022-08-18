@@ -410,17 +410,17 @@
 					<div class="slider">
 						<div class="item-wrapper">
 							<c:choose>
-								<c:when test="${empty list }">
-									<c:forEach begin="0" end="8">
+								<c:when test="${empty CR}">
+									<c:forEach begin="0" end="10">
 										<div class="item">
 											<img src="/resources/img/banner/banner_2.jpg" />
 										</div>
 									</c:forEach>
 								</c:when>
 								<c:otherwise>
-									<c:forEach begin="0" end="8" items="${list }" var="dto">
+									<c:forEach begin="0" end="9" items="${CR}" var="dto">
 										<div class="item">
-											<a class="test"> ${dto.camp_name } </a>
+											<a class="test" onclick="location.href='cdetail?camp_id=${dto.camp_id}&camp_se=${dto.camp_se}&memberid=${sessionScope.memberid}'"> ${dto.camp_name } </a>
 											<div class="test-2">
 												<a><img src="${dto.camp_img }" /></a>
 											</div>
