@@ -15,7 +15,7 @@
 </script>
 <body>
 	<div>
-	<h3>작성이 완료되었습니다.</h3>
+	<h3>요청이 완료되었습니다.</h3>
 	<input type="button" value="확인" onclick="reviewCheck();" style="width:150px; height:50px; ">
 	</div>
 </body>

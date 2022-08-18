@@ -31,6 +31,11 @@
 		      }
 		   }
 		};
+		function reviewDelete(){ 
+			  if(confirm("리뷰를 수정하시겠습니까?")){
+			     $(".rev").submit();
+			  }
+		};
 </script>
 <body>
 <c:if test="${empty rev.re_content}">
@@ -63,6 +68,7 @@
       </div>
       </form>
          <input type="button" value="수정" onclick="reviewUpdate();" style="width:150px; height:50px; ">
+         <input type="button" value="삭제" onclick="location.href='/del?re_num=${rev.re_num}'" style="width:150px; height:50px; ">
       </c:if>
 </body>
 </html>

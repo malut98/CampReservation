@@ -122,7 +122,7 @@ function search() {
                      		</tr>
                      		<tr>
                         		<td class="table_addr">${dto.camp_addr}</td>
-                        		<td style="text-align: center;"><button id="${dto.camp_id}"
+                        		<td style="text-align: center;"><button id="${dto.camp_id}" style="color:black;"
                               		onclick="compare('${dto.camp_id}' , '${dto.camp_img}' , '${dto.camp_name}' , '${dto.camp_addr}','${sessionScope.memberid}'); return false;">비교</button>
                         		</td>
                      		</tr>
@@ -142,7 +142,7 @@ function search() {
    </div>
    		<div style="text-align: center;">
 			<input class="key" type="text" style="color:black;" placeholder="검색어를 입력해주세요">
-			<input class="se" type="button" value="검색" onclick="search();">
+			<input class="se" type="button" style="color:black;" value="검색" onclick="search();">
 		</div>
         <div class="camplist_bottom">
       	<div class="pagingDiv">

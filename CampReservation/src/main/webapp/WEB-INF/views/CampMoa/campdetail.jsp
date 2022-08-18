@@ -189,7 +189,7 @@ function like(memberid, campid){
 				<label for="count">${count}</label>
 			</div>
 			<div class="reservation">
-				<button style="width : 80px; height : 35px;" onclick="location.href='campreservation?camp_id=${camp.camp_id}'">예약하기</button>
+				<button style="width : 80px; height : 35px; color:black;" onclick="location.href='campreservation?camp_id=${camp.camp_id}'">예약하기</button>
 			</div>
 		</div>
 		</div>

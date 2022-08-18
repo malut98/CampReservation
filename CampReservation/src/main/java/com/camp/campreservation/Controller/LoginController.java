@@ -180,11 +180,13 @@ public class LoginController {
 		String cid = request.getParameter("campid");
 		String memberid = request.getParameter("memberid");
 		int campid=Integer.parseInt(cid);
-		int cnt = reviewserivce.update(campid,content,memberid);
-		if (cnt > 0) {
-			return "Login/re_check";
-		}else {
-			return "Login/re_check";
-		}
+		reviewserivce.update(campid,content,memberid);
+		return "Login/re_check";
+	}
+	
+	@GetMapping("/del")
+	public String reviewDel(int re_num) {
+		reviewserivce.reviewDel(re_num);
+		return "Login/re_check";
 	}
 }

@@ -2,6 +2,7 @@ package com.camp.campreservation.Mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -26,4 +27,7 @@ public interface ReviewMapper {
 
 	@Select(" SELECT * FROM REVIEW WHERE MEMBER_ID=#{member_id} ")
 	List<ReviewDto> getMemberReview(String member_id);
+	
+	@Delete(" DELETE FROM REVIEW WHERE RE_NUM=#{re_num} ")
+	int delete(int re_num);
 }

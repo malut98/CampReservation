@@ -39,5 +39,10 @@ public class ReviewserviceImpl implements ReviewService {
 		return reviewMapper.update(camp_id,re_content,member_id);
 	}
 
+	@Override
+	public int reviewDel(int re_num) {
+		return reviewMapper.delete(re_num);
+	}
+
 
 }
