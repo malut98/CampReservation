@@ -64,15 +64,6 @@
 	});
 	$(document).ready(function() {
 		
-		$(".wordcloud_img")
-		.on('load', function() { console.log("image loaded correctly"); })
-		.on('error', function() { 
-			$('.wordcloud_img').attr("src","/resources/img/world_cloud_error.png")
-			setTimeout(function(){      
-				$('.review_container').load(location.href+' .review_container');
-			}, 2000);	
-		});
-		
 		var check1=${check1};
 		var check2=${check2};
 		if(check1==1){
@@ -397,10 +388,10 @@
 		<div class="review_container">
 			<div class="review_wrap">
 				<div class="review_content">
-					<img class="wordcloud_img"  src="/resources/img/wordcloud/wordcloud_id-${camp.camp_id}.png" style="width :350px; height:350px;">
+					<img class="wordcloud_img"  onerror="this.src='/resources/img/world_cloud_error.png';setTimeout(function(){$('.review_container').load(location.href+' .review_container');}, 3000);" src="/resources/img/wordcloud/wordcloud_id-${camp.camp_id}.png" style="width :350px; height:350px;">
 				</div>
 				<div class="review_content">
-					<img class="wordcloud_img" alt=""  src="/resources/img/wordcloud/wordcloud_id-${camp_2.camp_id}.png" style="width :350px; height:350px;">
+					<img class="wordcloud_img" onerror="this.src='/resources/img/world_cloud_error.png';setTimeout(function(){$('.review_container').load(location.href+' .review_container');}, 3000);	" alt=""  src="/resources/img/wordcloud/wordcloud_id-${camp_2.camp_id}.png" style="width :350px; height:350px;">
 				</div>
 			</div>
 		</div>
