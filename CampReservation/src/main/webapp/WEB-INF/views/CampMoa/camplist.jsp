@@ -101,6 +101,7 @@ function search() {
          <div class="camplist">
          	<div class="camplist_Top">
             	<c:forEach items="${camp}" var="dto" varStatus="status">
+            	
             	<c:if test="${status.count % 3 ==1}">
                 	<div class="wrap">
             	</c:if> 
