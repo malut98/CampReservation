@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -206,7 +207,7 @@ public class UsedtradeController {
 		return "";
 	}
 
-	@PostMapping("/usedtradesearch")
+	@RequestMapping("/usedtradesearch")
 	public String usedtradesearch(@RequestParam(defaultValue = "mar_title") String searchOption,
 			@RequestParam(defaultValue = "") String keyword, Model model,
 			@RequestParam(defaultValue = "1") String pagenum, @RequestParam(defaultValue = "10") String contentnum) {

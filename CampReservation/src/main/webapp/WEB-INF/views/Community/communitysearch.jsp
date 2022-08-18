@@ -32,10 +32,9 @@
 window.onload=function(){
 	var mesage = "${mesage}";
 	var member = '<%=(String) session.getAttribute("memberid")%>';
-		
 	var clist = "${clist}";
 	if(clist == "[]"){
-		$(".paging").hide();
+		$(".pagination").hide();
 	}
 	
 		if (!mesage) {
@@ -54,35 +53,36 @@ window.onload=function(){
 		var pagenum = idx;
 		var contentnum = $("#contentnum option:selected").val();
 		var board = '${board}';
-		if(!board){
+		
+		if(!'${board}'){
 			if (contentnum == 5) {
-				location.href = "${pageContext.request.contextPath}/communitylist?pagenum="
-						+ pagenum + "&contentnum=" + contentnum
+				location.href = "${pageContext.request.contextPath}/communitysearch?pagenum="
+						+ pagenum + "&contentnum=" + contentnum + "&searchOption="+'${searchOption}'+"&keyword="+'${keyword}'
 
 			} else if (contentnum == 10) {
-				location.href = "${pageContext.request.contextPath}/communitylist?pagenum="
-						+ pagenum + "&contentnum=" + contentnum
+				location.href = "${pageContext.request.contextPath}/communitysearch?pagenum="
+						+ pagenum + "&contentnum=" + contentnum + "&searchOption="+'${searchOption}'+"&keyword="+'${keyword}'
 
 			} else if (contentnum == 20) {
-				location.href = "${pageContext.request.contextPath}/communitylist?pagenum="
-						+ pagenum + "&contentnum=" + contentnum
+				location.href = "${pageContext.request.contextPath}/communitysearch?pagenum="
+						+ pagenum + "&contentnum=" + contentnum + "&searchOption="+'${searchOption}'+"&keyword="+'${keyword}'
 
 			}
 
 		}else{
-		if (contentnum == 5) {
-			location.href = "${pageContext.request.contextPath}/communityselectlist?pagenum="
-					+ pagenum + "&contentnum=" + contentnum + "&com_cate="+board
+			if (contentnum == 5) {
+				location.href = "${pageContext.request.contextPath}/communityselectsearch?pagenum="
+						+ pagenum + "&contentnum=" + contentnum + "&com_cate="+board + "&searchOption="+'${searchOption}'+"&keyword="+'${keyword}'
 
-		} else if (contentnum == 10) {
-			location.href = "${pageContext.request.contextPath}/communityselectlist?pagenum="
-					+ pagenum + "&contentnum=" + contentnum + "&com_cate="+board
+			} else if (contentnum == 10) {
+				location.href = "${pageContext.request.contextPath}/communityselectsearch?pagenum="
+						+ pagenum + "&contentnum=" + contentnum + "&com_cate="+board+ "&searchOption="+'${searchOption}'+"&keyword="+'${keyword}'
 
-		} else if (contentnum == 20) {
-			location.href = "${pageContext.request.contextPath}/communityselectlist?pagenum="
-					+ pagenum + "&contentnum=" + contentnum + "&com_cate="+board
+			} else if (contentnum == 20) {
+				location.href = "${pageContext.request.contextPath}/communityselectsearch?pagenum="
+						+ pagenum + "&contentnum=" + contentnum + "&com_cate="+board+ "&searchOption="+'${searchOption}'+"&keyword="+'${keyword}'
 
-		}
+			}
 		}
 	}
 </script>
@@ -153,6 +153,7 @@ window.onload=function(){
 				</div>
 				<div class="boardsearch">
 			<form method="post" action="communitysearch">
+			<input type="hidden" name="board" value="${board}">
 				<select name="searchOption" id="searchoption">
 					<option value="com_title" id="st" name="com_title">제목</option>
 					<option value="member_id" id="sw" name="member_id">작성자</option>
