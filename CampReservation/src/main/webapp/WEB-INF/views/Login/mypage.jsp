@@ -39,9 +39,9 @@ function rev(reser_id,camp_id,member_id){
     		console.log("code:"+request.status + "\n" + "message:"+request.responseText+ "\n" + "error:"+error);
     	},
     	success: function (result) {
-    		if(result==1){
+    		if(result==-1){
     			window.open('/write?reser_id='+reser_id+'&camp_id='+camp_id+'&member_id='+member_id, '', 'width=700, height=500, location=no, status=no, scrollbars=yes');
-    		}else if(result==-1){
+    		}else if(result==1){
     			alert("여행이 아직 끝나지 않았습니다.");
     		}
     	}
