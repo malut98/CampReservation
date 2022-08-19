@@ -121,7 +121,7 @@ function search() {
                         		<td  class="table_name">${dto.camp_name}</td>
                      		</tr>
                      		<tr>
-                        		<td class="table_addr">${dto.camp_addr}</td>
+                        		<td class="table_addr">${fn: substring(dto.camp_addr, 0 ,30)}</td>
                         		<td style="text-align: center;"><button id="${dto.camp_id}" style="color:black;"
                               		onclick="compare('${dto.camp_id}' , '${dto.camp_img}' , '${dto.camp_name}' , '${dto.camp_addr}','${sessionScope.memberid}'); return false;">비교</button>
                         		</td>

@@ -151,7 +151,7 @@ public class UsedtradeController {
 			dto.setMar_image(uuid + "_" + file.getOriginalFilename());
 
 		}
-		String path = "C:\\Users\\tmdgh\\git\\CampReservation\\CampReservation\\CampReservation\\src\\main\\resources\\static\\Img\\usedtrade";
+		String path = "C:\\Users\\yang\\git\\CampReservation\\CampReservation\\src\\main\\resources\\static\\Img\\usedtrade";
 		System.out.println(path);
 		String filePath = path + "\\" + uuid + "_" + file.getOriginalFilename();
 		File dest = new File(filePath);

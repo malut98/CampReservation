@@ -64,11 +64,11 @@
 					</div>
 					<div class="Bottom_warp">
 						<div class="Banner_Bottom">
-							<button class="Banner-btn">산</button>
-							<button class="Banner-btn">바다</button>
-							<button class="Banner-btn">캠핑장</button>
-							<button class="Banner-btn">글램핑</button>
-							<button class="Banner-btn">카라반</button>
+							<button onclick="location.href='serch?keyword=산'" class="Banner-btn">산</button>
+							<button onclick="location.href='serch?keyword=바다'" class="Banner-btn">바다</button>
+							<button onclick="location.href='serch?keyword=캠핑장'" class="Banner-btn">캠핑장</button>
+							<button onclick="location.href='serch?keyword=글램핑'" class="Banner-btn">글램핑</button>
+							<button onclick="location.href='serch?keyword=카라반'" class="Banner-btn">카라반</button>
 						</div>
 					</div>
 				</div>
